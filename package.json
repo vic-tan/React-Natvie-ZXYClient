@@ -1,0 +1,32 @@
+{
+  "name": "ZXYClient",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "~15.4.0",
+    "react-native": "0.41.2",
+    "react-native-actionsheet": "^2.0.5",
+    "react-native-busy-indicator": "^1.0.9",
+    "react-native-pull": "^2.0.2",
+    "react-native-scrollable-tab-view": "^0.7.2",
+    "react-native-sk-refreshable-listview": "^1.0.0",
+    "react-native-storage": "^0.1.5",
+    "react-native-swRefresh": "^1.2.3",
+    "react-native-swiper": "^1.5.4",
+    "react-native-tab-navigator": "^0.3.3",
+    "react-native-viewpager": "^0.2.13"
+  },
+  "devDependencies": {
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "19.0.2",
+    "react-test-renderer": "~15.4.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
