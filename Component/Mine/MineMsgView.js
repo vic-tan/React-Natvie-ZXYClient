@@ -25,46 +25,80 @@ import {PullList} from 'react-native-pull';
 var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 var ComNavBar = require("../Common/ComNavBar");
+var ComFooterRefreshView = require("../Common/ComFooterRefreshView");
 var ToastUtils = require("../Uitls/ToastUtils");
 var HttpUitls = require("../Uitls/HttpUitls");
-var list = [];
+var RefreshViewUitls = require("../Uitls/RefreshViewUitls");
 class MineMsgView extends Component {
     constructor(props) {
         super(props);
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}) // assumes immutable objects
+        this.dataSource = [];
         this.state = {
-            nomore: true,
-            list: ds.cloneWithRows(list),
+            sid: '',
+            pageNumber: 1,
+            footerState: 0,//0:表示无， 1加载中 2,已没有更多了
+            isFirstLoading: true,//true ,第一次加载，false,加载更多
+            list: (new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})).cloneWithRows(this.dataSource),
         };
         this.onPullRelease = this.onPullRelease.bind(this);
+        this.loadMore = this.loadMore.bind(this);
     }
 
     onPullRelease(resolve) {
-        storage.load({
-            key: 'user',
-        }).then(ret => {
-            let sid = ret.sid;
-            let map = new Map()
-            map.set('type', '');
-            map.set('pageNumber', 1);
-            map.set('sid', sid);
-            map.set('pageSize', 2);
-            HttpUitls.postFrom('user/messageList', map, (set) => {
-                resolve();
-                if (set.code == '0000') {
-                    this.setState({
-                        list: this.state.list.cloneWithRows(set.data.list)
-                    });
-                } else {
-                    ToastUtils.toastShort(set.msg);
-                }
-            })
-        }).catch(err => {
+        this.request(true, () => {
+            resolve();
         })
     }
 
-    componentDidMount() {
+    loadMore() {
+        if (this.state.isFirstLoading || this.state.footerState == 0 || this.state.footerState == 2) {
+            return;
+        }
+        this.request(false, () => {
+        })
+    }
 
+    request(isPullRelease, callback) {
+        let url = 'user/messageList';
+        RefreshViewUitls.request(isPullRelease,url,this.state.pageNumber,(map, set)=>{
+            if (isPullRelease) {
+                callback()
+            }
+            this.requestOk(isPullRelease,map, set);
+        });
+
+
+    }
+
+    requestOk(isPullRelease,map, set) {
+        if (set.code == '0000') {
+            if (isPullRelease) {
+                this.dataSource = [];
+            }
+            for (var i = 0; i < set.data.list.length; i++) {
+                this.dataSource.push(set.data.list[i]);
+            }
+            this.setState({
+                list: this.state.list.cloneWithRows(this.dataSource),
+                isFirstLoading: set.data.list.length === map.get('pageSize') ? false : true,
+                footerState: set.data.list.length === map.get('pageSize') ? 1 : 2,
+                pageNumber: isPullRelease ? (set.data.list.length === map.get('pageSize') ? 2 : 1) : (set.data.list.length === map.get('pageSize') ? this.state.pageNumber + 1 : this.state.pageNumber),
+            });
+        } else {
+            ToastUtils.toastShort(set.msg);
+        }
+    }
+
+    componentDidMount() {
+        storage.load({
+            key: 'user',
+        }).then(ret => {
+            this.setState({
+                sid: ret.sid,
+                isFirstLoading: true,
+            });
+        }).catch(err => {
+        })
     }
 
     render() {
@@ -77,6 +111,9 @@ class MineMsgView extends Component {
                     renderRow={this.renderRow.bind(this)}
                     onPullRelease={this.onPullRelease.bind(this)}
                     onEndReached={this.loadMore}
+                    onEndReachedThreshold={0}
+                    enableEmptySections={true}
+                    renderFooter={this.renderFooter.bind(this)}
                 />
             </View>
         );
@@ -101,58 +138,13 @@ class MineMsgView extends Component {
     }
 
     renderFooter() {
-        console.log('--------->renderFooter');
-        if (this.state.nomore) {
-            return null;
-        }
         return (
-            <View style={{height: 100}}>
-                <ActivityIndicator />
-            </View>
+            <ComFooterRefreshView isFirstLoading={this.state.isFirstLoading} footerState={this.state.footerState}/>
         );
-    }
-
-    loadMore() {
-        /*if(this.isFirstTime){
-            if(!this.state.isShowBottomRefresh){
-                this.isFirstTime = false;
-            }
-            return;
-        }
-
-        this.isFirstTime = true;
-        this.setState({isShowBottomRefresh: true});*/
-        console.log('--------->loadMore');
-        /*this.dataSource.push({
-            id: 0,
-            title: `more to create data ...`,
-        });
-        this.setState({
-            list: this.state.list.cloneWithRows(this.dataSource)
-        });
-
-        storage.load({
-            key: 'user',
-        }).then(ret => {
-            let sid = ret.sid;
-            let map = new Map()
-            map.set('type', '');
-            map.set('pageNumber', 2);
-            map.set('sid', sid);
-            map.set('pageSize', 2);
-            HttpUitls.postFrom('user/messageList', map, (set) => {
-                if (set.code == '0000') {
-                    this.setState({
-                        list: this.state.list.cloneWithRows(set.data.list)
-                    });
-                } else {
-                    ToastUtils.toastShort(set.msg);
-                }
-            })
-        }).catch(err => {
-        })*/
 
     }
+
+
 }
 
 const styles = StyleSheet.create({
