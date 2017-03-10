@@ -1,16 +1,18 @@
 /**
  * NetUitl 网络请求的实现
- * @author lidong
- * @date 2016-03-17
+ * @author tanlifei
+ * @date 2017-03-11
  * https://github.com/facebook/react-native
  */
 'use strict';
 import React, {Component} from 'react';
 import {
     AppRegistry,
-    StyleSheet
+    StyleSheet,
+    NetInfo
 } from 'react-native';
 var JsonUitls = require("./JsonUitls");
+var Toast = require("./ToastUtils");
 
 
 class HttpUitls extends Component {
@@ -22,25 +24,29 @@ class HttpUitls extends Component {
      *callback:回调函数
      */
     static  postFrom(url, data, callback) {
-       /* let sid = {
-            'sid': data['sid'],
-        };
-        alert(sid);*/
-        var fetchOptions = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            referer: 'http://tc.zhixueyun.com/zxy-student-web/',
-            body: 'json=' + JsonUitls.mapToJson(data)//这里我参数只有一个data,大家可以还有更多的参数
-        };
+        NetInfo.isConnected.fetch().done((isConnected) => {
+           /* if (!isConnected) {
+                Toast.toastShort('网络不可用,请稍后再试');
+                callback(null);
+                return;
+            }*/
+            var fetchOptions = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                referer: 'http://tc.zhixueyun.com/zxy-student-web/',
+                body: 'json=' + JsonUitls.mapToJson(data)//这里我参数只有一个data,大家可以还有更多的参数
+            };
 
-        fetch('http://demo.zhixueyun.com/zxy-mobile-new/'+url, fetchOptions)
-            .then((response) => response.text())
-            .then((responseText) => {
-                callback(JSON.parse(responseText));
-            }).done();
+            fetch('http://demo.zhixueyun.com/zxy-mobile-new/' + url, fetchOptions)
+                .then((response) => response.text())
+                .then((responseText) => {
+                    callback(JSON.parse(responseText));
+                }).done();
+        });
+
     }
 
     /**
@@ -49,21 +55,28 @@ class HttpUitls extends Component {
      *callback:回调函数
      */
     static postJson(url, data, callback) {
-        var fetchOptions = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                //json形式
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        };
+        NetInfo.isConnected.fetch().done((isConnected) => {
+            if (!isConnected) {
+                Toast.toastShort('网络不可用,请稍后再试');
+                callback(null);
+                return;
+            }
+            var fetchOptions = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    //json形式
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
 
-        fetch(url, fetchOptions)
-            .then((response) => response.text())
-            .then((responseText) => {
-                callback(JSON.parse(responseText));
-            }).done();
+            fetch(url, fetchOptions)
+                .then((response) => response.text())
+                .then((responseText) => {
+                    callback(JSON.parse(responseText));
+                }).done();
+        });
     }
 
     //get请求
@@ -72,11 +85,18 @@ class HttpUitls extends Component {
      *callback:回调函数
      */
     static  get(url, callback) {
-        fetch(url)
-            .then((response) => response.text())
-            .then((responseText) => {
-                callback(JSON.parse(responseText));
-            }).done();
+        NetInfo.isConnected.fetch().done((isConnected) => {
+            if (!isConnected) {
+                Toast.toastShort('网络不可用,请稍后再试');
+                callback(null);
+                return;
+            }
+            fetch(url)
+                .then((response) => response.text())
+                .then((responseText) => {
+                    callback(JSON.parse(responseText));
+                }).done();
+        });
     }
 
 }

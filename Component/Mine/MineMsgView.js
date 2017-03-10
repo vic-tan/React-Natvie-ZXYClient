@@ -26,6 +26,7 @@ var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 var ComNavBar = require("../Common/ComNavBar");
 var ComFooterRefreshView = require("../Common/ComFooterRefreshView");
+var ComErrorView = require("../Common/ComErrorView");
 var ToastUtils = require("../Uitls/ToastUtils");
 var HttpUitls = require("../Uitls/HttpUitls");
 var RefreshViewUitls = require("../Uitls/RefreshViewUitls");
@@ -36,57 +37,14 @@ class MineMsgView extends Component {
         this.state = {
             sid: '',
             pageNumber: 1,
-            footerState: 0,//0:表示无， 1加载中 2,已没有更多了
-            isFirstLoading: true,//true ,第一次加载，false,加载更多
+            footerState: RefreshViewUitls.footerStateHide(),//0:表示无， 1加载中 2,已没有更多了
+            isFirstLoading: RefreshViewUitls.footerStateIsfirstLoading(),//true ,第一次加载，false,加载更多
+            parentViewState: ComErrorView.parentViewStateShow(),
+            childViewState: ComErrorView.childViewStateLoading(),
             list: (new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})).cloneWithRows(this.dataSource),
         };
         this.onPullRelease = this.onPullRelease.bind(this);
         this.loadMore = this.loadMore.bind(this);
-    }
-
-    onPullRelease(resolve) {
-        this.request(true, () => {
-            resolve();
-        })
-    }
-
-    loadMore() {
-        if (this.state.isFirstLoading || this.state.footerState == 0 || this.state.footerState == 2) {
-            return;
-        }
-        this.request(false, () => {
-        })
-    }
-
-    request(isPullRelease, callback) {
-        let url = 'user/messageList';
-        RefreshViewUitls.request(isPullRelease,url,this.state.pageNumber,(map, set)=>{
-            if (isPullRelease) {
-                callback()
-            }
-            this.requestOk(isPullRelease,map, set);
-        });
-
-
-    }
-
-    requestOk(isPullRelease,map, set) {
-        if (set.code == '0000') {
-            if (isPullRelease) {
-                this.dataSource = [];
-            }
-            for (var i = 0; i < set.data.list.length; i++) {
-                this.dataSource.push(set.data.list[i]);
-            }
-            this.setState({
-                list: this.state.list.cloneWithRows(this.dataSource),
-                isFirstLoading: set.data.list.length === map.get('pageSize') ? false : true,
-                footerState: set.data.list.length === map.get('pageSize') ? 1 : 2,
-                pageNumber: isPullRelease ? (set.data.list.length === map.get('pageSize') ? 2 : 1) : (set.data.list.length === map.get('pageSize') ? this.state.pageNumber + 1 : this.state.pageNumber),
-            });
-        } else {
-            ToastUtils.toastShort(set.msg);
-        }
     }
 
     componentDidMount() {
@@ -95,17 +53,115 @@ class MineMsgView extends Component {
         }).then(ret => {
             this.setState({
                 sid: ret.sid,
-                isFirstLoading: true,
+                isFirstLoading: RefreshViewUitls.footerStateIsfirstLoading(),
             });
         }).catch(err => {
         })
+        this.onStartRequest();
     }
+
+    againRefresh() {
+        this.onStartRequest();
+    }
+
+    onStartRequest() {
+        this.request(RefreshViewUitls.refreshStateStart(), (map, set) => {
+            if (set == null) {
+                this.setPrompt(ComErrorView.parentViewStateShow(), ComErrorView.childViewStateNetWordError());
+            } else if (set.code !== '0000') {
+                this.setPrompt(ComErrorView.parentViewStateShow(), ComErrorView.childViewStateLoadingError());
+            } else if (set.data.list.length <= 0) {
+                this.setPrompt(ComErrorView.parentViewStateShow(), ComErrorView.childViewStateNoData());
+            } else {
+                this.setPrompt(ComErrorView.parentViewStateHide(), ComErrorView.childViewStateHide());
+            }
+        })
+    }
+
+
+    onPullRelease(resolve) {
+        this.request(RefreshViewUitls.refreshStatePull(), () => {
+            resolve();
+        })
+    }
+
+    loadMore() {
+        this.request(RefreshViewUitls.refreshStateMore(), (map, set) => {
+        });
+    }
+
+
+    setPrompt(parentViewState, childViewState) {
+        this.setState({
+            parentViewState: parentViewState,
+            childViewState: childViewState,
+        });
+    }
+
+    /**
+     * @param isPullRelease  0.表示默认第一次加载 1、为下拉，2、 加载更多
+     * @param callback
+     */
+    request(isPullRelease, callback) {
+        if (isPullRelease == RefreshViewUitls.refreshStateMore() && (this.state.isFirstLoading || this.state.footerState == 0 || this.state.footerState == 2)) {
+            return;
+        }
+        let url = 'user/messageList';
+        RefreshViewUitls.pullRequest(isPullRelease, url, this.state.pageNumber, (map, set) => {
+            this.requestOk(isPullRelease, map, set, callback);
+        });
+
+
+    }
+
+    requestOk(isPullRelease, map, set, callback) {
+        if (set == null) {
+            if (isPullRelease == RefreshViewUitls.refreshStatePull() || isPullRelease == RefreshViewUitls.refreshStateStart()) {
+            }
+            callback(map, set);
+            return
+        }
+        if (set.code == '0000') {
+            if (isPullRelease == RefreshViewUitls.refreshStatePull() || isPullRelease == RefreshViewUitls.refreshStateStart()) {
+                this.dataSource = [];
+            }
+            for (var i = 0; i < set.data.list.length; i++) {
+                this.dataSource.push(set.data.list[i]);
+            }
+            this.setState({
+                list: this.state.list.cloneWithRows(this.dataSource),
+                isFirstLoading: RefreshViewUitls.getIsFirstLoading(map, set),
+                footerState: RefreshViewUitls.getFooterState(map, set),
+                pageNumber: RefreshViewUitls.getPageNumber(isPullRelease, map, set),
+            });
+        } else {
+            if (isPullRelease == RefreshViewUitls.refreshStatePull() || isPullRelease == RefreshViewUitls.refreshStateStart()) {
+                ToastUtils.toastShort(set.msg);//上拉下拉有异常只提示就行，不用像第一次进来显示不同界面
+            }
+        }
+        callback(map, set);
+    }
+
 
     render() {
         return (
             <View style={styles.container}>
                 <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                 <ComNavBar title='消息' navigator={this.props.navigator}/>
+                {this.showView()}
+            </View>
+        );
+    }
+
+
+    showView() {
+        if (this.state.parentViewState) {
+            return (
+                <ComErrorView parentViewState={this.state.parentViewState}
+                              childViewState={this.state.childViewState}
+                              callbackParent={this.againRefresh.bind(this)}/>)
+        } else {
+            return (
                 <PullList
                     dataSource={this.state.list}
                     renderRow={this.renderRow.bind(this)}
@@ -115,8 +171,9 @@ class MineMsgView extends Component {
                     enableEmptySections={true}
                     renderFooter={this.renderFooter.bind(this)}
                 />
-            </View>
-        );
+            )
+        }
+
     }
 
 

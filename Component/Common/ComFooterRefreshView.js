@@ -11,6 +11,7 @@ import {
     ActivityIndicator,
     Platform
 } from 'react-native';
+import ListRefreshStateConstant from '../Constant/ListRefreshStateConstant'
 var {width, height} = Dimensions.get('window');
 class ComFooterRefreshView extends Component {
     constructor(props) {
@@ -29,33 +30,28 @@ class ComFooterRefreshView extends Component {
         )
     }
 
-    _renderFooter2() {
-        return (
-            <View style={styles.container}>
-                <ActivityIndicator size='small' style={styles.dctivityIndicator}/>
-                <Text style={styles.loading}>加载中...</Text>
-            </View>
-        )
-    }
-
     _render() {
         if (this.props.isFirstLoading && this.props.footerState === 0) {
             return null;
         }
-        if (this.props.footerState == 1) {//显示加载中
-            return (
-                <View style={styles.containerload}>
-                    <ActivityIndicator size='small' style={styles.dctivityIndicator}/>
-                    <Text style={styles.loading}>加载中...</Text>
-                </View>
-            );
-        }
-        if (this.props.footerState === 2) {//显示完成
-            return (
-                <View style={styles.containerload}>
-                    <Text style={styles.loading}>——我是有底线的——</Text>
-                </View>
-            );
+        switch (this.props.footerState) {
+            case ListRefreshStateConstant.REFRESH_FOOTER_STATE_LOADING://显示加载中
+                return (
+                    <View style={styles.containerload}>
+                        <ActivityIndicator size='small' style={styles.dctivityIndicator}/>
+                        <Text style={styles.loading}>加载中...</Text>
+                    </View>
+                );
+                break;
+            case ListRefreshStateConstant.REFRESH_FOOTER_STATE_NO_DATA://显示完成
+                return (
+                    <View style={styles.containerLayout}>
+                        <View style={styles.containerload}>
+                            <Text style={styles.loading}>——我是有底线的——</Text>
+                        </View>
+                    </View>
+                );
+                break;
         }
     }
 

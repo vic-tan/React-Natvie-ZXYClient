@@ -22,30 +22,31 @@ import {
 var TLFForgotPassword = require("./TLFForgotPassword");
 var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-const BusyIndicator = require('react-native-busy-indicator');
-const loaderHandler = require('react-native-busy-indicator/LoaderHandler');
 var TLFNavigation = require("./TLFNavigation");
 var HttpUitls = require("../Uitls/HttpUitls");
 var ToastUtils = require("../Uitls/ToastUtils");
+
+const BusyIndicator = require('react-native-busy-indicator');
+const loaderHandler = require('react-native-busy-indicator/LoaderHandler');
 
 class TLFLoginView extends Component {
     constructor(props) {
         super(props);
     }
 
-   /* _validation() {
-        /!* var qyname =this.refs['qyname'];
-         var name =this.refs['name'];
-         var pwd =this.refs['pwd'];
-         toastShort.show(qyname.text );
-         if(qyname.text.isEmpty()){
-         toastShort.show('企业名不能为空！');
-         }else if(name.text.isEmpty()){
-         toastShort.show('账号不能为空！');
-         }else if(pwd.text.isEmpty()){
-         toastShort.show('密码不能为空！');
-         }*!/
-    }*/
+    /* _validation() {
+     /!* var qyname =this.refs['qyname'];
+     var name =this.refs['name'];
+     var pwd =this.refs['pwd'];
+     toastShort.show(qyname.text );
+     if(qyname.text.isEmpty()){
+     toastShort.show('企业名不能为空！');
+     }else if(name.text.isEmpty()){
+     toastShort.show('账号不能为空！');
+     }else if(pwd.text.isEmpty()){
+     toastShort.show('密码不能为空！');
+     }*!/
+     }*/
 
     _login() {
         loaderHandler.showLoader('登录中...');
@@ -61,23 +62,24 @@ class TLFLoginView extends Component {
 
     _callback(set) {
         loaderHandler.hideLoader();
-        if (set.code == '0000') {
-            storage.save({
-                key: 'user',
-                rawData: {
-                    sid: set.data.sid,
-                    user: set.data,
-                },
-                expires: null
-            });
-            const {navigator} = this.props;
-            if (navigator) {
-                navigator.push({component: TLFNavigation});
+        if (set != null) {
+            if (set.code == '0000') {
+                storage.save({
+                    key: 'user',
+                    rawData: {
+                        sid: set.data.sid,
+                        user: set.data,
+                    },
+                    expires: null
+                });
+                const {navigator} = this.props;
+                if (navigator) {
+                    navigator.push({component: TLFNavigation});
+                }
+            } else {
+                ToastUtils.toastShort(set.msg);
             }
-        } else {
-            ToastUtils.toastShort(set.msg);
         }
-
     }
 
     _ForgotPassword() {

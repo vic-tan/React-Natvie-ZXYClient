@@ -1,7 +1,7 @@
 /**
  * NetUitl 网络请求的实现
- * @author lidong
- * @date 2016-03-17
+ * @author tanlifei
+ * @date 2017-03-11
  * https://github.com/facebook/react-native
  */
 'use strict';
