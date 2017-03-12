@@ -135,8 +135,13 @@ class MineMsgView extends Component {
                 pageNumber: RefreshViewUitls.getPageNumber(isPullRelease, map, set),
             });
         } else {
-            if (isPullRelease == RefreshViewUitls.refreshStatePull() || isPullRelease == RefreshViewUitls.refreshStateStart()) {
+            if (isPullRelease == RefreshViewUitls.refreshStatePull()) {
                 ToastUtils.toastShort(set.msg);//上拉下拉有异常只提示就行，不用像第一次进来显示不同界面
+            }else if(isPullRelease == RefreshViewUitls.refreshStateMore()){
+                ToastUtils.toastShort(set.msg);
+                this.setState({
+                    footerState: RefreshViewUitls.footerStateError(),
+                });
             }
         }
         callback(map, set);
@@ -146,7 +151,6 @@ class MineMsgView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                 <ComNavBar title='消息' navigator={this.props.navigator}/>
                 {this.showView()}
             </View>
@@ -167,7 +171,7 @@ class MineMsgView extends Component {
                     renderRow={this.renderRow.bind(this)}
                     onPullRelease={this.onPullRelease.bind(this)}
                     onEndReached={this.loadMore}
-                    onEndReachedThreshold={0}
+                    onEndReachedThreshold={100}
                     enableEmptySections={true}
                     renderFooter={this.renderFooter.bind(this)}
                 />
@@ -219,7 +223,7 @@ const styles = StyleSheet.create({
         },
 
         rowTitle: {
-            width: width * 0.95,
+            width: width * 0.9,
             color: "#C62433",
             fontSize: 15,
             fontWeight: 'bold',
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
             paddingBottom: 0,
         },
         timeView: {
-            width: width * 0.95,
+            width: width * 0.9,
             flexDirection: 'row',
             justifyContent: 'flex-end',
         },

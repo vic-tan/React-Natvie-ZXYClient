@@ -52,6 +52,15 @@ class ComFooterRefreshView extends Component {
                     </View>
                 );
                 break;
+            case ListRefreshStateConstant.REFRESH_FOOTER_STATE_ERROR://加载失败了
+                return (
+                    <View style={styles.containerLayout}>
+                        <View style={styles.containerload}>
+                            <Text style={styles.loading}>加载数据失败,请重试</Text>
+                        </View>
+                    </View>
+                );
+                break;
         }
     }
 
