@@ -32,7 +32,8 @@ class AskDynamicDirView extends Component {
         return (
             <View style={styles.container}>
                 <ComListRefreshView url='user/messageList'
-                                    callbackParentRow={this.listCellRow.bind(this)}/>
+                                    callbackParentRow={this.listCellRow.bind(this)}
+                                    navigator={this.props.navigator}/>
             </View>
         );
     }

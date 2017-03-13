@@ -17,27 +17,36 @@ import {
     TextInput,
     Text,
     TouchableOpacity,
+    ListView,
     Platform
 } from 'react-native';
+import BaseComponent from '../Base/BaseComponent';
 var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 var ComNavBar = require("../Common/ComNavBar");
 var ComListRefreshView = require("../Common/ComListRefreshView");
-class MineCollectView extends Component {
+class MineCollectView extends BaseComponent {
     constructor(props) {
         super(props);
+
     }
 
 
     render() {
         return (
             <View style={styles.container}>
-                <ComNavBar title='我的收藏' navigator={this.props.navigator}/>
-                <ComListRefreshView url='user/messageList'
-                                    callbackParentRow={this.listCellRow.bind(this)}/>
+                <View style={{marginTop: Platform.OS == 'ios' ? 68 : 48,flex: 1}}>
+                    <ComListRefreshView url='user/messageList'
+                                        callbackParentRow={this.listCellRow.bind(this)}
+                    />
+                </View>
+                <View style={{position: 'absolute',top:0 ,width:width}}>
+                    <ComNavBar title='我的收藏' navigator={this.props.navigator}/>
+                </View>
             </View>
         );
     }
+
 
     listCellRow(rowData, sectionID, rowID, highlightRow) {
         return (
@@ -55,12 +64,12 @@ class MineCollectView extends Component {
             </View>
         );
     }
+
 }
 
 const styles = StyleSheet.create({
         container: {
-            width: width,
-            height: height,
+            flex: 1,
             backgroundColor: '#F3F3F3',
         },
 

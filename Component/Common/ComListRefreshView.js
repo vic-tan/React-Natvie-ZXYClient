@@ -29,7 +29,6 @@ var ComErrorView = require("../Common/ComErrorView");
 var ToastUtils = require("../Uitls/ToastUtils");
 var HttpUitls = require("../Uitls/HttpUitls");
 var RefreshViewUitls = require("../Uitls/RefreshViewUitls");
-var ComNavBar = require("../Common/ComNavBar");
 class ComListRefreshView extends Component {
     constructor(props) {
         super(props);
@@ -43,8 +42,6 @@ class ComListRefreshView extends Component {
             childViewState: ComErrorView.childViewStateLoading(),
             list: (new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})).cloneWithRows(this.dataSource),
         };
-        this.onPullRelease = this.onPullRelease.bind(this);
-        this.loadMore = this.loadMore.bind(this);
     }
 
     componentDidMount() {
@@ -56,7 +53,7 @@ class ComListRefreshView extends Component {
                 isFirstLoading: RefreshViewUitls.footerStateIsfirstLoading(),
             });
         }).catch(err => {
-        })
+        });
         this.onStartRequest();
     }
 
@@ -80,12 +77,15 @@ class ComListRefreshView extends Component {
 
 
     onPullRelease(resolve) {
+        console.log('---------->onPullRelease');
         this.request(RefreshViewUitls.refreshStatePull(), () => {
+            console.log('---------->resolve');
             resolve();
         })
     }
 
     loadMore() {
+        console.log('---------->loadMore');
         this.request(RefreshViewUitls.refreshStateMore(), (map, set) => {
         });
     }
@@ -104,6 +104,7 @@ class ComListRefreshView extends Component {
      */
     request(isPullRelease, callback) {
         if (isPullRelease == RefreshViewUitls.refreshStateMore() && (this.state.isFirstLoading || this.state.footerState == 0 || this.state.footerState == 2)) {
+            console.log('---------->return');
             return;
         }
         RefreshViewUitls.pullRequest(isPullRelease, this.props.url, this.state.pageNumber, (map, set) => {
@@ -166,8 +167,8 @@ class ComListRefreshView extends Component {
                     dataSource={this.state.list}
                     renderRow={this.childRow.bind(this)}
                     onPullRelease={this.onPullRelease.bind(this)}
-                    onEndReached={this.loadMore}
-                    onEndReachedThreshold={0}
+                    onEndReached={this.loadMore.bind(this)}
+                    onEndReachedThreshold={10}
                     enableEmptySections={true}
                     renderFooter={this.renderFooter.bind(this)}
                 />
