@@ -8,9 +8,11 @@
  */
 
 import React, {Component} from 'react';
+import ComNavBar from '../Common/ComNavBar';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -19,9 +21,8 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
+
 class MineAskView extends Component {
     constructor(props) {
         super(props);
@@ -48,4 +49,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = MineAskView;
+export default MineAskView;

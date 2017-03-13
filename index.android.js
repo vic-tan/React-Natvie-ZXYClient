@@ -5,6 +5,7 @@
  */
 
 import React, {Component} from 'react';
+import TLFLaunchView from './Component/Main/TLFLaunchView';
 import {
     AppRegistry,
     StyleSheet,
@@ -12,7 +13,6 @@ import {
     Navigator,
     View
 } from 'react-native';
-var TLFLaunchView = require("./Component/Main/TLFLaunchView");
 export default class ZXYClient extends Component {
     render() {
         return (

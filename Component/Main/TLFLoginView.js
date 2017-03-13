@@ -8,7 +8,12 @@
  */
 
 import React, {Component} from 'react';
-import {toastShort} from '../Uitls/ToastUtils';
+import BusyIndicator from 'react-native-busy-indicator';
+import loaderHandler from 'react-native-busy-indicator/LoaderHandler';
+import HttpUitls from '../Uitls/HttpUitls';
+import ToastUtils from '../Uitls/ToastUtils';
+import TLFForgotPassword from './TLFForgotPassword';
+import TLFNavigation from './TLFNavigation';
 import {
     AppRegistry,
     StyleSheet,
@@ -17,17 +22,10 @@ import {
     StatusBar,
     TouchableOpacity,
     View,
+    Dimensions,
     Text
 } from 'react-native';
-var TLFForgotPassword = require("./TLFForgotPassword");
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var TLFNavigation = require("./TLFNavigation");
-var HttpUitls = require("../Uitls/HttpUitls");
-var ToastUtils = require("../Uitls/ToastUtils");
-
-const BusyIndicator = require('react-native-busy-indicator');
-const loaderHandler = require('react-native-busy-indicator/LoaderHandler');
 
 class TLFLoginView extends Component {
     constructor(props) {
@@ -52,7 +50,7 @@ class TLFLoginView extends Component {
         loaderHandler.showLoader('登录中...');
         let map = new Map()
         map.set('appSystem', 'Android 6.0.1');
-        map.set('password', 'mb0mTIqYjGs=');
+        map.set('password', 'hdAn1URhCSUEdBHszUUXrQ==');
         map.set('language', 'Hzh_CN');
         map.set('login_id', 'tanlifei');
         map.set('client_type', 6);
@@ -218,4 +216,4 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = TLFLoginView;
+export default TLFLoginView;

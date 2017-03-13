@@ -8,9 +8,18 @@
  */
 
 import React, {Component} from 'react';
+import SetView from '../Mine/MineSetView';
+import MineMallView from '../Mine/MineMallView';
+import HttpUitls from '../Uitls/HttpUitls';
+import ToastUtils from '../Uitls/ToastUtils';
+import ComMineItemHeader from '../Common/ComMineItemHeader';
+import ComMineGridItem from '../Common/ComMineGridItem';
+import BusyIndicator from 'react-native-busy-indicator';
+import loaderHandler from 'react-native-busy-indicator/LoaderHandler';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -21,7 +30,6 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 var nav_setting = require('../../img/nav_set.png');
 var user_default_logo = require('../../img/user_default_logo.png');
@@ -41,17 +49,7 @@ var mine_icon_knowledge = require('../../img/mine_icon_knowledge.png');
 var mine_icon_live = require('../../img/mine_icon_live.png');
 var mine_icon_ask = require('../../img/mine_icon_ask.png');
 
-var SetView = require("../Mine/MineSetView");
-var MineMallView = require("../Mine/MineMallView");
-var HttpUitls = require("../Uitls/HttpUitls");
-var ToastUtils = require("../Uitls/ToastUtils");
 
-
-var ComMineItemHeader = require("../Common/ComMineItemHeader");
-var ComMineGridItem = require("../Common/ComMineGridItem");
-
-const BusyIndicator = require('react-native-busy-indicator');
-const loaderHandler = require('react-native-busy-indicator/LoaderHandler');
 
 class MoneTab extends Component {
     constructor(props) {
@@ -415,4 +413,4 @@ const styles = StyleSheet.create({
     },
 });
 
-module.exports = MoneTab;
+export default MoneTab;

@@ -8,9 +8,16 @@
  */
 
 import React, {Component} from 'react';
+import {PullList} from 'react-native-pull';
+import ComNavBar from '../Common/ComNavBar';
+import ComFooterRefreshView from '../Common/ComFooterRefreshView';
+import ComErrorView from '../Common/ComErrorView';
+import ToastUtils from '../Uitls/ToastUtils';
+import RefreshViewUitls from '../Uitls/RefreshViewUitls';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -20,16 +27,9 @@ import {
     ListView,
     Platform
 } from 'react-native';
-import {PullList} from 'react-native-pull';
 
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
-var ComFooterRefreshView = require("../Common/ComFooterRefreshView");
-var ComErrorView = require("../Common/ComErrorView");
-var ToastUtils = require("../Uitls/ToastUtils");
-var HttpUitls = require("../Uitls/HttpUitls");
-var RefreshViewUitls = require("../Uitls/RefreshViewUitls");
+
 class MineMsgView extends Component {
     constructor(props) {
         super(props);
@@ -257,4 +257,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = MineMsgView;
+export default MineMsgView;

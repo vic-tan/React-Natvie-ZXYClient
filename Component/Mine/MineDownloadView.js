@@ -8,9 +8,12 @@
  */
 
 import React, {Component} from 'react';
+import ComNavBar from '../Common/ComNavBar';
+import ComListRefreshView from '../Common/ComListRefreshView';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -19,10 +22,8 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
-var ComListRefreshView = require("../Common/ComListRefreshView");
+
 class MineDownloadView extends Component {
     constructor(props) {
         super(props);
@@ -110,4 +111,4 @@ const styles = StyleSheet.create({
 );
 
 
-module.exports = MineDownloadView;
+export default MineDownloadView;

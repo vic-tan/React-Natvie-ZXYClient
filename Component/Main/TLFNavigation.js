@@ -11,15 +11,13 @@
  */
 
 import React, {Component} from 'react';
+import TLFMainView from './TLFMainView';
 import {
     AppRegistry,
     StyleSheet,
     View,
     Navigator,
 } from 'react-native';
-var Dimensions = require('Dimensions');
-var {width, height} = Dimensions.get('window');
-var TLFMainView = require("./TLFMainView");
 class TLFNavigation extends Component {
     constructor(props) {
         super(props);
@@ -61,4 +59,4 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = TLFNavigation;
+export default TLFNavigation;

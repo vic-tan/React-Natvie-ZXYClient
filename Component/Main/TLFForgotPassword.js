@@ -13,9 +13,9 @@ import {
     StyleSheet,
     Image,
     View,
+    Dimensions,
     Text
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 
 class TLFForgotPassword extends Component {
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = TLFForgotPassword;
+export default TLFForgotPassword;

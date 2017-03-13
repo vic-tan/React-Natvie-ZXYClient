@@ -14,9 +14,9 @@ import {
     Image,
     StatusBar,
     View,
+    Dimensions,
     Text
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 
 
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = HomeTab;
+export default HomeTab;

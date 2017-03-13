@@ -2,6 +2,7 @@
  * Created by tanlifei on 2017/3/3.
  */
 import React, {Component} from 'react';
+import ListRefreshStateConstant from '../Constant/ListRefreshStateConstant'
 import {
     AppRegistry,
     StyleSheet,
@@ -11,7 +12,6 @@ import {
     ActivityIndicator,
     Platform
 } from 'react-native';
-import ListRefreshStateConstant from '../Constant/ListRefreshStateConstant'
 var {width, height} = Dimensions.get('window');
 class ComFooterRefreshView extends Component {
     constructor(props) {
@@ -95,4 +95,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = ComFooterRefreshView;
+export default ComFooterRefreshView;

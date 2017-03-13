@@ -3,9 +3,20 @@
  */
 import React, {Component} from 'react';
 import { toastShort } from '../Uitls/ToastUtils';
+import ChangePwdView from '../Setting/ChangePwdView';
+import MineStutyView from '../Mine/MineStutyView';
+import MineClassView from '../Mine/MineClassView';
+import MineExamView from '../Mine/MineExamView';
+import MineSurveyView from '../Mine/MineSurveyView';
+import MineKnowledgeView from '../Mine/MineKnowledgeView';
+import QrCodeView from '../Setting/QrCodeView';
+import MineAskView from '../Mine/MineAskView';
+
+import ComSettintListItemView from './ComSettingListItemView';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -14,19 +25,8 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var ChangePwdView = require("../Setting/ChangePwdView");
-var MineStutyView = require("../Mine/MineStutyView");
-var MineClassView = require("../Mine/MineClassView");
-var MineExamView = require("../Mine/MineExamView");
-var MineSurveyView = require("../Mine/MineSurveyView");
-var MineKnowledgeView = require("../Mine/MineKnowledgeView");
-var QrCodeView = require("../Setting/QrCodeView");
-var MineAskView = require("../Mine/MineAskView");
 
-var ComSettintListItemView = require("./ComSettingListItemView")
-    ;
 
 class ComSettingListItem extends Component {
     constructor(props) {
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = ComSettingListItem;
+export default ComSettingListItem;

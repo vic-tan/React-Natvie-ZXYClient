@@ -8,21 +8,22 @@
  */
 
 import React, {Component} from 'react';
+import TabNavigator from 'react-native-tab-navigator';
+import HomeTab from './HomeTab';
+import CourseTab from './CourseTab';
+import ActiveTab from './ActiveTab';
+import AskTab from './AskTab';
+import MineTab from './MineTab';
 import {
     AppRegistry,
     StyleSheet,
     Image,
     Navigator,
+    Dimensions,
     View,
     Text
 } from 'react-native';
-import TabNavigator from 'react-native-tab-navigator';
-var HomeTab = require("./HomeTab");
-var CourseTab = require("./CourseTab");
-var ActiveTab = require("./ActiveTab");
-var AskTab = require("./AskTab");
-var MineTab = require("./MineTab");
-var Dimensions = require('Dimensions');
+
 var {width, height} = Dimensions.get('window');
 
 var home_nor = require('../../img/tab_home_nor.png');
@@ -111,4 +112,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = TLFMainView;
+export default TLFMainView;

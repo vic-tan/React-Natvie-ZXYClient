@@ -8,6 +8,9 @@
  */
 
 import React, {Component} from 'react';
+import Storage from 'react-native-storage';
+import TLFGuideView from './TLFGuideView';
+import TLFLoginView from './TLFLoginView';
 import {
     AppRegistry,
     StyleSheet,
@@ -15,14 +18,11 @@ import {
     View,
     Navigator,
     StatusBar,
+    Dimensions,
     Text,
     AsyncStorage
 } from 'react-native';
-import Storage from 'react-native-storage';
 
-var TLFGuideView = require("./TLFGuideView");
-var TLFLoginView = require("./TLFLoginView");
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 const totalCount = 1000;
 var storage = new Storage({
@@ -125,4 +125,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = TLFLaunchView;
+export default TLFLaunchView;

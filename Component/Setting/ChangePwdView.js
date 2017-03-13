@@ -8,9 +8,11 @@
  */
 
 import React, {Component} from 'react';
+import ComNavBar from '../Common/ComNavBar';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     TextInput,
     StatusBar,
@@ -18,9 +20,7 @@ import {
     View,
     Text
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
 
 class ChangePwdView extends Component {
     constructor(props) {
@@ -123,4 +123,4 @@ const styles = StyleSheet.create({
     },
 });
 
-module.exports = ChangePwdView;
+export default ChangePwdView;

@@ -8,17 +8,17 @@
  */
 
 import React, {Component} from 'react';
+import ComNavBar from '../Common/ComNavBar';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     StatusBar,
     Image,
     View,
     Text
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
 
 class QrCodeView extends Component {
     constructor(props) {
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
 
 });
 
-module.exports = QrCodeView;
+export default QrCodeView;

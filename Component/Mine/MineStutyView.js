@@ -8,20 +8,20 @@
  */
 
 import React, {Component} from 'react';
+import ComNavBar from '../Common/ComNavBar';
 import {
     AppRegistry,
     StyleSheet,
     Image,
     StatusBar,
+    Dimensions,
     View,
     TextInput,
     Text,
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
 class MineStutyView extends Component {
     constructor(props) {
         super(props);
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = MineStutyView;
+export default MineStutyView;

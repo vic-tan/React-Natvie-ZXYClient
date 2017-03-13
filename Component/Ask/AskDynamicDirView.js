@@ -8,9 +8,11 @@
  */
 
 import React, {Component} from 'react';
+import ComListRefreshView from '../Common/ComListRefreshView';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -19,9 +21,8 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var ComListRefreshView = require("../Common/ComListRefreshView");
+
 class AskDynamicDirView extends Component {
     constructor(props) {
         super(props);
@@ -107,4 +108,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = AskDynamicDirView;
+export default AskDynamicDirView;

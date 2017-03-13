@@ -8,6 +8,10 @@
  */
 
 import React, {Component} from 'react';
+import ScrollableTabView  from 'react-native-scrollable-tab-view';
+import CouresDirView  from '../Course/CouresDirView';
+import CouresHotView  from '../Course/CouresHotView';
+import CouresNewView  from '../Course/CouresNewView';
 import {
     AppRegistry,
     StyleSheet,
@@ -15,16 +19,14 @@ import {
     StatusBar,
     View,
     TextInput,
+    Dimensions,
     Text,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
+
 var {width, height} = Dimensions.get('window');
 var mine_pre = require('../../img/nav_search.png');
-var ScrollableTabView = require('react-native-scrollable-tab-view');
-var CouresDirView = require("../Course/CouresDirView");
-var CouresHotView = require("../Course/CouresHotView");
-var CouresNewView = require("../Course/CouresNewView");
+
 class CourseTab extends Component {
     constructor(props) {
         super(props);
@@ -36,16 +38,16 @@ class CourseTab extends Component {
             <View style={styles.container}>
                 <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                 {this.renderNavBar()}
-                <ScrollableTabView locked ={true} initialPage={1}
+                <ScrollableTabView locked={true} initialPage={1}
                                    tabBarBackgroundColor='#FFFFFF'
                                    tabBarActiveTextColor='#47AD1D'
                                    tabBarInactiveTextColor='rgba(0,0,0,0.75)'
                                    tabBarTextStyle={{fontSize: 12,marginTop:10}}
                                    tabBarUnderlineStyle={{backgroundColor: '#47AD1D',height:2}}
                                    scrollWithoutAnimation={true}>
-                    <CouresDirView tabLabel="目录" />
-                    <CouresHotView tabLabel="最新" />
-                    <CouresNewView tabLabel="最热" />
+                    <CouresDirView tabLabel="目录"/>
+                    <CouresHotView tabLabel="最新"/>
+                    <CouresNewView tabLabel="最热"/>
                 </ScrollableTabView>
             </View>
         );
@@ -105,13 +107,13 @@ const styles = StyleSheet.create({
         search: {
             width: 30,
             height: 30,
-            position : 'absolute',
+            position: 'absolute',
             marginTop: 3,
-            marginLeft:15,
+            marginLeft: 15,
         }
 
 
     }
 );
 
-module.exports = CourseTab;
+export default CourseTab;

@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -13,7 +14,6 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 class ComSettingListItemView extends Component {
     constructor(props) {
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = ComSettingListItemView;
+export default ComSettingListItemView;

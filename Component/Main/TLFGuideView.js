@@ -8,6 +8,8 @@
  */
 
 import React, {Component} from 'react';
+import TLFLoginView from './TLFLoginView';
+import Swiper from 'react-native-swiper';
 import {
     AppRegistry,
     StyleSheet,
@@ -17,14 +19,10 @@ import {
     Easing,
     StatusBar,
     Animated,
+    Dimensions,
     Text
 } from 'react-native';
-import Swiper from 'react-native-swiper';
-var TLFLoginView = require("./TLFLoginView");
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-
-
 class TLFGuideView extends Component {
 
     constructor(props) {
@@ -124,5 +122,4 @@ const
         }
     );
 
-module
-    .exports = TLFGuideView;
+export default TLFGuideView;

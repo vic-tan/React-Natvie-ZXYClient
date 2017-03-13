@@ -65,7 +65,7 @@ class JsonUitls extends Component {
 
 }
 
-module.exports = JsonUitls;
+export default JsonUitls;
 /**
  * Created by tanlifei on 2017/3/7.
  */

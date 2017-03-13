@@ -6,13 +6,13 @@
  */
 'use strict';
 import React, {Component} from 'react';
+import JsonUitls from './JsonUitls';
+import Toast from './ToastUtils';
 import {
     AppRegistry,
     StyleSheet,
     NetInfo
 } from 'react-native';
-var JsonUitls = require("./JsonUitls");
-var Toast = require("./ToastUtils");
 
 
 class HttpUitls extends Component {
@@ -25,11 +25,11 @@ class HttpUitls extends Component {
      */
     static  postFrom(url, data, callback) {
         NetInfo.isConnected.fetch().done((isConnected) => {
-           /* if (!isConnected) {
-                Toast.toastShort('网络不可用,请稍后再试');
-                callback(null);
-                return;
-            }*/
+            /* if (!isConnected) {
+             Toast.toastShort('网络不可用,请稍后再试');
+             callback(null);
+             return;
+             }*/
             var fetchOptions = {
                 method: 'POST',
                 headers: {
@@ -101,7 +101,7 @@ class HttpUitls extends Component {
 
 }
 
-module.exports = HttpUitls;
+export default HttpUitls;
 /**
  * Created by tanlifei on 2017/3/7.
  */

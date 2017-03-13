@@ -2,6 +2,7 @@
  * Created by tanlifei on 2017/3/3.
  */
 import React, {Component} from 'react';
+import ListDataErrorConstant from '../Constant/ListDataErrorConstant'
 import {
     AppRegistry,
     StyleSheet,
@@ -13,7 +14,6 @@ import {
     ActivityIndicator,
     Platform
 } from 'react-native';
-import ListDataErrorConstant from '../Constant/ListDataErrorConstant'
 var {width, height} = Dimensions.get('window');
 
 class ComErrorView extends Component {
@@ -139,4 +139,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = ComErrorView;
+export default ComErrorView;

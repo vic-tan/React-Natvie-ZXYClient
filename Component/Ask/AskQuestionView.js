@@ -8,9 +8,11 @@
  */
 
 import React, {Component} from 'react';
+import ComListRefreshView from '../Common/ComListRefreshView';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -22,11 +24,9 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-import {PullList} from 'react-native-pull';
-var Dimensions = require('Dimensions');
+
 var {width, height} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
-var ComListRefreshView = require("../Common/ComListRefreshView");
+
 class AskQuestionView extends Component {
     constructor(props) {
         super(props);
@@ -111,4 +111,4 @@ const styles = StyleSheet.create({
 
     }
 );
-module.exports = AskQuestionView;
+export default AskQuestionView;

@@ -8,9 +8,15 @@
  */
 
 import React, {Component} from 'react';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import AskDynamicDirView from '../Ask/AskDynamicDirView';
+import AskQuestionView from '../Ask/AskQuestionView';
+import AskSpecialistView from '../Ask/AskSpecialistView';
+import AskTopicView from '../Ask/AskTopicView';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     View,
     Text,
@@ -18,15 +24,11 @@ import {
     StatusBar,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
+
 var {width, height} = Dimensions.get('window');
 var nav_search = require('../../img/nav_search.png');
 var nav_add = require('../../img/nav_add.png');
-var ScrollableTabView = require('react-native-scrollable-tab-view');
-var AskDynamicDirView = require("../Ask/AskDynamicDirView");
-var AskQuestionView = require("../Ask/AskQuestionView");
-var AskSpecialistView = require("../Ask/AskSpecialistView");
-var AskTopicView = require("../Ask/AskTopicView");
+
 
 class AskTab extends Component {
     constructor(props) {
@@ -39,17 +41,17 @@ class AskTab extends Component {
             <View style={styles.container}>
                 <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                 {this.renderNavBar()}
-                <ScrollableTabView locked ={true} initialPage={0}
+                <ScrollableTabView locked={true} initialPage={0}
                                    tabBarBackgroundColor='#FFFFFF'
                                    tabBarActiveTextColor='#47AD1D'
                                    tabBarInactiveTextColor='rgba(0,0,0,0.75)'
                                    tabBarTextStyle={{fontSize: 12,marginTop:10}}
                                    tabBarUnderlineStyle={{backgroundColor: '#47AD1D',height:2}}
                                    scrollWithoutAnimation={true}>
-                    <AskDynamicDirView tabLabel="动态" />
-                    <AskQuestionView tabLabel="问题" />
-                    <AskSpecialistView tabLabel="专家" />
-                    <AskTopicView tabLabel="话题" />
+                    <AskDynamicDirView tabLabel="动态"/>
+                    <AskQuestionView tabLabel="问题"/>
+                    <AskSpecialistView tabLabel="专家"/>
+                    <AskTopicView tabLabel="话题"/>
                 </ScrollableTabView>
             </View>
         );

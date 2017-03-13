@@ -10,9 +10,12 @@
 import React, {Component} from 'react';
 import ActionSheet from 'react-native-actionsheet';
 import { toastShort } from '../Uitls/ToastUtils';
+import ComNavBar from '../Common/ComNavBar';
+import ComSettingListItem from '../Common/ComSettingListItem';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -23,10 +26,8 @@ import {
     Platform
 } from 'react-native';
 
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
-var ComSettingListItem = require("../Common/ComSettingListItem");
+
 const buttons = ['取消', '确认退出',];
 class MineSetView extends Component {
     constructor(props) {
@@ -102,4 +103,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = MineSetView;
+export default MineSetView;

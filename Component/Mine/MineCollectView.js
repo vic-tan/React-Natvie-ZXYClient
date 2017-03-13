@@ -8,9 +8,13 @@
  */
 
 import React, {Component} from 'react';
+import BaseComponent from '../Base/BaseComponent';
+import ComNavBar from '../Common/ComNavBar';
+import ComListRefreshView from '../Common/ComListRefreshView';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -20,17 +24,14 @@ import {
     ListView,
     Platform
 } from 'react-native';
-import BaseComponent from '../Base/BaseComponent';
-var Dimensions = require('Dimensions');
+
 var {width, height} = Dimensions.get('window');
-var ComNavBar = require("../Common/ComNavBar");
-var ComListRefreshView = require("../Common/ComListRefreshView");
+
 class MineCollectView extends BaseComponent {
     constructor(props) {
         super(props);
 
     }
-
 
     render() {
         return (

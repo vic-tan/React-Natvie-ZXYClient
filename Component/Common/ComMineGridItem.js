@@ -2,9 +2,18 @@
  * Created by tanlifei on 2017/3/3.
  */
 import React, {Component} from 'react';
+import MineCourseView from '../Mine/MineCourseView';
+import MineStutyView from '../Mine/MineStutyView';
+import MineClassView from '../Mine/MineClassView';
+import MineExamView from '../Mine/MineExamView';
+import MineSurveyView from '../Mine/MineSurveyView';
+import MineKnowledgeView from '../Mine/MineKnowledgeView';
+import MineLiveView from '../Mine/MineLiveView';
+import MineAskView from '../Mine/MineAskView';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -13,17 +22,7 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var MineCourseView = require("../Mine/MineCourseView");
-var MineStutyView = require("../Mine/MineStutyView");
-var MineClassView = require("../Mine/MineClassView");
-var MineExamView = require("../Mine/MineExamView");
-var MineSurveyView = require("../Mine/MineSurveyView");
-var MineKnowledgeView = require("../Mine/MineKnowledgeView");
-var MineLiveView = require("../Mine/MineLiveView");
-var MineAskView = require("../Mine/MineAskView");
-
 class ComMineGridItem extends Component {
     constructor(props) {
         super(props);
@@ -156,4 +155,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = ComMineGridItem;
+export default ComMineGridItem;

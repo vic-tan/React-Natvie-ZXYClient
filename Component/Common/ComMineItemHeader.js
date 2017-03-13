@@ -2,9 +2,13 @@
  * Created by tanlifei on 2017/3/3.
  */
 import React, {Component} from 'react';
+import MineDownloadView from '../Mine/MineDownloadView';
+import MineMsgView from '../Mine/MineMsgView';
+import MineCollectView from '../Mine/MineCollectView';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -13,11 +17,8 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var MineDownloadView = require("../Mine/MineDownloadView");
-var MineMsgView = require("../Mine/MineMsgView");
-var MineCollectView = require("../Mine/MineCollectView");
+
 class ComMineItemHeader extends Component {
     constructor(props) {
         super(props);
@@ -86,4 +87,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = ComMineItemHeader;
+export default ComMineItemHeader;

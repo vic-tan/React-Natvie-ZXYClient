@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -12,7 +13,6 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 var nav_back = require('../../img/nav_back.png');
 class ComNavBar extends Component {
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = ComNavBar;
+export default ComNavBar;

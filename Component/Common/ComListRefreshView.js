@@ -8,9 +8,14 @@
  */
 
 import React, {Component} from 'react';
+import ComFooterRefreshView from '../Common/ComFooterRefreshView';
+import ComErrorView from '../Common/ComErrorView';
+import ToastUtils from '../Uitls/ToastUtils';
+import RefreshViewUitls from '../Uitls/RefreshViewUitls';
 import {
     AppRegistry,
     StyleSheet,
+    Dimensions,
     Image,
     StatusBar,
     View,
@@ -21,14 +26,7 @@ import {
     Platform
 } from 'react-native';
 import {PullList} from 'react-native-pull';
-
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
-var ComFooterRefreshView = require("../Common/ComFooterRefreshView");
-var ComErrorView = require("../Common/ComErrorView");
-var ToastUtils = require("../Uitls/ToastUtils");
-var HttpUitls = require("../Uitls/HttpUitls");
-var RefreshViewUitls = require("../Uitls/RefreshViewUitls");
 class ComListRefreshView extends Component {
     constructor(props) {
         super(props);
@@ -135,7 +133,7 @@ class ComListRefreshView extends Component {
         } else {
             if (isPullRelease == RefreshViewUitls.refreshStatePull()) {
                 ToastUtils.toastShort(set.msg);//上拉下拉有异常只提示就行，不用像第一次进来显示不同界面
-            }else if(isPullRelease == RefreshViewUitls.refreshStateMore()){
+            } else if (isPullRelease == RefreshViewUitls.refreshStateMore()) {
                 ToastUtils.toastShort(set.msg);
                 this.setState({
                     footerState: RefreshViewUitls.footerStateError(),
@@ -200,4 +198,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = ComListRefreshView;
+export default ComListRefreshView;

@@ -5,13 +5,13 @@
  */
 'use strict';
 import React, {Component} from 'react';
+import HttpUitls from './HttpUitls';
+import ListRefreshStateConstant from '../Constant/ListRefreshStateConstant'
 import {
     AppRegistry,
     StyleSheet
 } from 'react-native';
-import ListRefreshStateConstant from '../Constant/ListRefreshStateConstant'
-var JsonUitls = require("./JsonUitls");
-var HttpUitls = require("./HttpUitls");
+
 
 
 class RefreshViewUitls extends Component {
@@ -134,7 +134,7 @@ class RefreshViewUitls extends Component {
     }
 }
 
-module.exports = RefreshViewUitls;
+export default RefreshViewUitls;
 /**
  * Created by tanlifei on 2017/3/7.
  */

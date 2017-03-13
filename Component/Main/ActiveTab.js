@@ -16,9 +16,9 @@ import {
     Text,
     TextInput,
     StatusBar,
+    Dimensions,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 var mine_pre = require('../../img/nav_search.png');
 class ActiveTab extends Component {
@@ -91,13 +91,13 @@ const styles = StyleSheet.create({
         search: {
             width: 30,
             height: 30,
-            position : 'absolute',
+            position: 'absolute',
             marginTop: 3,
-            marginLeft:15,
+            marginLeft: 15,
         }
 
 
     }
 );
 
-module.exports = ActiveTab;
+export default ActiveTab;

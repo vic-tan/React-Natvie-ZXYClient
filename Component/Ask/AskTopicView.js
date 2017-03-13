@@ -19,8 +19,6 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
-var Dimensions = require('Dimensions');
-var {width, height} = Dimensions.get('window');
 class AskTopicView extends Component {
     constructor(props) {
         super(props);
@@ -47,4 +45,4 @@ const styles = StyleSheet.create({
 
 });
 
-module.exports = AskTopicView;
+export default AskTopicView;
