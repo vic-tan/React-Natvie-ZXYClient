@@ -9,7 +9,6 @@
 
 import React, {Component} from 'react';
 import ActionSheet from 'react-native-actionsheet';
-import { toastShort } from '../Uitls/ToastUtils';
 import ComNavBar from '../Common/ComNavBar';
 import ComSettingListItem from '../Common/ComSettingListItem';
 import {
@@ -27,7 +26,7 @@ import {
 } from 'react-native';
 
 var {width, height} = Dimensions.get('window');
-
+var ToastUtils = require('../Uitls/ToastUtils');
 const buttons = ['取消', '确认退出',];
 class MineSetView extends Component {
     constructor(props) {
@@ -74,7 +73,7 @@ class MineSetView extends Component {
     }
 
     _exit(index) {
-        toastShort('开发中...敬请期待');
+        ToastUtils.toastShort('开发中...敬请期待');
     }
 }
 

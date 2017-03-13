@@ -8,10 +8,10 @@
  */
 
 import React, {Component} from 'react';
+import UrlConstant from '../Constant/UrlConstant';
 import BusyIndicator from 'react-native-busy-indicator';
 import loaderHandler from 'react-native-busy-indicator/LoaderHandler';
-import HttpUitls from '../Uitls/HttpUitls';
-import ToastUtils from '../Uitls/ToastUtils';
+import HttpUitls  from '../Uitls/HttpUitls';
 import TLFForgotPassword from './TLFForgotPassword';
 import TLFNavigation from './TLFNavigation';
 import {
@@ -26,7 +26,7 @@ import {
     Text
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-
+var ToastUtils = require('../Uitls/ToastUtils');
 class TLFLoginView extends Component {
     constructor(props) {
         super(props);
@@ -55,7 +55,7 @@ class TLFLoginView extends Component {
         map.set('login_id', 'tanlifei');
         map.set('client_type', 6);
         map.set('company_name', '猛象谷');
-        HttpUitls.postFrom('user/login', map, (set) => this._callback(set))
+        HttpUitls.postFrom(UrlConstant.USER_LOGIN, map, (set) => this._callback(set))
     }
 
     _callback(set) {

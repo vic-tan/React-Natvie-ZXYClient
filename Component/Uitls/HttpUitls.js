@@ -6,6 +6,7 @@
  */
 'use strict';
 import React, {Component} from 'react';
+import UrlConstant from '../Constant/UrlConstant';
 import JsonUitls from './JsonUitls';
 import Toast from './ToastUtils';
 import {
@@ -40,7 +41,7 @@ class HttpUitls extends Component {
                 body: 'json=' + JsonUitls.mapToJson(data)//这里我参数只有一个data,大家可以还有更多的参数
             };
 
-            fetch('http://demo.zhixueyun.com/zxy-mobile-new/' + url, fetchOptions)
+            fetch(UrlConstant.DOMAIN + url, fetchOptions)
                 .then((response) => response.text())
                 .then((responseText) => {
                     callback(JSON.parse(responseText));

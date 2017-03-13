@@ -8,10 +8,10 @@
  */
 
 import React, {Component} from 'react';
+import UrlConstant from '../Constant/UrlConstant';
 import SetView from '../Mine/MineSetView';
 import MineMallView from '../Mine/MineMallView';
 import HttpUitls from '../Uitls/HttpUitls';
-import ToastUtils from '../Uitls/ToastUtils';
 import ComMineItemHeader from '../Common/ComMineItemHeader';
 import ComMineGridItem from '../Common/ComMineGridItem';
 import BusyIndicator from 'react-native-busy-indicator';
@@ -31,6 +31,7 @@ import {
     Platform
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
+var ToastUtils = require('../Uitls/ToastUtils');
 var nav_setting = require('../../img/nav_set.png');
 var user_default_logo = require('../../img/user_default_logo.png');
 var mine_icon_favorite = require('../../img/mine_icon_favorite.png');
@@ -83,7 +84,7 @@ class MoneTab extends Component {
             loaderHandler.showLoader('加载中...');
             let map = new Map()
             map.set('sid', sid);
-            HttpUitls.postFrom('user/personalInfo', map, (set) => this._callback(set))
+            HttpUitls.postFrom(UrlConstant.USER_PERSONALINFO, map, (set) => this._callback(set))
         }).catch(err => {
 
         })

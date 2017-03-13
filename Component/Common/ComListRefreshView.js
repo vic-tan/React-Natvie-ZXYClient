@@ -10,7 +10,6 @@
 import React, {Component} from 'react';
 import ComFooterRefreshView from '../Common/ComFooterRefreshView';
 import ComErrorView from '../Common/ComErrorView';
-import ToastUtils from '../Uitls/ToastUtils';
 import RefreshViewUitls from '../Uitls/RefreshViewUitls';
 import {
     AppRegistry,
@@ -27,6 +26,7 @@ import {
 } from 'react-native';
 import {PullList} from 'react-native-pull';
 var {width, height} = Dimensions.get('window');
+var ToastUtils = require('../Uitls/ToastUtils');
 class ComListRefreshView extends Component {
     constructor(props) {
         super(props);

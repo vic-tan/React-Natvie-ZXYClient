@@ -8,9 +8,10 @@
  */
 
 import React, {Component} from 'react';
-import BaseComponent from '../Base/BaseComponent';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 import ComNavBar from '../Common/ComNavBar';
-import ComListRefreshView from '../Common/ComListRefreshView';
+import MineCollectCourse from './MineCollectCourse';
+import MineCollectViewKnowledge from './MineCollectViewKnowledge';
 import {
     AppRegistry,
     StyleSheet,
@@ -25,9 +26,7 @@ import {
     Platform
 } from 'react-native';
 
-var {width, height} = Dimensions.get('window');
-
-class MineCollectView extends BaseComponent {
+class MineCollectView extends Component {
     constructor(props) {
         super(props);
 
@@ -36,35 +35,24 @@ class MineCollectView extends BaseComponent {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{marginTop: Platform.OS == 'ios' ? 68 : 48,flex: 1}}>
-                    <ComListRefreshView url='user/messageList'
-                                        callbackParentRow={this.listCellRow.bind(this)}
-                    />
-                </View>
-                <View style={{position: 'absolute',top:0 ,width:width}}>
-                    <ComNavBar title='我的收藏' navigator={this.props.navigator}/>
-                </View>
+                <ComNavBar title='我的收藏' navigator={this.props.navigator}/>
+                <ScrollableTabView locked={true} initialPage={0}
+                                   tabBarBackgroundColor='#FFFFFF'
+                                   tabBarActiveTextColor='#47AD1D'
+                                   tabBarInactiveTextColor='rgba(0,0,0,0.75)'
+                                   tabBarTextStyle={{fontSize: 12,marginTop:10}}
+                                   tabBarUnderlineStyle={{backgroundColor: '#47AD1D',height:2}}
+                                   scrollWithoutAnimation={true}>
+
+                        <MineCollectCourse tabLabel="课程"/>
+                        <MineCollectViewKnowledge tabLabel="知识"/>
+                </ScrollableTabView>
+
             </View>
         );
     }
 
 
-    listCellRow(rowData, sectionID, rowID, highlightRow) {
-        return (
-            <View >
-                <Text style={{height:10}}/>
-                <View style={styles.rowContainer}>
-                    <Text style={styles.rowTitle}>{rowData.title}</Text>
-                    <Text style={styles.rowDesc}>{rowData.content}</Text>
-                    <View style={styles.timeView}>
-                        <Text style={styles.rowTime}> </Text>
-                        <Text style={styles.rowTime}>{rowData.send_time}</Text>
-                    </View>
-                </View>
-                <Text style={{height:4}}/>
-            </View>
-        );
-    }
 
 }
 
@@ -73,47 +61,6 @@ const styles = StyleSheet.create({
             flex: 1,
             backgroundColor: '#F3F3F3',
         },
-
-        rowContainer: {
-            width: width * 0.95,
-            alignItems: 'center',
-            backgroundColor: '#ffffff',
-            borderRadius: 5,
-            alignSelf: 'center',
-        },
-
-        rowTitle: {
-            width: width * 0.9,
-            color: "#C62433",
-            fontSize: 15,
-            fontWeight: 'bold',
-            padding: 9,
-            paddingBottom: 0,
-        },
-        rowDesc: {
-            width: width * 0.95,
-            color: "rgba(0,0,0,0.5)",
-            fontSize: 13,
-            padding: 9,
-            paddingTop: 5,
-            paddingBottom: 0,
-        },
-        timeView: {
-            width: width * 0.9,
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-        },
-        rowTime: {
-            color: "rgba(0,0,0,0.5)",
-            alignSelf: 'flex-end',
-            justifyContent: 'flex-end',
-            fontSize: 13,
-            padding: 9,
-            paddingTop: 5,
-            paddingBottom: 5,
-        },
-
-
     }
 );
 

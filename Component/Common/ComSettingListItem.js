@@ -2,7 +2,6 @@
  * Created by tanlifei on 2017/3/3.
  */
 import React, {Component} from 'react';
-import { toastShort } from '../Uitls/ToastUtils';
 import ChangePwdView from '../Setting/ChangePwdView';
 import MineStutyView from '../Mine/MineStutyView';
 import MineClassView from '../Mine/MineClassView';
@@ -26,7 +25,7 @@ import {
     Platform
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-
+var ToastUtils = require('../Uitls/ToastUtils');
 
 class ComSettingListItem extends Component {
     constructor(props) {
@@ -57,7 +56,7 @@ class ComSettingListItem extends Component {
                     navigator.push({component: ChangePwdView});
                     break;
                 case 1://学习路径
-                    toastShort('用户名不能为空...');
+                    ToastUtils.toastShort('用户名不能为空...');
                     break;
                 case 2://
                     navigator.push({component: QrCodeView});

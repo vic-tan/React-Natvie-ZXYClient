@@ -8,7 +8,10 @@
  */
 
 import React, {Component} from 'react';
+import UrlConstant from '../Constant/UrlConstant';
 import ComNavBar from '../Common/ComNavBar';
+import ComListRefreshView from '../Common/ComListRefreshView';
+var defaultImg = require('../../img/live_default.png');
 import {
     AppRegistry,
     StyleSheet,
@@ -31,22 +34,65 @@ class MineLiveView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar hidden={false} backgroundColor='#47AD1D'/>
-                <ComNavBar title='我的直播' navigator={this.props.navigator}/>
-                <Text style={styles.text}>我的直播</Text>
+                <View style={{marginTop: Platform.OS == 'ios' ? 68 : 48,flex: 1}}>
+                    <ComListRefreshView url={UrlConstant.LIVE_GENSEE_LIST}
+                                        callbackParentRow={this.listCellRow.bind(this)}
+                    />
+                </View>
+                <View style={{position: 'absolute',top:0 ,width:width}}>
+                    <ComNavBar title='我的直播' navigator={this.props.navigator}/>
+                </View>
             </View>
         );
     }
+
+    listCellRow(rowData, sectionID, rowID, highlightRow) {
+        return (
+            <View >
+                <View style={styles.rowContainer}>
+                    <Image style={styles.image} source={defaultImg}></Image>
+                    <View style={{margin: 10}}>
+                        <Text style={styles.rowTitle}>{rowData.name}</Text>
+                        <Text style={styles.rowDesc}>开始时间: {rowData.start_time}</Text>
+                    </View>
+                </View>
+                <Text style={{height:1}}/>
+            </View>
+        );
+    }
+
 
 }
 
 const styles = StyleSheet.create({
         container: {
             flex: 1,
-            alignItems: 'center',
-            backgroundColor: '#F5FCFF',
+            backgroundColor: '#F3F3F3',
         },
 
+        rowContainer: {
+            width: width,
+            flexDirection: 'row',
+            backgroundColor: '#ffffff',
+        },
+
+        image: {
+            width: 120,
+            height: 80,
+            margin: 10,
+            marginRight: 0
+        },
+
+        rowTitle: {
+            color: "#000000",
+            fontSize: 15,
+        },
+        rowDesc: {
+            color: "rgba(0,0,0,0.5)",
+            fontSize: 13,
+            paddingTop: 15,
+            paddingBottom: 0,
+        },
     }
 );
 

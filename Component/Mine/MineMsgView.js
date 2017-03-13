@@ -12,7 +12,6 @@ import {PullList} from 'react-native-pull';
 import ComNavBar from '../Common/ComNavBar';
 import ComFooterRefreshView from '../Common/ComFooterRefreshView';
 import ComErrorView from '../Common/ComErrorView';
-import ToastUtils from '../Uitls/ToastUtils';
 import RefreshViewUitls from '../Uitls/RefreshViewUitls';
 import {
     AppRegistry,
@@ -29,7 +28,7 @@ import {
 } from 'react-native';
 
 var {width, height} = Dimensions.get('window');
-
+var ToastUtils = require('../Uitls/ToastUtils');
 class MineMsgView extends Component {
     constructor(props) {
         super(props);
