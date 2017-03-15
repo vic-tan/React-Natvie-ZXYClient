@@ -16,6 +16,7 @@ import {
     View,
     TextInput,
     Text,
+    ScrollView,
     TouchableOpacity,
     Platform
 } from 'react-native';
@@ -28,7 +29,17 @@ class AskSpecialistView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>AskSpecialistView.js</Text>
+                <ScrollView horizontal={true}
+                            pagingEnabled={true}
+                            showsHorizontalScrollIndicator={false}
+                            style={{height:300}}
+                >
+                    <Text style={styles.pageItemContainer} >dadfasdfasd</Text>
+                    {/*{this.renderScrollItem()}*/}
+                </ScrollView>
+                {/*<View style={styles.indicatorViewStyle}>
+                 {this.renderIndicator()}
+                 </View>*/}
             </View>
         );
     }
@@ -39,8 +50,19 @@ class AskSpecialistView extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: 'red',
+    },
+    containerPage: {
+        width: 180,
+        height: 180,
+    },
+    slide: {
+        width: 180,
+        height: 180,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
 });

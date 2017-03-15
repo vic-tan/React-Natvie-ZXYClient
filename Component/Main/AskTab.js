@@ -8,11 +8,11 @@
  */
 
 import React, {Component} from 'react';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
 import AskDynamicDirView from '../Ask/AskDynamicDirView';
 import AskQuestionView from '../Ask/AskQuestionView';
 import AskSpecialistView from '../Ask/AskSpecialistView';
 import AskTopicView from '../Ask/AskTopicView';
+import ComTabPager from '../Common/ComTabPager';
 import {
     AppRegistry,
     StyleSheet,
@@ -41,20 +41,27 @@ class AskTab extends Component {
             <View style={styles.container}>
                 <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                 {this.renderNavBar()}
-                <ScrollableTabView locked={true} initialPage={0}
-                                   tabBarBackgroundColor='#FFFFFF'
-                                   tabBarActiveTextColor='#47AD1D'
-                                   tabBarInactiveTextColor='rgba(0,0,0,0.75)'
-                                   tabBarTextStyle={{fontSize: 12,marginTop:10}}
-                                   tabBarUnderlineStyle={{backgroundColor: '#47AD1D',height:2}}
-                                   scrollWithoutAnimation={true}>
-                    <AskDynamicDirView tabLabel="动态"/>
-                    <AskQuestionView tabLabel="问题"/>
-                    <AskSpecialistView tabLabel="专家"/>
-                    <AskTopicView tabLabel="话题"/>
-                </ScrollableTabView>
+                <ComTabPager initialPage={0} callbackTab={this.tabPagerItem()}/>
             </View>
         );
+    }
+
+    tabPagerItem(){
+        var allImage = [];
+        allImage.push(
+            <AskDynamicDirView key={0} tabLabel="动态"/>
+        );
+        allImage.push(
+            <AskQuestionView key={1} tabLabel="问题"/>
+        );
+        allImage.push(
+            <AskSpecialistView key={2} tabLabel="专家"/>
+        );
+        allImage.push(
+            <AskTopicView key={3} tabLabel="话题"/>
+        );
+
+        return allImage;
     }
 
     renderNavBar() {

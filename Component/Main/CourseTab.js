@@ -8,10 +8,10 @@
  */
 
 import React, {Component} from 'react';
-import ScrollableTabView  from 'react-native-scrollable-tab-view';
 import CouresDirView  from '../Course/CouresDirView';
 import CouresHotView  from '../Course/CouresHotView';
 import CouresNewView  from '../Course/CouresNewView';
+import ComTabPager from '../Common/ComTabPager';
 import {
     AppRegistry,
     StyleSheet,
@@ -38,19 +38,23 @@ class CourseTab extends Component {
             <View style={styles.container}>
                 <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                 {this.renderNavBar()}
-                <ScrollableTabView locked={true} initialPage={1}
-                                   tabBarBackgroundColor='#FFFFFF'
-                                   tabBarActiveTextColor='#47AD1D'
-                                   tabBarInactiveTextColor='rgba(0,0,0,0.75)'
-                                   tabBarTextStyle={{fontSize: 12,marginTop:10}}
-                                   tabBarUnderlineStyle={{backgroundColor: '#47AD1D',height:2}}
-                                   scrollWithoutAnimation={true}>
-                    <CouresDirView tabLabel="目录"/>
-                    <CouresHotView tabLabel="最新"/>
-                    <CouresNewView tabLabel="最热"/>
-                </ScrollableTabView>
+                <ComTabPager initialPage={1} callbackTab={this.tabPagerItem()}/>
             </View>
         );
+    }
+
+    tabPagerItem() {
+        var allImage = [];
+        allImage.push(
+            <CouresDirView key={0} tabLabel="目录"/>
+        );
+        allImage.push(
+            <CouresHotView key={1} tabLabel="最新"/>
+        );
+        allImage.push(
+            <CouresNewView key={2} tabLabel="最热"/>
+        );
+        return allImage;
     }
 
     renderNavBar() {

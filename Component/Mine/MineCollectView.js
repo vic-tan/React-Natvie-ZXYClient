@@ -8,8 +8,8 @@
  */
 
 import React, {Component} from 'react';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
 import ComNavBar from '../Common/ComNavBar';
+import ComTabPager from '../Common/ComTabPager';
 import MineCollectCourse from './MineCollectCourse';
 import MineCollectViewKnowledge from './MineCollectViewKnowledge';
 import {
@@ -36,24 +36,22 @@ class MineCollectView extends Component {
         return (
             <View style={styles.container}>
                 <ComNavBar title='我的收藏' navigator={this.props.navigator}/>
-                <ScrollableTabView locked={true} initialPage={0}
-                                   tabBarBackgroundColor='#FFFFFF'
-                                   tabBarActiveTextColor='#47AD1D'
-                                   tabBarInactiveTextColor='rgba(0,0,0,0.75)'
-                                   tabBarTextStyle={{fontSize: 12,marginTop:10}}
-                                   tabBarUnderlineStyle={{backgroundColor: '#47AD1D',height:2}}
-                                   scrollWithoutAnimation={true}>
-
-                        <MineCollectCourse tabLabel="课程"/>
-                        <MineCollectViewKnowledge tabLabel="知识"/>
-                </ScrollableTabView>
-
+                <ComTabPager initialPage={0} callbackTab={this.tabPagerItem()}/>
             </View>
         );
     }
 
+    tabPagerItem(){
+        var allImage = [];
+        allImage.push(
+            <MineCollectCourse key={0} tabLabel="课程"/>
+        );
+        allImage.push(
+            <MineCollectViewKnowledge key={1} tabLabel="知识"/>
+        );
 
-
+        return allImage;
+    }
 }
 
 const styles = StyleSheet.create({

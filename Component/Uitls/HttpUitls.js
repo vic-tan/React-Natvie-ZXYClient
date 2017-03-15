@@ -44,6 +44,7 @@ class HttpUitls extends Component {
             fetch(UrlConstant.DOMAIN + url, fetchOptions)
                 .then((response) => response.text())
                 .then((responseText) => {
+                   // console.log('httpUtils------------------->url==='+url+'----->json='+responseText);
                     callback(JSON.parse(responseText));
                 }).done();
         });

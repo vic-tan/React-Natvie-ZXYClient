@@ -17,6 +17,9 @@ const LIVE_GENSEE_LIST = 'gensee/getGenseeList';//我的直播
 
 const COURSE_NEWES_LIST = 'course/newestList';//课程最新
 const COURSE_HOTEST_LIST = 'course/hotestList';//课程最热
+const SYS_LOAD_INDEX_LAYOUT = 'sys/loadIndexLayout';//首页
+
+
 
 export default{
     DOMAIN,
@@ -27,5 +30,7 @@ export default{
     LIVE_GENSEE_LIST,
     COURSE_NEWES_LIST,
     COURSE_HOTEST_LIST,
+
+    SYS_LOAD_INDEX_LAYOUT,
 }
 
