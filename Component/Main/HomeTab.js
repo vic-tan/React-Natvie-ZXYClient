@@ -15,6 +15,7 @@ import HttpUitls from '../Uitls/HttpUitls';
 import UrlConstant from '../Constant/UrlConstant';
 import Swiper from 'react-native-swiper';
 import HomeNavView from './HomeNavView.js';
+import HomeBannerView from './HomeBannerView.js';
 import {
     AppRegistry,
     PanResponder,
@@ -76,8 +77,6 @@ class HomeTab extends Component {
 
     componentDidMount() {
         this._loadData();
-
-
     }
 
 
@@ -127,24 +126,13 @@ class HomeTab extends Component {
     }
 
     render() {
-        console.log('---->render' + this.nav_list.lenght);
         return (
             <View style={[styles.container]}>
                 <StatusBar hidden={false} backgroundColor='transparent'/>
                 <PullView style={{width: Dimensions.get('window').width}} onPullRelease={this.onPullRelease}
                           topIndicatorHeight={60}
                     {...this._gestureHandlers}>
-                    <View style={styles.containerPage}>
-                        <Swiper style={styles.wrapper} height={Platform.OS == 'ios' ? 180 : 210}
-                                horizontal={true} autoplay
-                                activeDot={this._activieDot()}
-                                dot={this._dot()}
-                                paginationStyle={{
-                                    bottom: 9
-                                 }}>
-                            {this.renderAllImage()}
-                        </Swiper>
-                    </View>
+                    <HomeBannerView bannerList={this.banner_list}/>
                     <HomeNavView navList={this.nav_list}/>
                 </PullView>
                 <BusyIndicator />
@@ -152,34 +140,6 @@ class HomeTab extends Component {
         );
     }
 
-    _dot() {
-        return (<View
-            style={styles._dot}/>);
-    }
-
-    _activieDot() {
-        return (<View
-            style={styles._activieDot}/>);
-    }
-
-    // 返回所有的图片
-    renderAllImage() {
-        // 数组
-        var allImage = [];
-        // 遍历
-        for (var i = 0; i < this.banner_list.length; i++) {
-            // 取出单独的每一个对象
-            var imgItem = this.banner_list[i];
-            // 创建组件装入数组
-            allImage.push(
-                <Image key={i}
-                       source={{uri:imgItem.image}}
-                       style={styles.slide}/>
-            );
-        }
-        // 返回数组
-        return allImage;
-    }
 
 }
 
@@ -190,31 +150,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F3F3F3',
     },
-    containerPage: {
-        width: width,
-    },
-    slide: {
-        width: width,
-        height: Platform.OS == 'ios' ? 180 : 210,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    _dot: {
-        backgroundColor: '#CCCCCC',
-        width: 6,
-        height: 6,
-        marginLeft: 3,
-        marginRight: 3,
-        borderRadius: 3,
-    },
-    _activieDot: {
-        backgroundColor: '#47AD1D',
-        width: 6,
-        height: 6,
-        marginLeft: 3,
-        marginRight: 3,
-        borderRadius: 3,
-    }
 
 });
 export default HomeTab;

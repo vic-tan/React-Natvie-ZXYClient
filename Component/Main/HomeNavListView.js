@@ -53,7 +53,7 @@ class HomeNavListView extends Component {
     // 具体的cell
     renderRow(rowdata) {
         return (
-            <TouchableOpacity onPress={()=>{alert(rowdata.code)}}>
+            <TouchableOpacity  activeOpacity={0.7} onPress={()=>{alert(rowdata.code)}}>
                 <View style={styles.cellStyle}>
                     <View style={styles.imgContentView}>
                         {this._showImage(rowdata)}
