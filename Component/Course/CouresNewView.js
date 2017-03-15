@@ -10,6 +10,7 @@
 import React, {Component} from 'react';
 import UrlConstant from '../Constant/UrlConstant';
 import ComListRefreshView from '../Common/ComListRefreshView';
+import ComImage from '../Common/ComImage';
 import {
     AppRegistry,
     StyleSheet,
@@ -43,7 +44,7 @@ class CouresNewView extends Component {
         return (
             <View >
                 <View style={styles.rowContainer}>
-                    <Image style={styles.image} source={{uri:rowData.cover}}></Image>
+                    <ComImage uri={rowData.cover}  width={120} height={80}/>
                     <View style={{margin: 10 ,width:width -130}} >
                         <Text style={styles.rowTitle}>{rowData.name}</Text>
                         <Text style={styles.rowDesc}>{rowData.description}</Text>

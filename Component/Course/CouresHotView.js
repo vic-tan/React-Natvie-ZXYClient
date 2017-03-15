@@ -10,6 +10,7 @@
 import React, {Component} from 'react';
 import UrlConstant from '../Constant/UrlConstant';
 import ComListRefreshView from '../Common/ComListRefreshView';
+import ComImage from '../Common/ComImage';
 import {
     AppRegistry,
     StyleSheet,
@@ -43,7 +44,7 @@ class CouresHotView extends Component {
         return (
             <View >
                 <View style={styles.rowContainer}>
-                    <Image style={styles.image} source={{uri:rowData.cover}}></Image>
+                    <ComImage uri={rowData.cover}  width={120} height={80}/>
                     <View style={{margin: 10 ,width:width -130}} >
                         <Text style={styles.rowTitle}>{rowData.name}</Text>
                         <Text style={styles.rowDesc}>{rowData.description}</Text>
@@ -79,12 +80,14 @@ const styles = StyleSheet.create({
         rowTitle: {
             color: "#000000",
             fontSize: 15,
+            marginRight:10
         },
         rowDesc: {
             color: "rgba(0,0,0,0.5)",
             fontSize: 13,
-            paddingTop: 15,
+            paddingTop: 5,
             paddingBottom: 0,
+            marginRight:10
         },
     }
 );
