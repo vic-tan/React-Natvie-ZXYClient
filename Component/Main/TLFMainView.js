@@ -40,7 +40,7 @@ var mine_pre = require('../../img/tab_mine_pre.png');
 class TLFMainView extends Component {
     constructor(props) {
         super(props);
-        this.state = {selectedTab: 'mine'};
+        this.state = {selectedTab: 'home'};
     }
 
 
