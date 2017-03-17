@@ -31,8 +31,10 @@ class ComListRefreshView extends Component {
     constructor(props) {
         super(props);
         this.dataSource = [];
+        this.refreshMap = new Map();
         this.state = {
             sid: '',
+            map: new Map(),
             pageNumber: 1,
             footerState: RefreshViewUitls.footerStateHide(),//0:表示无， 1加载中 2,已没有更多了
             isFirstLoading: RefreshViewUitls.footerStateIsfirstLoading(),//true ,第一次加载，false,加载更多
@@ -43,6 +45,11 @@ class ComListRefreshView extends Component {
     }
 
     componentDidMount() {
+        if (this.props.map!=null) {
+            this.props.map.forEach((value, index) => {//value为值，index实际上就是key
+                this.refreshMap.set(index, value);
+            });
+        }
         storage.load({
             key: 'user',
         }).then(ret => {
@@ -105,7 +112,8 @@ class ComListRefreshView extends Component {
             console.log('---------->return');
             return;
         }
-        RefreshViewUitls.pullRequest(isPullRelease, this.props.url, this.state.pageNumber, (map, set) => {
+        this.refreshMap.set('pageNumber', isPullRelease <= 1 ? 1 : this.state.pageNumber);
+        RefreshViewUitls.pullRequest(this.props.url, this.refreshMap, (map, set) => {
             this.requestOk(isPullRelease, map, set, callback);
         });
     }

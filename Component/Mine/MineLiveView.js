@@ -51,9 +51,9 @@ class MineLiveView extends Component {
             <View >
                 <View style={styles.rowContainer}>
                     <Image style={styles.image} source={defaultImg}></Image>
-                    <View style={{margin: 10}}>
-                        <Text style={styles.rowTitle}>{rowData.name}</Text>
-                        <Text style={styles.rowDesc}>开始时间: {rowData.start_time}</Text>
+                    <View style={{margin: 10 ,width:width -130}} >
+                        <Text style={styles.rowTitle} numberOfLines={1}>{rowData.name}</Text>
+                        <Text style={styles.rowDesc} numberOfLines={1}>开始时间: {rowData.start_time}</Text>
                     </View>
                 </View>
                 <Text style={{height:1}}/>

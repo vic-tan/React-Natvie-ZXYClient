@@ -14,6 +14,7 @@ const USER_PERSONALINFO = 'user/personalInfo';//--------------------------------
 const USER_MY_COURSE_FAVORITE = 'user/myCourseFavorite';//------------------------------------------->我的收藏-->课程收藏
 const USER_MY_DOC_FAVORITE = 'user/myDocFavorite';//------------------------------------------------->我的收藏-->知识收藏
 const LIVE_GENSEE_LIST = 'gensee/getGenseeList';//--------------------------------------------------->我的直播
+const LIVE_GENSEE_HISTORY_LIST = 'gensee/getGenseeHistoryList';//--------------------------------------------------->我的直播
 
 const COURSE_NEWES_LIST = 'course/newestList';//----------------------------------------------------->课程最新
 const COURSE_HOTEST_LIST = 'course/hotestList';//---------------------------------------------------->课程最热
@@ -27,6 +28,22 @@ const SYS_FIND_INDEX_RECOMMEND_HOT_ACTIVITY_LIST = 'sys/findIndexHotActivityList
 const SYS_FIND_INDEX_RECOMMEND_MY_REQUIRED_LIST = 'sys/findIndexMyRequiredList';//----------------->首页最新活动列表接口
 const SYS_FIND_INDEX_RECOMMEND_HOT_LECTURERS_LIST = 'sys/findIndexLecturersList';//------------------>首页讲师榜列表接口
 const SYS_FIND_INDEX_RECOMMEND_RECOMMEND_ACTIVITY_LIST = 'sys/findIndexRecommendActivityList';//------------------>首页讲师榜列表接口
+const NEWS_LIST = 'news/newsList';
+const PATH_LIST = 'path/publicPathList';
+
+const DOC_NEWEST_LIST = 'doc/newestList';
+const DOC_HOTEST_LIST = 'doc/hotestList';
+
+const TRAIN_CLASS_PUBLIC_LIST = 'train/class/publicList';
+
+const SUBJECT_NEWEST_LIST = 'subject/newestList';
+const SUBJECT_HOTEST_LIST = 'subject/hotestList';
+
+const SURVEY_SURVEY_LIST = 'survey/surveyList';
+const EXAM_PUBLIC_LIST = 'exam/publicList';
+const EXAM_SIMULATE_LIST = 'exam/simulate/examList';
+
+
 
 
 export default{
@@ -39,10 +56,28 @@ export default{
 
     //直播
     LIVE_GENSEE_LIST,
+    LIVE_GENSEE_HISTORY_LIST,
 
     //课程
     COURSE_NEWES_LIST,
     COURSE_HOTEST_LIST,
+
+    //新闻
+    NEWS_LIST,
+
+    //培训
+    TRAIN_CLASS_PUBLIC_LIST,
+
+    //专题
+    SUBJECT_NEWEST_LIST,
+    SUBJECT_HOTEST_LIST,
+
+    //调研
+    SURVEY_SURVEY_LIST,
+
+    //考试
+    EXAM_PUBLIC_LIST,
+    EXAM_SIMULATE_LIST,
 
     //系统
     SYS_LOAD_INDEX_LAYOUT,
@@ -53,5 +88,12 @@ export default{
     SYS_FIND_INDEX_RECOMMEND_MY_REQUIRED_LIST,
     SYS_FIND_INDEX_RECOMMEND_HOT_LECTURERS_LIST,
     SYS_FIND_INDEX_RECOMMEND_RECOMMEND_ACTIVITY_LIST,
+
+    PATH_LIST,
+    DOC_NEWEST_LIST,
+    DOC_HOTEST_LIST,
+
+
+
 }
 

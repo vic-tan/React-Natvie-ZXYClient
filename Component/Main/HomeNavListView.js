@@ -8,6 +8,14 @@
  */
 
 import React, {Component} from 'react';
+import LiveView from '../Live/LiveView';
+import NewView from '../New/NewView';
+import PathView from '../Path/PathView';
+import TrainView from '../Train/TrainView';
+import SurveyView from '../Survey/SurveyView';
+import SubjectView from '../Subject/SubjectView';
+import KnowledgeView from '../Knowledge/KnowledgeView';
+import ExamNavigation from '../Exam/ExamTabView';
 import {
     AppRegistry,
     StyleSheet,
@@ -37,6 +45,7 @@ var new_menu_special = require('../../img/new_menu_special.png');
 var new_menu_test = require('../../img/new_menu_test.png');
 var new_menu_train = require('../../img/new_menu_train.png');
 
+
 class HomeNavListView extends Component {
 
     constructor(props) {
@@ -53,7 +62,7 @@ class HomeNavListView extends Component {
     // 具体的cell
     renderRow(rowdata) {
         return (
-            <TouchableOpacity  activeOpacity={0.7} onPress={()=>{alert(rowdata.code)}}>
+            <TouchableOpacity activeOpacity={0.7} onPress={this._navigator.bind(this,rowdata.code)}>
                 <View style={styles.cellStyle}>
                     <View style={styles.imgContentView}>
                         {this._showImage(rowdata)}
@@ -64,8 +73,50 @@ class HomeNavListView extends Component {
         );
     }
 
+    _navigator(navigatorTag) {
+        const {navigator} = this.props;
+        if (navigator) {
+            let view = LiveView;
+            switch (navigatorTag) {
+                case 'news':
+                    view = NewView;
+                    break;
+                case 'train':
+                    view = TrainView;
+                    break;
+                case 'subject':
+                    view = SubjectView;
+                    break;
+                case 'exam':
+                    view = ExamNavigation;
+                    break;
+                case 'live':
+                    view = LiveView;
+                    break;
+                case 'path':
+                    view = PathView;
+                    break;
+                case 'knowledge':
+                    view = KnowledgeView;
+                    break;
+                case 'survey':
+                    view = SurveyView;
+                    break;
+                case 'mall':
+                    break;
+                case 'course':
+                    break;
+                case 'ask_bar':
+                    break;
+            }
+            navigator.push({component: view});
+        }
+
+    }
+
+
     _showImage(rowdata) {
-        switch (rowdata.code){
+        switch (rowdata.code) {
             case 'news':
                 return (<Image source={new_menu_news} style={styles.img}/>);
             case 'train':
@@ -124,7 +175,7 @@ const styles = StyleSheet.create({
         borderRadius: 21,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:'#47AD1D'
+        backgroundColor: '#47AD1D'
     },
     img: {
         width: 42,
@@ -143,7 +194,7 @@ const styles = StyleSheet.create({
     titleStyle: {
         fontSize: Platform.OS == 'ios' ? 14 : 12,
         color: 'gray',
-        marginTop:48
+        marginTop: 48
     }
 });
 export default HomeNavListView;

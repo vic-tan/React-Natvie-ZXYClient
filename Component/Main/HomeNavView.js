@@ -71,7 +71,7 @@ class HomeNavView extends Component {
                 temp.push(this.props.navList[j]);
             }
             scrollItemArr.push(
-                <HomeNavListView key={i} dataArr={temp}/>
+                <HomeNavListView key={i} dataArr={temp} navigator={this.props.navigator}/>
             );
             temp = [];
         }

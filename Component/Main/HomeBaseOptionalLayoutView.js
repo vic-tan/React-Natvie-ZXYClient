@@ -93,7 +93,6 @@ class HomeBaseOptionalLayoutView extends Component {
 
     // 返回所有的图片
     renderScrollItem() {
-        console.log("-------renderScrollItem--->")
         var scrollItemArr = [];
         // 数组
         for (var i = 0; i < this.list.length; i++) {

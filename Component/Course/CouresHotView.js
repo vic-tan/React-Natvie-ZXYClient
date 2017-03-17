@@ -46,8 +46,8 @@ class CouresHotView extends Component {
                 <View style={styles.rowContainer}>
                     <ComImage uri={rowData.cover}  width={120} height={80}/>
                     <View style={{margin: 10 ,width:width -130}} >
-                        <Text style={styles.rowTitle}>{rowData.name}</Text>
-                        <Text style={styles.rowDesc}>{rowData.description}</Text>
+                        <Text style={styles.rowTitle} numberOfLines={1}>{rowData.name}</Text>
+                        <Text style={styles.rowDesc} numberOfLines={2}>{rowData.description}</Text>
                     </View>
                 </View>
                 <Text style={{height:1}}/>

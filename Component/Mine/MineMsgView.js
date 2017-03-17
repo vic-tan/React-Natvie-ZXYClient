@@ -185,10 +185,10 @@ class MineMsgView extends Component {
             <View >
                 <Text style={{height:10}}/>
                 <View style={styles.rowContainer}>
-                    <Text style={styles.rowTitle}>{rowData.title}</Text>
-                    <Text style={styles.rowDesc}>{rowData.content}</Text>
+                    <Text style={styles.rowTitle} numberOfLines={1}>{rowData.title}</Text>
+                    <Text style={styles.rowDesc} numberOfLines={2}>{rowData.content}</Text>
                     <View style={styles.timeView}>
-                        <Text style={styles.rowTime}> </Text>
+                        <Text style={styles.rowTime} > </Text>
                         <Text style={styles.rowTime}>{rowData.send_time}</Text>
                     </View>
                 </View>

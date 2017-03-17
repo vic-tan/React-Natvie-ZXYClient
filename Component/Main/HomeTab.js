@@ -182,42 +182,48 @@ class HomeTab extends Component {
             switch (item.content_code) {
                 case 'navigation_module'://tab导航
                     allView.push(
-                        <HomeNavView key={i} navList={this.region_list[i].nav_list}/>
+                        <HomeNavView key={i} navList={this.region_list[i].nav_list} navigator={this.props.navigator}/>
                     );
                     break;
                 case 'recommended_courses'://推荐课程
                     allView.push(
-                        <HomeCourseLayoutView key={i} bean={item} sid={this.state.sid}/>
+                        <HomeCourseLayoutView key={i} bean={item} sid={this.state.sid}
+                                              navigator={this.props.navigator}/>
                     );
                     break;
                 case 'hot_subject' ://推荐专题
                     allView.push(
-                        <HomeSubjectLayoutView key={i} bean={item} sid={this.state.sid}/>
+                        <HomeSubjectLayoutView key={i} bean={item} sid={this.state.sid}
+                                               navigator={this.props.navigator}/>
                     );
                     break;
                 case 'hot_knowledge' ://热门知识
                     allView.push(
-                        <HomeKnowledgeLayoutView key={i} bean={item} sid={this.state.sid}/>
+                        <HomeKnowledgeLayoutView key={i} bean={item} sid={this.state.sid}
+                                                 navigator={this.props.navigator}/>
                     );
                     break;
                 case 'hot_activity' ://最新活动
                     allView.push(
-                        <HomeNewActivityLayoutView key={i} bean={item} sid={this.state.sid}/>
+                        <HomeNewActivityLayoutView key={i} bean={item} sid={this.state.sid}
+                                                   navigator={this.props.navigator}/>
                     );
                     break;
                 case 'my_required' ://我的必修
                     allView.push(
-                        <HomeLiveLayoutView key={i} bean={item} sid={this.state.sid}/>
+                        <HomeLiveLayoutView key={i} bean={item} sid={this.state.sid} navigator={this.props.navigator}/>
                     );
                     break;
                 case 'lecturers_list' ://讲师榜
                     allView.push(
-                        <HomeLecturersLayoutView key={i} bean={item} sid={this.state.sid}/>
+                        <HomeLecturersLayoutView key={i} bean={item} sid={this.state.sid}
+                                                 navigator={this.props.navigator}/>
                     );
                     break;
                 case 'recommended_activity' ://推荐活动
                     allView.push(
-                        <HomeRecommendedActivityLayoutView key={i} bean={item} sid={this.state.sid}/>
+                        <HomeRecommendedActivityLayoutView key={i} bean={item} sid={this.state.sid}
+                                                           navigator={this.props.navigator}/>
                     );
                     break;
             }

@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 
 
-
 class RefreshViewUitls extends Component {
 
     /**
@@ -23,13 +22,15 @@ class RefreshViewUitls extends Component {
      * @param pageNumber 请求的页码数
      * @param callback 请求完成回调
      */
-    static pullRequest(pullReleaseTag, url, pageNumber, callback) {
+    static pullRequest(url, map, callback) {
         storage.load({
             key: 'user',
         }).then(ret => {
-            let map = new Map()
-            map.set('type', '');
-            map.set('pageNumber', pullReleaseTag <= 1 ? 1 : pageNumber);
+            if (map === null) {
+                console.log('map is null---->');
+                map = new Map();
+            }
+            //map.set('pageNumber', pullReleaseTag <= 1 ? 1 : pageNumber);
             map.set('sid', ret.sid);
             map.set('pageSize', 10);
             HttpUitls.postFrom(url, map, (set) => {
@@ -77,21 +78,21 @@ class RefreshViewUitls extends Component {
      * 0.默认进来自动加载
      */
     static refreshStateStart() {
-        return  ListRefreshStateConstant.REFRESH_OPT_START;
+        return ListRefreshStateConstant.REFRESH_OPT_START;
     }
 
     /**
      * 1.下拉加载
      */
     static refreshStatePull() {
-        return  ListRefreshStateConstant.REFRESH_OPT_PULL;
+        return ListRefreshStateConstant.REFRESH_OPT_PULL;
     }
 
     /**
      * 2.上滑加载更多
      */
     static refreshStateMore() {
-        return  ListRefreshStateConstant.REFRESH_OPT_MORE;
+        return ListRefreshStateConstant.REFRESH_OPT_MORE;
     }
 
 
@@ -100,21 +101,21 @@ class RefreshViewUitls extends Component {
      * 表示不显示加载更多的foorter
      */
     static footerStateHide() {//表示正在加载
-        return  ListRefreshStateConstant.REFRESH_FOOTER_STATE_HIDE;
+        return ListRefreshStateConstant.REFRESH_FOOTER_STATE_HIDE;
     }
 
     /**
      * 1加载中
      */
     static footerStateLoading() {//暂无数据
-        return  ListRefreshStateConstant.REFRESH_FOOTER_STATE_LOADING;
+        return ListRefreshStateConstant.REFRESH_FOOTER_STATE_LOADING;
     }
 
     /**
      * 2,已没有更多，到底了
      */
     static footerStateNoData() {//网络异常
-        return  ListRefreshStateConstant.REFRESH_FOOTER_STATE_NO_DATA;
+        return ListRefreshStateConstant.REFRESH_FOOTER_STATE_NO_DATA;
     }
 
 
@@ -123,14 +124,14 @@ class RefreshViewUitls extends Component {
      * 一次界面第一次加载footer view
      */
     static footerStateIsfirstLoading() {//加载失败重试
-        return  ListRefreshStateConstant.REFRESH_FOOTER_STATE_IS_FIRST_LOADING;
+        return ListRefreshStateConstant.REFRESH_FOOTER_STATE_IS_FIRST_LOADING;
     }
 
     /**
      * false,加载更多 foorter view
      */
     static footerStateIsNotfirstLoading() {//加载失败重试
-        return  ListRefreshStateConstant.REFRESH_FOOTER_STATE_IS_NOT_FIRST_LOADING;
+        return ListRefreshStateConstant.REFRESH_FOOTER_STATE_IS_NOT_FIRST_LOADING;
     }
 }
 
