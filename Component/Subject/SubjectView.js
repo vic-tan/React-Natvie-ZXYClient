@@ -47,7 +47,7 @@ class SubjectView extends Component {
             <SubjectNewView key={0} tabLabel="最新"/>
         );
         allImage.push(
-            <SubjectHotView key={1} tabLabel="最热"/>
+            <SubjectNewView key={1} tabLabel="最热" />
         );
 
         return allImage;

@@ -6,7 +6,7 @@ import ChangePwdView from '../Setting/ChangePwdView';
 import MineStutyView from '../Mine/MineStutyView';
 import MineClassView from '../Mine/MineClassView';
 import MineExamView from '../Mine/MineExamView';
-import MineSurveyView from '../Mine/MineSurveyView';
+import MineSurveyView from '../Mine/MySurveyView';
 import MineKnowledgeView from '../Mine/MineKnowledgeView';
 import QrCodeView from '../Setting/QrCodeView';
 import MineAskView from '../Mine/MineAskView';

@@ -18,6 +18,7 @@ const LIVE_GENSEE_HISTORY_LIST = 'gensee/getGenseeHistoryList';//---------------
 
 const COURSE_NEWES_LIST = 'course/newestList';//----------------------------------------------------->课程最新
 const COURSE_HOTEST_LIST = 'course/hotestList';//---------------------------------------------------->课程最热
+const COURSE_MY_COURSE_LIST = 'course/myCourseList';//---------------------------------------------------->课程最热
 
 
 const SYS_LOAD_INDEX_LAYOUT = 'sys/loadIndexLayout';//首页
@@ -40,6 +41,8 @@ const SUBJECT_NEWEST_LIST = 'subject/newestList';
 const SUBJECT_HOTEST_LIST = 'subject/hotestList';
 
 const SURVEY_SURVEY_LIST = 'survey/surveyList';
+const SURVEY_MY_SURVEY_LIST = 'survey/mySurveyList';
+
 const EXAM_PUBLIC_LIST = 'exam/publicList';
 const EXAM_SIMULATE_LIST = 'exam/simulate/examList';
 
@@ -61,6 +64,7 @@ export default{
     //课程
     COURSE_NEWES_LIST,
     COURSE_HOTEST_LIST,
+    COURSE_MY_COURSE_LIST,
 
     //新闻
     NEWS_LIST,
@@ -74,6 +78,7 @@ export default{
 
     //调研
     SURVEY_SURVEY_LIST,
+    SURVEY_MY_SURVEY_LIST,
 
     //考试
     EXAM_PUBLIC_LIST,

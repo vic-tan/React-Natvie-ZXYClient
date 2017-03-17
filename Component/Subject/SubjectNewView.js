@@ -24,7 +24,7 @@ import {
     Platform
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-class TrainEndView extends Component {
+class SubjectNewView extends Component {
     constructor(props) {
         super(props);
     }
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
     }
 );
 
-export default TrainEndView;
+export default SubjectNewView;

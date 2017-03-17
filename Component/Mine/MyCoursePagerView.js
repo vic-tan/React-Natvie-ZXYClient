@@ -24,17 +24,27 @@ import {
     Platform
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-class SubjectHotView extends Component {
+class MyCoursePagerView extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            pager:'0',
+        }
+        this.map = new Map();
+        this.map.set('listType',this.props.pager);
     }
 
+    componentDidMount() {
+
+    }
 
     render() {
+
         return (
             <View style={styles.container}>
-                <ComListRefreshView url={UrlConstant.SUBJECT_HOTEST_LIST}
+                <ComListRefreshView url={UrlConstant.COURSE_MY_COURSE_LIST}
                                     callbackParentRow={this.listCellRow.bind(this)}
+                                    map={this.map}
                 />
             </View>
         );
@@ -46,8 +56,9 @@ class SubjectHotView extends Component {
                 <View style={styles.rowContainer}>
                     <ComImage uri={rowData.cover}  width={120} height={80}/>
                     <View style={{margin: 10 ,width:width -130}} >
-                        <Text style={styles.rowTitle} numberOfLines={1}>{rowData.title}</Text>
-                        <Text style={styles.rowDesc} numberOfLines={2}>{rowData.description}</Text>
+                        <Text style={styles.rowTitle} numberOfLines={1}>{rowData.name}</Text>
+                        <Text style={styles.rowDesc} numberOfLines={1}>结束时间: {rowData.description}</Text>
+                        <Text style={styles.rowDesc} numberOfLines={1}>来源:{rowData.type==='1' ? '自主注册' : '转发'}</Text>
                     </View>
                 </View>
                 <Text style={{height:1}}/>
@@ -92,4 +103,4 @@ const styles = StyleSheet.create({
     }
 );
 
-export default SubjectHotView;
+export default MyCoursePagerView;

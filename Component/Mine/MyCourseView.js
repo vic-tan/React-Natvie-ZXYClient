@@ -9,6 +9,8 @@
 
 import React, {Component} from 'react';
 import ComNavBar from '../Common/ComNavBar';
+import ComTabPager from '../Common/ComTabPager';
+import MyCoursePagerView from './MyCoursePagerView';
 import {
     AppRegistry,
     StyleSheet,
@@ -33,9 +35,23 @@ class MineCourseView extends Component {
             <View style={styles.container}>
                 <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                 <ComNavBar title='我的课程' navigator={this.props.navigator}/>
-                <Text style={styles.text}>我的课程</Text>
+                <ComTabPager initialPage={0} callbackTab={this.tabPagerItem()}/>
             </View>
         );
+    }
+    tabPagerItem() {
+        var allImage = [];
+        allImage.push(
+            <MyCoursePagerView key={0} tabLabel="待审核" pager="1"/>
+        );
+        allImage.push(
+            <MyCoursePagerView key={1} tabLabel="学习中" pager="0"/>
+        );
+        allImage.push(
+            <MyCoursePagerView key={2} tabLabel="已完成" pager="2"/>
+        );
+
+        return allImage;
     }
 }
 

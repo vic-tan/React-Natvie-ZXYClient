@@ -2,11 +2,11 @@
  * Created by tanlifei on 2017/3/3.
  */
 import React, {Component} from 'react';
-import MineCourseView from '../Mine/MineCourseView';
+import MyCourseView from '../Mine/MyCourseView';
 import MineStutyView from '../Mine/MineStutyView';
 import MineClassView from '../Mine/MineClassView';
 import MineExamView from '../Mine/MineExamView';
-import MineSurveyView from '../Mine/MineSurveyView';
+import MySurveyView from '../Mine/MySurveyView';
 import MineKnowledgeView from '../Mine/MineKnowledgeView';
 import MineLiveView from '../Mine/MineLiveView';
 import MineAskView from '../Mine/MineAskView';
@@ -80,7 +80,7 @@ class ComMineGridItem extends Component {
         if (navigator) {
             switch (this.props.index) {
                 case 0://我的课程
-                    navigator.push({component: MineCourseView});
+                    navigator.push({component: MyCourseView});
                     break;
                 case 1://学习路径
                     navigator.push({component: MineStutyView});
@@ -92,7 +92,7 @@ class ComMineGridItem extends Component {
                     navigator.push({component: MineExamView});
                     break;
                 case 4://我的调研
-                    navigator.push({component: MineSurveyView});
+                    navigator.push({component: MySurveyView});
                     break;
                 case 5://我的知识
                     navigator.push({component: MineKnowledgeView});
