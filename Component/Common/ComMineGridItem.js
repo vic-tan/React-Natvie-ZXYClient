@@ -7,7 +7,7 @@ import MyPathView from '../Mine/MyPathView';
 import MineClassView from '../Mine/MyTrainView';
 import MineExamView from '../Mine/MyExamView';
 import MySurveyView from '../Mine/MySurveyView';
-import MineKnowledgeView from '../Mine/MineKnowledgeView';
+import MineKnowledgeView from '../Mine/MyKnowledgeView';
 import MineLiveView from '../Mine/MineLiveView';
 import MineAskView from '../Mine/MineAskView';
 import {

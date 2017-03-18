@@ -2,8 +2,8 @@
  * Created by tanlifei on 2017/3/3.
  */
 import React, {Component} from 'react';
-import MineDownloadView from '../Mine/MineDownloadView';
-import MineMsgView from '../Mine/MineMsgView';
+import MineDownloadView from '../Mine/MyDownloadView';
+import MyMsgView from '../Mine/MyMsgView';
 import MineCollectView from '../Mine/MineCollectView';
 import {
     AppRegistry,
@@ -55,7 +55,7 @@ class ComMineItemHeader extends Component {
                     navigator.push({component: MineDownloadView});
                     break;
                 case 2://我的消息
-                    navigator.push({component: MineMsgView});
+                    navigator.push({component: MyMsgView});
                     break;
             }
         }

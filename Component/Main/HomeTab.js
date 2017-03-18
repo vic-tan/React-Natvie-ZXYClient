@@ -23,6 +23,7 @@ import HomeLecturersLayoutView from './HomeLecturersLayoutView.js';
 import HomeNewActivityLayoutView from './HomeNewActivityLayoutView.js';
 import HomeRecommendedActivityLayoutView from './HomeRecommendedActivityLayoutView.js';
 import HomeSubjectLayoutView from './HomeSubjectLayoutView.js';
+import MyMsgView from '../Mine/MyMsgView';
 
 import {
     AppRegistry,
@@ -34,6 +35,7 @@ import {
     Array,
     Dimensions,
     ScrollView,
+    TouchableOpacity,
     TextInput,
     ListView,
     ActivityIndicator,
@@ -159,7 +161,9 @@ class HomeTab extends Component {
         return (
             <View style={styles.renderNavBar}>
                 <View style={styles.navBarView}>
-                    <Image source={new_nav_scan} style={styles.navBarAdd}/>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>alert('二维码')}>
+                        <Image source={new_nav_scan} style={styles.navBarAdd}/>
+                    </TouchableOpacity>
                     <View>
                         <TextInput style={styles.navBarTextInput} placeholder='搜一搜'
                                    clearButtonMode='while-editing'
@@ -168,10 +172,19 @@ class HomeTab extends Component {
                         />
                         <Image source={nav_search} style={styles.search}/>
                     </View>
-                    <Image source={nav_msg} style={styles.navBarAdd}/>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._msg.bind(this)}>
+                        <Image source={nav_msg} style={styles.navBarAdd} />
+                    </TouchableOpacity>
                 </View>
             </View>
         );
+    }
+
+    _msg() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({component: MyMsgView});
+        }
     }
 
     // 返回所有的图片

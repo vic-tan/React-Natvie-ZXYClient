@@ -9,7 +9,8 @@
 
 import React, {Component} from 'react';
 import ComNavBar from '../Common/ComNavBar';
-import ComListRefreshView from '../Common/ComListRefreshView';
+import ComTabPager from '../Common/ComTabPager';
+import MyPathPagerView from './MyPathPagerView';
 import {
     AppRegistry,
     StyleSheet,
@@ -33,29 +34,22 @@ class MineDownloadView extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                 <ComNavBar title='我的离线' navigator={this.props.navigator}/>
-                <ComListRefreshView url='user/messageList'
-                                    callbackParentRow={this.listCellRow.bind(this)}
-                                    navigator={this.props.navigator}/>
+                <ComTabPager initialPage={0} callbackTab={this.tabPagerItem()}/>
             </View>
         );
     }
 
-    listCellRow(rowData, sectionID, rowID, highlightRow) {
-        return (
-            <View >
-                <Text style={{height:10}}/>
-                <View style={styles.rowContainer}>
-                    <Text style={styles.rowTitle}>{rowData.title}</Text>
-                    <Text style={styles.rowDesc}>{rowData.content}</Text>
-                    <View style={styles.timeView}>
-                        <Text style={styles.rowTime}> </Text>
-                        <Text style={styles.rowTime}>{rowData.send_time}</Text>
-                    </View>
-                </View>
-                <Text style={{height:4}}/>
-            </View>
+    tabPagerItem() {
+        var allImage = [];
+        allImage.push(
+            <MyPathPagerView key={0} tabLabel="离线课程" pager="1"/>
         );
+        allImage.push(
+            <MyPathPagerView key={1} tabLabel="离线知识" pager="2"/>
+        );
+        return allImage;
     }
 
 

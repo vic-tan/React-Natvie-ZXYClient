@@ -8,6 +8,7 @@
  */
 
 import React, {Component} from 'react';
+import ComNavBar from '../Common/ComNavBar';
 import UrlConstant from '../Constant/UrlConstant';
 import ComListRefreshView from '../Common/ComListRefreshView';
 import ComImage from '../Common/ComImage';
@@ -24,7 +25,7 @@ import {
     Platform
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-class MineCollectViewKnowledge extends Component {
+class MyKnowledgeView extends Component {
     constructor(props) {
         super(props);
     }
@@ -33,9 +34,16 @@ class MineCollectViewKnowledge extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <ComListRefreshView url={UrlConstant.USER_MY_DOC_FAVORITE}
-                                    callbackParentRow={this.listCellRow.bind(this)}
-                                    navigator={this.props.navigator}/>
+                <View style={styles.container}>
+                    <View style={{marginTop: Platform.OS == 'ios' ? 68 : 48,flex: 1}}>
+                        <ComListRefreshView url={UrlConstant.DOC_MY_PUBLISH}
+                                            callbackParentRow={this.listCellRow.bind(this)}
+                        />
+                    </View>
+                    <View style={{position: 'absolute',top:0 ,width:width}}>
+                        <ComNavBar title='我的知识' navigator={this.props.navigator}/>
+                    </View>
+                </View>
             </View>
         );
     }
@@ -94,4 +102,4 @@ const styles = StyleSheet.create({
     }
 );
 
-export default MineCollectViewKnowledge;
+export default MyKnowledgeView;

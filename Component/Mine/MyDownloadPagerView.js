@@ -10,7 +10,6 @@
 import React, {Component} from 'react';
 import UrlConstant from '../Constant/UrlConstant';
 import ComListRefreshView from '../Common/ComListRefreshView';
-import ComImage from '../Common/ComImage';
 import {
     AppRegistry,
     StyleSheet,
@@ -24,7 +23,7 @@ import {
     Platform
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-class MineCollectViewKnowledge extends Component {
+class MineCollectCourse extends Component {
     constructor(props) {
         super(props);
     }
@@ -33,7 +32,7 @@ class MineCollectViewKnowledge extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <ComListRefreshView url={UrlConstant.USER_MY_DOC_FAVORITE}
+                <ComListRefreshView url={UrlConstant.USER_MY_COURSE_FAVORITE}
                                     callbackParentRow={this.listCellRow.bind(this)}
                                     navigator={this.props.navigator}/>
             </View>
@@ -44,8 +43,8 @@ class MineCollectViewKnowledge extends Component {
         return (
             <View >
                 <View style={styles.rowContainer}>
-                    <ComImage uri={rowData.cover}  width={120} height={80}/>
-                    <View style={{margin: 10 ,width:width -130}} >
+                    <Image style={styles.image} source={{uri:rowData.cover}}></Image>
+                    <View style={{margin: 10}}>
                         <Text style={styles.rowTitle}>{rowData.name}</Text>
                         <View style={{flexDirection: 'row'}}>
                             <Text style={styles.rowDesc}>课时:  {rowData.course_hour}</Text>
@@ -93,5 +92,4 @@ const styles = StyleSheet.create({
         },
     }
 );
-
-export default MineCollectViewKnowledge;
+export default MineCollectCourse;

@@ -12,6 +12,7 @@ const DOMAIN = 'http://demo.zhixueyun.com/zxy-mobile-new/';//-------------------
 const USER_LOGIN = 'user/login';//------------------------------------------------------------------->登录
 const USER_PERSONALINFO = 'user/personalInfo';//----------------------------------------------------->我的
 const USER_MY_COURSE_FAVORITE = 'user/myCourseFavorite';//------------------------------------------->我的收藏-->课程收藏
+const USER_MESSAGE_LIST = 'user/messageList';//------------------------------------------->我的收藏-->课程收藏
 const USER_MY_DOC_FAVORITE = 'user/myDocFavorite';//------------------------------------------------->我的收藏-->知识收藏
 const LIVE_GENSEE_LIST = 'gensee/getGenseeList';//--------------------------------------------------->我的直播
 const LIVE_GENSEE_HISTORY_LIST = 'gensee/getGenseeHistoryList';//--------------------------------------------------->我的直播
@@ -36,6 +37,7 @@ const PATH_MY_LIST = 'path/myPathList';
 
 const DOC_NEWEST_LIST = 'doc/newestList';
 const DOC_HOTEST_LIST = 'doc/hotestList';
+const DOC_MY_PUBLISH = 'doc/myPublish';
 
 const TRAIN_CLASS_PUBLIC_LIST = 'train/class/publicList';
 const TRAIN_MY_FINISHED_LIST = 'train/class/myFinishedList';
@@ -64,6 +66,7 @@ export default{
     USER_PERSONALINFO,
     USER_MY_COURSE_FAVORITE,
     USER_MY_DOC_FAVORITE,
+    USER_MESSAGE_LIST,
 
     //直播
     LIVE_GENSEE_LIST,
@@ -115,6 +118,7 @@ export default{
 
     DOC_NEWEST_LIST,
     DOC_HOTEST_LIST,
+    DOC_MY_PUBLISH,
 
 
 
