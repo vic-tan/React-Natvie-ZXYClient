@@ -24,25 +24,19 @@ import {
     Platform
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-class MyPathPagerView extends Component {
+class MyTrainPagerView extends Component {
     constructor(props) {
         super(props);
         this.state={
-            pager:'1',
+            url:UrlConstant.TRAIN_MY_APPLYING_LIST,
         }
-        this.map = new Map();
-        this.map.set('listType',this.props.pager);
     }
 
-    componentDidMount() {
-
-    }
 
     render() {
-
         return (
             <View style={styles.container}>
-                <ComListRefreshView url={UrlConstant.PATH_MY_LIST}
+                <ComListRefreshView url={this.props.url}
                                     callbackParentRow={this.listCellRow.bind(this)}
                                     map={this.map}
                 />
@@ -58,7 +52,6 @@ class MyPathPagerView extends Component {
                     <View style={{margin: 10 ,width:width -130}} >
                         <Text style={styles.rowTitle} numberOfLines={1}>{rowData.name}</Text>
                         <Text style={styles.rowDesc} numberOfLines={2}>{rowData.description}</Text>
-                        <Text style={styles.rowDesc} numberOfLines={1}>开始时间: {rowData.publish_time}</Text>
                     </View>
                 </View>
                 <Text style={{height:1}}/>
@@ -103,4 +96,4 @@ const styles = StyleSheet.create({
     }
 );
 
-export default MyPathPagerView;
+export default MyTrainPagerView;

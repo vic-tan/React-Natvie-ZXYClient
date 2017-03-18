@@ -9,6 +9,8 @@
 
 import React, {Component} from 'react';
 import ComNavBar from '../Common/ComNavBar';
+import ComTabPager from '../Common/ComTabPager';
+import MyPathPagerView from './MyPathPagerView';
 import {
     AppRegistry,
     StyleSheet,
@@ -22,7 +24,7 @@ import {
     Platform
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-class MineStutyView extends Component {
+class MyPathView extends Component {
     constructor(props) {
         super(props);
     }
@@ -32,10 +34,21 @@ class MineStutyView extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar hidden={false} backgroundColor='#47AD1D'/>
-                <ComNavBar title='我的学习' navigator={this.props.navigator}/>
-                <Text style={styles.text}>我的学习</Text>
+                <ComNavBar title='学习路径' navigator={this.props.navigator}/>
+                <ComTabPager initialPage={0} callbackTab={this.tabPagerItem()}/>
             </View>
         );
+    }
+
+    tabPagerItem() {
+        var allImage = [];
+        allImage.push(
+            <MyPathPagerView key={0} tabLabel="学习中" pager="1"/>
+        );
+        allImage.push(
+            <MyPathPagerView key={1} tabLabel="已完成" pager="2"/>
+        );
+        return allImage;
     }
 
 
@@ -51,4 +64,4 @@ const styles = StyleSheet.create({
     }
 );
 
-export default MineStutyView;
+export default MyPathView;

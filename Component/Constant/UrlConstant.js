@@ -30,12 +30,17 @@ const SYS_FIND_INDEX_RECOMMEND_MY_REQUIRED_LIST = 'sys/findIndexMyRequiredList';
 const SYS_FIND_INDEX_RECOMMEND_HOT_LECTURERS_LIST = 'sys/findIndexLecturersList';//------------------>首页讲师榜列表接口
 const SYS_FIND_INDEX_RECOMMEND_RECOMMEND_ACTIVITY_LIST = 'sys/findIndexRecommendActivityList';//------------------>首页讲师榜列表接口
 const NEWS_LIST = 'news/newsList';
+
 const PATH_LIST = 'path/publicPathList';
+const PATH_MY_LIST = 'path/myPathList';
 
 const DOC_NEWEST_LIST = 'doc/newestList';
 const DOC_HOTEST_LIST = 'doc/hotestList';
 
 const TRAIN_CLASS_PUBLIC_LIST = 'train/class/publicList';
+const TRAIN_MY_FINISHED_LIST = 'train/class/myFinishedList';
+const TRAIN_MY_STUDYING_LIST = 'train/class/myStudyingList';
+const TRAIN_MY_APPLYING_LIST = 'train/class/myApplyingList';
 
 const SUBJECT_NEWEST_LIST = 'subject/newestList';
 const SUBJECT_HOTEST_LIST = 'subject/hotestList';
@@ -45,6 +50,9 @@ const SURVEY_MY_SURVEY_LIST = 'survey/mySurveyList';
 
 const EXAM_PUBLIC_LIST = 'exam/publicList';
 const EXAM_SIMULATE_LIST = 'exam/simulate/examList';
+const EXAM_MY_FINISHED_LIST = 'exam/myFinishedList';
+const EXAM_MY_OVER_DATE_LIST = 'exam/myOverDateList';
+const EXAM_MY_UNSTAR_LIST = 'exam/myUnStartList';
 
 
 
@@ -71,6 +79,9 @@ export default{
 
     //培训
     TRAIN_CLASS_PUBLIC_LIST,
+    TRAIN_MY_APPLYING_LIST,
+    TRAIN_MY_FINISHED_LIST,
+    TRAIN_MY_STUDYING_LIST,
 
     //专题
     SUBJECT_NEWEST_LIST,
@@ -83,6 +94,13 @@ export default{
     //考试
     EXAM_PUBLIC_LIST,
     EXAM_SIMULATE_LIST,
+    EXAM_MY_FINISHED_LIST,
+    EXAM_MY_OVER_DATE_LIST,
+    EXAM_MY_UNSTAR_LIST,
+
+    //路径
+    PATH_LIST,
+    PATH_MY_LIST,
 
     //系统
     SYS_LOAD_INDEX_LAYOUT,
@@ -94,7 +112,7 @@ export default{
     SYS_FIND_INDEX_RECOMMEND_HOT_LECTURERS_LIST,
     SYS_FIND_INDEX_RECOMMEND_RECOMMEND_ACTIVITY_LIST,
 
-    PATH_LIST,
+
     DOC_NEWEST_LIST,
     DOC_HOTEST_LIST,
 

@@ -3,9 +3,9 @@
  */
 import React, {Component} from 'react';
 import MyCourseView from '../Mine/MyCourseView';
-import MineStutyView from '../Mine/MineStutyView';
-import MineClassView from '../Mine/MineClassView';
-import MineExamView from '../Mine/MineExamView';
+import MyPathView from '../Mine/MyPathView';
+import MineClassView from '../Mine/MyTrainView';
+import MineExamView from '../Mine/MyExamView';
 import MySurveyView from '../Mine/MySurveyView';
 import MineKnowledgeView from '../Mine/MineKnowledgeView';
 import MineLiveView from '../Mine/MineLiveView';
@@ -83,7 +83,7 @@ class ComMineGridItem extends Component {
                     navigator.push({component: MyCourseView});
                     break;
                 case 1://学习路径
-                    navigator.push({component: MineStutyView});
+                    navigator.push({component: MyPathView});
                     break;
                 case 2://我的班级
                     navigator.push({component: MineClassView});

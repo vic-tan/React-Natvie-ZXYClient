@@ -3,9 +3,9 @@
  */
 import React, {Component} from 'react';
 import ChangePwdView from '../Setting/ChangePwdView';
-import MineStutyView from '../Mine/MineStutyView';
-import MineClassView from '../Mine/MineClassView';
-import MineExamView from '../Mine/MineExamView';
+import MineStutyView from '../Mine/MyPathView';
+import MineClassView from '../Mine/MyTrainView';
+import MineExamView from '../Mine/MyExamView';
 import MineSurveyView from '../Mine/MySurveyView';
 import MineKnowledgeView from '../Mine/MineKnowledgeView';
 import QrCodeView from '../Setting/QrCodeView';
