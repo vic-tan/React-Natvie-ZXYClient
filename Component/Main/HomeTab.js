@@ -55,6 +55,7 @@ class HomeTab extends Component {
         this.banner_list = [];
         this.region_list = [];
         this.state = {
+            opacity: 0,
             sid: '',
             refreshing: false,
             currentPage: 0,// 当前的页码
@@ -140,14 +141,24 @@ class HomeTab extends Component {
         callback();
     }
 
+    myHide(gesturePosition) {
+        this.setState({bg: 'white'})
+    }
+
+    _onScroll() {
+        console.log();
+    }
+
     render() {
         return (
             <View style={[styles.container]}>
                 <StatusBar hidden={false}/>
                 {this.renderNavBar()}
-                <PullView style={{width: Dimensions.get('window').width}} onPullRelease={this.onPullRelease}
-                          topIndicatorHeight={60}
-                    {...this._gestureHandlers}>
+                <PullView onPushing={(gesturePosition)=>this.myHide(gesturePosition)}
+                          style={{width: Dimensions.get('window').width}} onPullRelease={this.onPullRelease}
+                    {...this._gestureHandlers}
+                          onScroll={this._onScroll()}
+                          scrollEventThrottle={100}>
                     <HomeBannerView bannerList={this.banner_list}/>
                     {this.renderAllView()}
                 </PullView>
@@ -158,8 +169,9 @@ class HomeTab extends Component {
 
 
     renderNavBar() {
+        let titleBarBackgoundRgba = `rgba(71, 173, 29, ${this.state.opacity})`;
         return (
-            <View style={styles.renderNavBar}>
+            <View style={{backgroundColor: titleBarBackgoundRgba,position:'absolute', top:0}}>
                 <View style={styles.navBarView}>
                     <TouchableOpacity activeOpacity={0.8} onPress={()=>alert('二维码')}>
                         <Image source={new_nav_scan} style={styles.navBarAdd}/>
@@ -173,12 +185,13 @@ class HomeTab extends Component {
                         <Image source={nav_search} style={styles.search}/>
                     </View>
                     <TouchableOpacity activeOpacity={0.8} onPress={this._msg.bind(this)}>
-                        <Image source={nav_msg} style={styles.navBarAdd} />
+                        <Image source={nav_msg} style={styles.navBarAdd}/>
                     </TouchableOpacity>
                 </View>
             </View>
         );
     }
+
 
     _msg() {
         const {navigator} = this.props;
@@ -255,7 +268,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#F3F3F3',
     },
     renderNavBar: {
-        backgroundColor: '#47AD1D',
+        position: 'absolute',
+        top: 0,
 
     },
     navBarView: {
@@ -277,7 +291,7 @@ const styles = StyleSheet.create({
         height: 37,
         fontSize: 13,
         paddingLeft: 38,
-        backgroundColor: '#409D1A',
+        backgroundColor: '#409d1a',
         borderRadius: 5,
     },
     search: {

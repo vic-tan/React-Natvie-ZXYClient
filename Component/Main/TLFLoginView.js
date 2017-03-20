@@ -50,11 +50,11 @@ class TLFLoginView extends Component {
         loaderHandler.showLoader('登录中...');
         let map = new Map()
         map.set('appSystem', 'Android 6.0.1');
-        map.set('password', 'hdAn1URhCSUEdBHszUUXrQ==');
+        map.set('password', 'OHwueBJ1TjaHhZIUHDMIwQ==');
         map.set('language', 'Hzh_CN');
-        map.set('login_id', 'tanlifei');
+        map.set('login_id', 'lanting');
         map.set('client_type', 6);
-        map.set('company_name', '猛象谷');
+        map.set('company_name', '测试部');
         HttpUitls.postFrom(UrlConstant.USER_LOGIN, map, (set) => this._callback(set))
     }
 
@@ -106,14 +106,14 @@ class TLFLoginView extends Component {
                         <Text style={styles.textInputTitle}>企业名称</Text>
                         <TextInput refs='qyname' placeholder={'请输入企业名称'}
                                    style={[styles.textInput]}
-                                   value="猛象谷"
+                                   value="测试部"
                                    underlineColorAndroid="transparent"/>
                     </View>
                     <View style={styles.line}/>
                     <View style={styles.textInputView}>
                         <Text style={styles.textInputTitle}>账       号</Text>
                         <TextInput refs='name' placeholder={'账号/邮箱/手机号'} style={styles.textInput}
-                                   value="tanlifei"
+                                   value="lanting"
                                    underlineColorAndroid="transparent"/>
                     </View>
                     <View style={styles.line}/>
@@ -122,7 +122,7 @@ class TLFLoginView extends Component {
                         <Text style={styles.textInputTitle}>密       码</Text>
                         <TextInput refs='pwd' clearButtonMode='while-editing' secureTextEntry={true}
                                    placeholder={'请输入密码'}
-                                   value="t123456"
+                                   value="zxy123456"
                                    style={[styles.textInput]} underlineColorAndroid="transparent"/>
 
                     </View>

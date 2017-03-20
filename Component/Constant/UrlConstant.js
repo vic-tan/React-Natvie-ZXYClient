@@ -8,7 +8,7 @@ import React, {Component} from 'react';
 import {} from 'react-native';
 
 
-const DOMAIN = 'http://demo.zhixueyun.com/zxy-mobile-new/';//---------------------------------------->域名
+const DOMAIN = 'http://tc.zhixueyun.com/zxy-mobile-new/';//---------------------------------------->域名
 const USER_LOGIN = 'user/login';//------------------------------------------------------------------->登录
 const USER_PERSONALINFO = 'user/personalInfo';//----------------------------------------------------->我的
 const USER_MY_COURSE_FAVORITE = 'user/myCourseFavorite';//------------------------------------------->我的收藏-->课程收藏
