@@ -33,7 +33,7 @@ class HomeNavView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Swiper style={styles.wrapper} height={180}
+                <Swiper style={styles.wrapper} height={100}
                         loop={false} horizontal={true} autoplay={false}
                         activeDot={this._activieDot()}
                         dot={this._dot()}

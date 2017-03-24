@@ -30,7 +30,7 @@ import {
 var {width, height} = Dimensions.get('window');
 // 全局的变量
 var cols = 4;
-var cellW = 42;
+var cellW = 52;
 var cellH = 70;
 var vMargin = (width - cellW * cols) / (cols + 1);
 var new_menu_ask = require('../../img/new_menu_ask.png');
@@ -173,13 +173,12 @@ const styles = StyleSheet.create({
         height: 42,
         position: 'absolute',
         borderRadius: 21,
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginLeft: 5,
         backgroundColor: '#47AD1D'
     },
     img: {
         width: 42,
-        height: 42
+        height: 42,
     },
     cellStyle: {
         width: cellW,
@@ -188,7 +187,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 10,
-        marginLeft: vMargin
+        marginLeft: vMargin,
+        alignSelf: 'center',
     },
 
     titleStyle: {

@@ -39,7 +39,7 @@ class ComImage extends Component {
 
 
     renderImage() {
-        console.log('----------->renderImage---' + this.props.loadStatus + '-----' + !this.props.succeedStatus)
+        //console.log('----------->renderImage---' + this.props.loadStatus + '-----' + !this.props.succeedStatus)
         if (this.props.uri === '') {
             return ( <Image source={nav_back}
                             style={styles.image}/>)
@@ -58,7 +58,7 @@ class ComImage extends Component {
 
     //加载开始时调用。
     _onLoadStart() {
-        console.log('----------->_onLoadStart---')
+        //console.log('----------->_onLoadStart---')
         this.setState({
             loadStatus: true
         });
@@ -66,7 +66,7 @@ class ComImage extends Component {
 
     //加载成功完成时调用此回调函数
     _onLoad() {
-        console.log('----------->_onLoad---')
+       // console.log('----------->_onLoad---')
         this.setState({
             succeedStatus: true
         });

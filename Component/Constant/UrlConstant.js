@@ -7,7 +7,6 @@
 import React, {Component} from 'react';
 import {} from 'react-native';
 
-
 const DOMAIN = 'http://tc.zhixueyun.com/zxy-mobile-new/';//---------------------------------------->域名
 const USER_LOGIN = 'user/login';//------------------------------------------------------------------->登录
 const USER_PERSONALINFO = 'user/personalInfo';//----------------------------------------------------->我的

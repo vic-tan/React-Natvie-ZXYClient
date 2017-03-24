@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react';
 import UrlConstant from '../Constant/UrlConstant';
+import ComImage from '../Common/ComImage';
 import HomeBaseOptionalLayoutView from './HomeBaseOptionalLayoutView.js';
 import {
     AppRegistry,
@@ -43,7 +44,7 @@ class HomeLiveLayoutView extends Component {
         return (
             <TouchableOpacity key={rowID} activeOpacity={0.8}>
                 <View style={styles.itemViewStyle}>
-                    <Image source={{uri: rowData.cover}} style={styles.imageStyle}/>
+                    <ComImage  uri={rowData.cover}/>
                     <Text style={styles.shopNameStyle} numberOfLines={1}>{rowData.title}</Text>
                     <View style={{flexDirection:'row', width: 130}}>
                         <Text style={styles.count}>{rowData.doc_count}</Text>

@@ -12,6 +12,7 @@ import {PullView} from 'react-native-pull';
 import BusyIndicator from 'react-native-busy-indicator';
 import loaderHandler from 'react-native-busy-indicator/LoaderHandler';
 import HttpUitls from '../Uitls/HttpUitls';
+import {TITLE_BAR_HEIGHT }  from '../Constant/GlobalConst';
 import UrlConstant from '../Constant/UrlConstant';
 import HomeNavView from './HomeNavView.js';
 import HomeBannerView from './HomeBannerView.js';
@@ -48,6 +49,9 @@ var ToastUtils = require('../Uitls/ToastUtils');
 var nav_search = require('../../img/nav_search.png');
 var nav_msg = require('../../img/new_nav_bell_message.png');
 var new_nav_scan = require('../../img/new_nav_scan.png');
+const HEADER_PIC_HEIGHT = 330;
+const SCROLL_MAX_SIZE = HEADER_PIC_HEIGHT - TITLE_BAR_HEIGHT - ((Platform.OS === 'android' && Platform.Version < 19) ? 0 : (Platform.OS === 'android' ? 24 : 20));
+
 class HomeTab extends Component {
 
     constructor(props) {
@@ -145,8 +149,14 @@ class HomeTab extends Component {
         this.setState({bg: 'white'})
     }
 
-    _onScroll() {
-        console.log();
+    _onScroll(event) {
+        alert("aaa")
+        let offsetY = event.y;
+        if (offsetY > SCROLL_MAX_SIZE) {
+            offsetY = SCROLL_MAX_SIZE;
+        }
+        let opacity = offsetY / SCROLL_MAX_SIZE;
+        console.log('-----'+opacity);
     }
 
     render() {
@@ -156,9 +166,8 @@ class HomeTab extends Component {
                 {this.renderNavBar()}
                 <PullView onPushing={(gesturePosition)=>this.myHide(gesturePosition)}
                           style={{width: Dimensions.get('window').width}} onPullRelease={this.onPullRelease}
-                    {...this._gestureHandlers}
-                          onScroll={this._onScroll()}
-                          scrollEventThrottle={100}>
+                          onScroll={(event)=>alert(event)}
+                          scrollEventThrottle={5}>
                     <HomeBannerView bannerList={this.banner_list}/>
                     {this.renderAllView()}
                 </PullView>
