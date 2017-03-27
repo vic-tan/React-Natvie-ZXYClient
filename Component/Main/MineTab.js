@@ -11,6 +11,7 @@ import React, {Component} from 'react';
 import UrlConstant from '../Constant/UrlConstant';
 import SetView from '../Mine/MineSetView';
 import MineMallView from '../Mine/MineMallView';
+import PersonalView from '../Mine/PersonalView';
 import HttpUitls from '../Uitls/HttpUitls';
 import ComMineItemHeader from '../Common/ComMineItemHeader';
 import ComMineGridItem from '../Common/ComMineGridItem';
@@ -56,6 +57,7 @@ class MoneTab extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            head_photo:'',
             user: [],
             info: [],
         }
@@ -63,6 +65,15 @@ class MoneTab extends Component {
 
     componentWillReceiveProps() {
         //this._loadData();
+        storage.load({
+            key: 'user',
+        }).then(ret => {
+            this.setState({
+                head_photo:ret.head_photo,
+            });
+        }).catch(err => {
+
+        })
     }
 
     componentDidMount() {
@@ -70,13 +81,13 @@ class MoneTab extends Component {
 
     }
 
-
     _loadData() {
         storage.load({
             key: 'user',
         }).then(ret => {
             let sid = ret.sid;
             this.setState({
+                head_photo:ret.head_photo,
                 user: ret.user,
                 name: ret.user.name,
                 refresh: false
@@ -151,7 +162,7 @@ class MoneTab extends Component {
                         <ComMineGridItem title='我的课程' icon={mine_icon_course}
                                          desc_header='有 '
                                          desc_count={this.state.info.unfinished_course_count}
-                                         desc_footer=' 门学习中' 
+                                         desc_footer=' 门学习中'
                                          index={0}
                                          navigator={this.props.navigator}/>
                     </View>
@@ -243,7 +254,12 @@ class MoneTab extends Component {
         )
     }
 
-
+    _cameraAction(){
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({component: PersonalView});
+        }
+    }
     renderHeader() {
         return (
             <View style={styles.renderNavBar}>
@@ -255,7 +271,9 @@ class MoneTab extends Component {
                     </TouchableOpacity>
 
                     <View style={styles.headerContent}>
-                        <Image source={{uri:this.state.user.head_photo}} style={styles.headerLogo}/>
+                        <TouchableOpacity activeOpacity={0.5} onPress={this._cameraAction.bind(this)}>
+                            <Image source={{uri:this.state.head_photo}} style={styles.headerLogo}/>
+                        </TouchableOpacity>
                         <View style={{marginLeft: 17}}>
                             <Text style={{color: 'white' ,marginTop: 12,fontSize: 17}}>{this.state.user.name}</Text>
                             <Text

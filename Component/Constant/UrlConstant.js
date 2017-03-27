@@ -13,6 +13,7 @@ const USER_PERSONALINFO = 'user/personalInfo';//--------------------------------
 const USER_MY_COURSE_FAVORITE = 'user/myCourseFavorite';//------------------------------------------->我的收藏-->课程收藏
 const USER_MESSAGE_LIST = 'user/messageList';//------------------------------------------->我的收藏-->课程收藏
 const USER_MY_DOC_FAVORITE = 'user/myDocFavorite';//------------------------------------------------->我的收藏-->知识收藏
+const USER_UPLOAD_HEAD_PHOTO = 'user/uploadHeadPhoto';//------------------------------------------------->我的收藏-->知识收藏
 const LIVE_GENSEE_LIST = 'gensee/getGenseeList';//--------------------------------------------------->我的直播
 const LIVE_GENSEE_HISTORY_LIST = 'gensee/getGenseeHistoryList';//--------------------------------------------------->我的直播
 
@@ -66,6 +67,7 @@ export default{
     USER_MY_COURSE_FAVORITE,
     USER_MY_DOC_FAVORITE,
     USER_MESSAGE_LIST,
+    USER_UPLOAD_HEAD_PHOTO,
 
     //直播
     LIVE_GENSEE_LIST,

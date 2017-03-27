@@ -65,6 +65,7 @@ class TLFLoginView extends Component {
                 storage.save({
                     key: 'user',
                     rawData: {
+                        head_photo:set.data.head_photo,
                         sid: set.data.sid,
                         user: set.data,
                     },

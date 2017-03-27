@@ -13,6 +13,7 @@
     "react-native-actionsheet": "^2.0.5",
     "react-native-busy-indicator": "^1.0.9",
     "react-native-cacheable-image": "^1.5.1",
+    "react-native-image-picker": "^0.26.2",
     "react-native-pull": "^2.0.2",
     "react-native-scrollable-tab-view": "^0.7.2",
     "react-native-sk-refreshable-listview": "^1.0.0",

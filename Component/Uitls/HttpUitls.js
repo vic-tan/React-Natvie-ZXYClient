@@ -51,6 +51,39 @@ class HttpUitls extends Component {
 
     }
 
+    static updateImage(url, data,imgAry, callback) {
+        NetInfo.isConnected.fetch().done((isConnected) => {
+            /* if (!isConnected) {
+             Toast.toastShort('网络不可用,请稍后再试');
+             callback(null);
+             return;
+             }*/
+            let formData = new FormData();//因为需要上传多张图片,所以需要遍历数组,把图片的路径数组放入formData中
+            for (let[k,v] of data) {
+                formData.append(k,v);
+            }
+            for (let[k,v] of imgAry) {
+                let file = {uri: v, type: 'multipart/form-data', name: 'image.png'};   //这里的key(uri和type和name)不能改变,
+                formData.append(k,file);
+            }
+            var fetchOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                referer: 'http://tc.zhixueyun.com/zxy-student-web/',
+                body: formData//这里我参数只有一个data,大家可以还有更多的参数
+            };
+
+            fetch(UrlConstant.DOMAIN + url, fetchOptions)
+                .then((response) => response.text())
+                .then((responseText) => {
+                    console.log('httpUtils------>url=' + url + '-------->params=' + JsonUitls.mapToJson(data) +JsonUitls.mapToJson(imgAry)+ '----->json=' + responseText);
+                    callback(JSON.parse(responseText),imgAry);
+                }).done();
+        });
+    }
+
     /**
      *url :请求地址
      *data:参数(Json对象)
