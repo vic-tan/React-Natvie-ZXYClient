@@ -19,8 +19,8 @@ class ComImage extends Component {
         this.state = {
             uri: '',
             defaultSource: '',
-            width: 0,
-            height: 0,
+            width: 120,
+            height: 80,
             borderRadius: 0,
             resizeMode: 'center',
             loadStatus: true,
@@ -42,16 +42,22 @@ class ComImage extends Component {
         //console.log('----------->renderImage---' + this.props.loadStatus + '-----' + !this.props.succeedStatus)
         if (this.props.uri === '') {
             return ( <Image source={nav_back}
-                            style={styles.image}/>)
+                            style={{width: this.props.width,
+            height: this.props.height,
+            borderRadius:this.props.borderRadius,margin:10}}/>)
         } else {
             if (this.props.loadStatus && !this.props.succeedStatus) {
                 return ( <Image source={nav_back}
                                 onLoadStart={()=>this._onLoadStart()}
                                 onLoad={()=>this._onLoad()}
-                                style={styles.image}/>)
+                                style={{width: this.props.width,
+            height: this.props.height,
+            borderRadius:this.props.borderRadius,margin:10}}/>)
             } else {
                 return (<Image source={{uri:this.props.uri}}
-                               style={styles.image}/>)
+                               style={{width: this.props.width,
+            height: this.props.height,
+            borderRadius:this.props.borderRadius,margin:10}}/>)
             }
         }
     }
@@ -66,7 +72,7 @@ class ComImage extends Component {
 
     //加载成功完成时调用此回调函数
     _onLoad() {
-       // console.log('----------->_onLoad---')
+        // console.log('----------->_onLoad---')
         this.setState({
             succeedStatus: true
         });
@@ -74,12 +80,11 @@ class ComImage extends Component {
 }
 
 const styles = StyleSheet.create({
-        image: {
-            width: 120,
-            height: 80,
-            margin: 10,
-            marginRight: 0
-        },
+        /* image: {
+         width: this.state.width,
+         height: this.state.height,
+         borderRadius:this.state.borderRadius,
+         },*/
 
     }
 );

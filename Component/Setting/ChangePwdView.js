@@ -61,7 +61,7 @@ class ChangePwdView extends Component {
                     </View>
                     <TouchableOpacity activeOpacity={0.5}
                                       onPress={this._enter.bind(this)}>
-                        <View style={styles.loginBtn}>
+                        <View style={styles.addBtn}>
                             <Text style={{color:'white',fontSize : 15}}>确 定</Text>
                         </View>
                     </TouchableOpacity>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    loginBtn: {
+    addBtn: {
         height: 40,
         width: width * 0.92,
         backgroundColor: '#47AD1D',

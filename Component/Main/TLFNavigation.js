@@ -27,7 +27,7 @@ class TLFNavigation extends Component {
     renderScene(route, navigator) {
         let Component = route.component;
         return (
-            <Component navigator={navigator} route={route}/>
+            <Component {...route.params} navigator={navigator} route={route}/>
         );
     }
 

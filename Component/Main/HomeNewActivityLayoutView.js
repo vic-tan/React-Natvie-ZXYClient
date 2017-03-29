@@ -44,7 +44,7 @@ class HomeLiveLayoutView extends Component {
         return (
             <TouchableOpacity key={rowID} activeOpacity={0.8}>
                 <View style={styles.itemViewStyle}>
-                    <ComImage  uri={rowData.image_path}/>
+                    <ComImage  uri={rowData.image_path}  width={120} height={80}/>
                     <Text style={styles.shopNameStyle} numberOfLines={1}>{rowData.name}</Text>
                 </View>
             </TouchableOpacity>

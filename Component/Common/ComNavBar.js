@@ -22,6 +22,7 @@ class ComNavBar extends Component {
             title: '',
         };
     }
+
     render() {
         return (
             <View style={styles.container}>
@@ -30,13 +31,15 @@ class ComNavBar extends Component {
             </View>
         );
     }
+
     renderNavBar() {
         return (
             <View style={styles.renderNavBar}>
                 <View style={styles.navBarView}>
                     <TouchableOpacity activeOpacity={0.5} onPress={this._back.bind(this)}>
-
-                        <Image source={nav_back} style={styles.navBarBack}/>
+                        <View style={{height: 48,width: 50}}>
+                            <Image source={nav_back} style={styles.navBarBack}/>
+                        </View>
                     </TouchableOpacity>
                     <View style={styles.navBartextLoyout}>
                         <Text style={styles.navBartext}>{this.props.title}</Text>

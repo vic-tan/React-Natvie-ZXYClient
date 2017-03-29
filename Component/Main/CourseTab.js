@@ -8,9 +8,9 @@
  */
 
 import React, {Component} from 'react';
-import CouresDirView  from '../Course/CouresDirView';
-import CouresHotView  from '../Course/CouresHotView';
-import CouresNewView  from '../Course/CouresNewView';
+import CourseDirView  from '../Course/CourseDirView';
+import CourseHotView  from '../Course/CourseHotView';
+import CourseNewView  from '../Course/CourseNewView';
 import ComTabPager from '../Common/ComTabPager';
 import {
     AppRegistry,
@@ -46,13 +46,13 @@ class CourseTab extends Component {
     tabPagerItem() {
         var allImage = [];
         allImage.push(
-            <CouresDirView key={0} tabLabel="目录"/>
+            <CourseDirView key={0} tabLabel="目录" navigator={this.props.navigator}/>
         );
         allImage.push(
-            <CouresHotView key={1} tabLabel="最新"/>
+            <CourseNewView key={2} tabLabel="最热" navigator={this.props.navigator}/>
         );
         allImage.push(
-            <CouresNewView key={2} tabLabel="最热"/>
+            <CourseHotView key={1} tabLabel="最新" navigator={this.props.navigator}/>
         );
         return allImage;
     }

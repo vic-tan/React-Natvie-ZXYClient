@@ -31,6 +31,8 @@ class HttpUitls extends Component {
              callback(null);
              return;
              }*/
+
+
             var fetchOptions = {
                 method: 'POST',
                 headers: {
@@ -44,7 +46,7 @@ class HttpUitls extends Component {
             fetch(UrlConstant.DOMAIN + url, fetchOptions)
                 .then((response) => response.text())
                 .then((responseText) => {
-                    console.log('httpUtils------>url=' + url + '-------->params=' + JsonUitls.mapToJson(data) + '----->json=' + responseText);
+                    console.log('httpUtils------>url='+UrlConstant.DOMAIN + url + '-------->params=' + JsonUitls.mapToJson(data) + '----->json=' + responseText);
                     callback(JSON.parse(responseText));
                 }).done();
         });

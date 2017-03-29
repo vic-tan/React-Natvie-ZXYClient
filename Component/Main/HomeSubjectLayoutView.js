@@ -44,7 +44,7 @@ class HomeLiveLayoutView extends Component {
         return (
             <TouchableOpacity key={rowID} activeOpacity={0.8}>
                 <View style={styles.itemViewStyle}>
-                    <ComImage  uri={rowData.cover}/>
+                    <ComImage  uri={rowData.cover}  width={120} height={80}/>
                     <Text style={styles.shopNameStyle} numberOfLines={1}>{rowData.title}</Text>
                     <View style={{flexDirection:'row', width: 130}}>
                         <Text style={styles.count}>{rowData.doc_count}</Text>

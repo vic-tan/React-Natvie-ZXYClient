@@ -44,7 +44,7 @@ class HomeCourseLayoutView extends Component {
         return (
             <TouchableOpacity key={rowID} activeOpacity={0.8}>
                 <View style={styles.itemViewStyle}>
-                    <ComImage  uri={rowData.cover}/>
+                    <ComImage  uri={rowData.cover} width={120} height={80}/>
                     <Text style={styles.shopNameStyle} numberOfLines={1}>{rowData.name}</Text>
                     <View style={{flexDirection:'row', width: 130}}>
                         <Text style={styles.count}>{rowData.study_person_num}</Text>

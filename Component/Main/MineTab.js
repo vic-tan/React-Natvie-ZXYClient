@@ -53,7 +53,7 @@ var mine_icon_ask = require('../../img/mine_icon_ask.png');
 
 
 
-class MoneTab extends Component {
+class MineTab extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -432,4 +432,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MoneTab;
+export default MineTab;
