@@ -23,6 +23,7 @@ const COURSE_MY_COURSE_LIST = 'course/myCourseList';//--------------------------
 const COURSE_SCORM_CATEGORY_LIST = 'course/scorm/scormCategoryList';//---------------------------------------------------->课程最热
 const COURSE_NOTE_LIST = 'course/note/noteList';//---------------------------------------------------->课程最热
 const COURSE_COMMENT_LIST = 'course/comment/commentList';//---------------------------------------------------->课程最热
+const COURSE_COURSE_BRIEF = 'course/courseBrief';//---------------------------------------------------->课程最热
 
 
 const SYS_LOAD_INDEX_LAYOUT = 'sys/loadIndexLayout';//首页
@@ -83,6 +84,7 @@ export default{
     COURSE_SCORM_CATEGORY_LIST,
     COURSE_NOTE_LIST,
     COURSE_COMMENT_LIST,
+    COURSE_COURSE_BRIEF,
 
     //新闻
     NEWS_LIST,

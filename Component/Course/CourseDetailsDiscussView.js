@@ -83,7 +83,7 @@ class CourseDetailsDiscussView extends Component {
                             <Text style={styles.rowDesc} numberOfLines={1}>删除</Text>
                         </View>
                         <Text
-                            style={{marginTop: 8,height:8,width:width,backgroundColor:'#F3F3F3'}}/>
+                            style={{marginTop: 8,height:1,width:width,backgroundColor:'#F3F3F3'}}/>
                     </View>
                 </TouchableOpacity>
             </View>

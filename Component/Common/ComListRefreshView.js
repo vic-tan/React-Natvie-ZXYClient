@@ -82,15 +82,12 @@ class ComListRefreshView extends Component {
 
 
     onPullRelease(resolve) {
-        console.log('---------->onPullRelease');
         this.request(RefreshViewUitls.refreshStatePull(), () => {
-            console.log('---------->resolve');
             resolve();
         })
     }
 
     loadMore() {
-        console.log('---------->loadMore');
         this.request(RefreshViewUitls.refreshStateMore(), (map, set) => {
         });
     }
@@ -109,7 +106,6 @@ class ComListRefreshView extends Component {
      */
     request(isPullRelease, callback) {
         if (isPullRelease == RefreshViewUitls.refreshStateMore() && (this.state.isFirstLoading || this.state.footerState == 0 || this.state.footerState == 2)) {
-            console.log('---------->return');
             return;
         }
         this.refreshMap.set('pageNumber', isPullRelease <= 1 ? 1 : this.state.pageNumber);

@@ -27,7 +27,11 @@ import {
 var {width, height} = Dimensions.get('window');
 class CourseDetailsNotesView extends Component {
     constructor(props) {
-        super(props);
+        super(props);  this.state = {
+            course_id: '',
+        }
+        this.map = new Map();
+        this.map.set('course_id', this.props.course_id);
     }
 
 
@@ -35,8 +39,9 @@ class CourseDetailsNotesView extends Component {
         return (
             <View style={styles.container}>
                 <View style={{marginTop: 55,flex: 1}}>
-                    <ComListRefreshView url={UrlConstant.COURSE_HOTEST_LIST}
+                    <ComListRefreshView url={UrlConstant.COURSE_NOTE_LIST}
                                         callbackParentRow={this.listCellRow.bind(this)}
+                                        map={this.map}
                     />
                 </View>
                 <View style={{position: 'absolute',top:0 ,width:width}}>
@@ -63,13 +68,15 @@ class CourseDetailsNotesView extends Component {
                 <TouchableOpacity onPress={this._details.bind(this)}>
                     <View >
                         <View style={styles.rowContainer}>
-                            <ComImage uri={rowData.cover} width={120} height={80}/>
-                            <View style={{margin: 10 ,width:width -130}}>
-                                <Text style={styles.rowTitle} numberOfLines={1}>{rowData.name}</Text>
-                                <Text style={styles.rowDesc} numberOfLines={2}>{rowData.description}</Text>
+                            <View style={{margin: 10 ,width:width, flexDirection: 'row', justifyContent:'space-between'}}>
+                                <Text style={styles.rowDesc}>{rowData.create_time}</Text>
+                                <Text style={[styles.rowDesc,{paddingRight: 15}]} >删除</Text>
                             </View>
                             <Text style={{height:1}}/>
                         </View>
+                        <Text style={[styles.rowTitle,{marginLeft: 10}]} numberOfLines={2}>{rowData.content}</Text>
+                        <Text
+                            style={{marginTop: 8,marginLeft: 10,marginRight: 10,height:1,width:width,backgroundColor:'#F3F3F3'}}/>
                     </View>
                 </TouchableOpacity>
             </View>
