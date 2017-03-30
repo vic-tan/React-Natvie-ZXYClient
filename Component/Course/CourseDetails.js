@@ -14,6 +14,7 @@ import CourseDetailsDiscussView  from './CourseDetailsDiscussView';
 import CourseDetailsNotesView  from './CourseDetailsNotesView';
 import ComCourseTabPager from './ComCourseTabPager';
 import TabNavigator from 'react-native-tab-navigator';
+import CourseVideo from 'react-native-video';
 import {
     AppRegistry,
     StyleSheet,
@@ -46,13 +47,27 @@ var btnHeight = 48;
 class CourseDetails extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            rate: 1,
+            volume: 1,
+            muted: false,
+            resizeMode: 'contain',
+            duration: 0.0,
+            currentTime: 0.0,
+            controls: false,
+            paused: false,
+            isBuffering: false,
+        }
+        this.onLoad = this.onLoad.bind(this);
+        this.onProgress = this.onProgress.bind(this);
+        this.onBuffer = this.onBuffer.bind(this);
     }
 
 
     render() {
         return (
             <View style={styles.container}>
-                <Image source={course_bg_play_default} style={{ width:width, height:190}}/>
+                {this._video()}
                 <View style={{width:width, height: height-btnHeight-190, marginBottom: btnHeight}}>
                     <ComCourseTabPager initialPage={0} callbackTab={this.tabPagerItem()}/>
                 </View>
@@ -60,6 +75,46 @@ class CourseDetails extends Component {
                 {this._opt()}
             </View>
         );
+    }
+
+    _video() {
+        /*if ('1' == this.props.parentData.apply_status) {
+            return ( <Image source={course_bg_play_default} style={styles.video}/>);
+        } else {*/
+            return (
+                <TouchableOpacity style={styles.video}
+                                  onPress={() => {this.setState({paused: !this.state.paused})}}>
+                    <CourseVideo
+                        source={{uri:'http://cdn.zhixueyun.com/CqhVfFhHoUyEA_vZAAAAAOtgCjM405.mp4'}}
+                        style={styles.video}
+                        rate={this.state.rate}
+                        paused={this.state.paused}
+                        volume={this.state.volume}
+                        muted={this.state.muted}
+                        resizeMode={this.state.resizeMode}
+                        onLoad={this.onLoad}
+                        onBuffer={this.onBuffer}
+                        onProgress={this.onProgress}
+                        onEnd={() => { alert('Done!') }}
+                        repeat={true}
+                    />
+                </TouchableOpacity>
+            );
+        //}
+
+    }
+
+    onLoad(data) {
+        console.log('On load fired!');
+        this.setState({duration: data.duration});
+    }
+
+    onProgress(data) {
+        this.setState({currentTime: data.currentTime});
+    }
+
+    onBuffer({isBuffering}: {isBuffering: boolean}) {
+        this.setState({isBuffering});
     }
 
     _opt() {
@@ -170,6 +225,9 @@ const styles = StyleSheet.create({
             marginLeft: 10,
             width: 35,
             height: 30,
+        },
+        video: {
+            width: width, height: 190
         },
         optView: {
             height: btnHeight,
