@@ -18,6 +18,7 @@ import {
     View,
     TextInput,
     Text,
+    Button,
     ListView,
     TouchableOpacity,
     Platform
@@ -62,6 +63,7 @@ class CourseDetailsDowloadView extends Component {
                     <StatusBar hidden={false} backgroundColor='#47AD1D'/>
                     <ComNavBar title='课程下载' navigator={this.props.navigator}/>
                     <ListView
+                        removeClippedSubviews={false}
                         dataSource={this.state.dataSource}
                         renderRow={(rowData, sectionID, rowID, highlightRow) =>this.listCellRow(rowData, sectionID, rowID, highlightRow)}/>
                 </View>
@@ -91,6 +93,7 @@ class CourseDetailsDowloadView extends Component {
         if (null != rowData.itemlist) {
             return (
                 <ListView
+                    removeClippedSubviews={false}
                     dataSource={ds2.cloneWithRows(rowData.itemlist)}
                     renderRow={(rowData, sectionID, rowID, highlightRow) =>this.listCellRow2(rowData, sectionID, rowID, highlightRow)}/>
             );
@@ -104,12 +107,22 @@ class CourseDetailsDowloadView extends Component {
                     <View style={{marginTop: 5,width:width,flexDirection:'row', justifyContent:'space-between'}}>
                         <Text style={styles.rowDesc}
                               numberOfLines={1}>第{rowID + 1}节 {rowData.title}/5.0MB</Text>
+
+                        <TouchableOpacity activeOpacity={0.5}
+                                          onPress={this._download.bind(this)}>
+                            <View style={styles.eixtBtn}>
+                                <Text style={{color:'white',fontSize : 13}}>下载</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
 
 
         );
+    }
+
+    _download() {
     }
 
 }
@@ -148,6 +161,16 @@ const styles = StyleSheet.create({
             paddingTop: 5,
             paddingBottom: 0,
             marginRight: 10
+        },
+        eixtBtn: {
+            height: 25,
+            width: 60,
+            backgroundColor: '#47AD1D',
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center',
+            marginRight: 20,
+            borderRadius: 5,
         },
 
     }

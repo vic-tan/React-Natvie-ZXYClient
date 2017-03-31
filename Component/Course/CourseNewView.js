@@ -63,8 +63,9 @@ class CouresNewView extends Component {
                                 <Text style={styles.rowTitle} numberOfLines={1}>{rowData.name}</Text>
                                 <Text style={styles.rowDesc} numberOfLines={2}>{rowData.description}</Text>
                             </View>
-                            <Text style={{height:1}}/>
                         </View>
+                        <Text
+                            style={{height:1.5,width:width,backgroundColor:'#F3F3F3'}}/>
                     </View>
                 </TouchableOpacity>
             </View>

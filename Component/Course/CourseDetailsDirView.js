@@ -76,6 +76,7 @@ class CourseDetailsDirView extends Component {
         if(null!=rowData.itemlist && rowData.itemlist.length>1){
             return (
                 <ListView
+                    removeClippedSubviews={false}
                     dataSource={ds2.cloneWithRows(rowData.itemlist)}
                     renderRow={(rowData, sectionID, rowID, highlightRow) =>this.listCellRow2(rowData, sectionID, rowID, highlightRow)}/>
             );

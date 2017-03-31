@@ -74,9 +74,9 @@ class CourseDetails extends Component {
                 <View style={{width:width, height: height-btnHeight-palyHeight, marginBottom: btnHeight}}>
                     <ComCourseTabPager initialPage={0} callbackTab={this.tabPagerItem()}/>
                 </View>
-                {this.renderNavBar()}
                 {this._opt()}
                 {this._videoPaused()}
+                {this.renderNavBar()}
             </View>
         );
     }
@@ -103,7 +103,7 @@ class CourseDetails extends Component {
         return (
             <TouchableOpacity activeOpacity={0.8} onPress={() => {this.setState({paused: !this.state.paused})}}>
                 <CourseVideo
-                    source={{uri:'http://cdn.zhixueyun.com/CqhVfFhHoUyEA_vZAAAAAOtgCjM405.mp4'}}
+                    source={{uri:'http://cdn.zhixueyun.com/CqhVfFhuFJ6EOfZiAAAAAGwUpGQ366.mp4'}}
                     style={styles.video}
                     rate={this.state.rate}
                     paused={this.state.paused}

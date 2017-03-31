@@ -172,6 +172,7 @@ class ComListRefreshView extends Component {
                     onEndReached={this.loadMore.bind(this)}
                     onEndReachedThreshold={10}
                     enableEmptySections={true}
+                    removeClippedSubviews={false}
                     renderFooter={this.renderFooter.bind(this)}
                 />
             )

@@ -76,7 +76,7 @@ class CourseDetailsNotesView extends Component {
                         </View>
                         <Text style={[styles.rowTitle,{marginLeft: 10}]} numberOfLines={2}>{rowData.content}</Text>
                         <Text
-                            style={{marginTop: 8,marginLeft: 10,marginRight: 10,height:1,width:width,backgroundColor:'#F3F3F3'}}/>
+                            style={{marginTop: 8,height:8,width:width,backgroundColor:'#F3F3F3'}}/>
                     </View>
                 </TouchableOpacity>
             </View>
