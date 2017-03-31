@@ -15,6 +15,7 @@ import CourseDetailsNotesView  from './CourseDetailsNotesView';
 import ComCourseTabPager from './ComCourseTabPager';
 import TabNavigator from 'react-native-tab-navigator';
 import CourseVideo from 'react-native-video';
+import CourseDetailsDowloadView from './CourseDetailsDowloadView';
 import {
     AppRegistry,
     StyleSheet,
@@ -56,7 +57,7 @@ class CourseDetails extends Component {
             resizeMode: 'stretch',
             duration: 0.0,
             currentTime: 0.0,
-            controls: false,
+            controls: true,
             paused: true,
             isBuffering: false,
         }
@@ -151,13 +152,13 @@ class CourseDetails extends Component {
                 <View style={styles.optView}>
                     <TabNavigator >
                         {/* -- 收藏 -- */}
-                        {this.renderTabBarItem('收藏', home_nor, home_pre, 'home')}
+                        {this.renderTabBarItem('收藏', home_nor, home_pre, 'collection')}
                         {/* -- 下载 -- */}
-                        {this.renderTabBarItem('下载', course_nor, course_pre, 'course')}
+                        {this.renderTabBarItem('下载', course_nor, course_pre, 'download')}
                         {/* -- 评分 -- */}
-                        {this.renderTabBarItem('评分', active_nor, active_pre, 'active')}
+                        {this.renderTabBarItem('评分', active_nor, active_pre, 'score')}
                         {/* -- 放弃 -- */}
-                        {this.renderTabBarItem('放弃', ask_nor, ask_pre, 'ask')}
+                        {this.renderTabBarItem('放弃', ask_nor, ask_pre, 'give_up')}
                     </TabNavigator>
                 </View>
             );
@@ -171,14 +172,26 @@ class CourseDetails extends Component {
                 title={title}  // 传递变量,一定要加{}
                 renderIcon={() => <Image source={renderIcon} style={styles.icon}/>} // 图标
                 renderSelectedIcon={() =><Image source={renderSelectedIcon} style={styles.icon}/>}   // 选中的图标
-                onPress={()=>{this.tabClick(title)}}
+                onPress={()=>{this.tabClick(title,selectedTab)}}
                 titleStyle={styles.titleStyle}>
             </TabNavigator.Item>
         )
     }
 
-    tabClick(selectedTab) {
-        alert(selectedTab);
+    tabClick(title, selectedTab) {
+        if (selectedTab === 'download') {
+            const {navigator} = this.props;
+            if (navigator) {
+                navigator.push({
+                    component: CourseDetailsDowloadView,
+                    params: {
+                        list: this.props.parentData.list,
+                    }
+                });
+            }
+        } else {
+            alert(title);
+        }
     }
 
     _actionSheet() {

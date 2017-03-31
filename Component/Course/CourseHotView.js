@@ -32,6 +32,11 @@ var ToastUtils = require('../Uitls/ToastUtils');
 class CourseHotView extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            rule_id:'',
+        }
+        let map = new Map();
+        map.set('rule_id',this.props.rule_id);
     }
 
 
@@ -40,6 +45,7 @@ class CourseHotView extends Component {
             <View style={styles.container}>
                 <ComListRefreshView url={UrlConstant.COURSE_HOTEST_LIST}
                                     callbackParentRow={this.listCellRow.bind(this)}
+                                    map={this.map}
                 />
                 <BusyIndicator />
             </View>

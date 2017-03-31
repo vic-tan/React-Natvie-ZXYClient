@@ -63,13 +63,17 @@ class RefreshViewUitls extends Component {
 
     /**
      * 上拉或下拉请示接口完成后更怕pageNumber 变数
-     * @param isPullRelease true 表示下拉，false 表示上拉
+     * @param isPullRelease  0.表示默认第一次加载 1、为下拉，2、 加载更多
      * @param map 请求列表的时的参数
      * @param set 请求列表的list
      * @returns {*}
      */
     static  getPageNumber(isPullRelease, map, set) {
-        return isPullRelease ? (set.data.list.length === map.get('pageSize') ? 2 : 1) : (set.data.list.length === map.get('pageSize') ? set.data.pageNumber + 1 : set.data.pageNumber);
+        if(isPullRelease===1){
+            return 1;
+        }else {
+            return (set.data.list.length === map.get('pageSize') ? set.data.pageNumber + 1 : set.data.pageNumber);
+        }
     }
 
 

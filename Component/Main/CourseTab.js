@@ -30,6 +30,9 @@ var mine_pre = require('../../img/nav_search.png');
 class CourseTab extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            rule_id:''
+        }
     }
 
 
@@ -46,13 +49,13 @@ class CourseTab extends Component {
     tabPagerItem() {
         var allImage = [];
         allImage.push(
-            <CourseDirView key={0} tabLabel="目录" navigator={this.props.navigator}/>
+            <CourseDirView key={0} tabLabel="目录" navigator={this.props.navigator} />
         );
         allImage.push(
-            <CourseNewView key={2} tabLabel="最热" navigator={this.props.navigator}/>
+            <CourseNewView key={2} tabLabel="最热" navigator={this.props.navigator} rule_id={this.state.rule_id}/>
         );
         allImage.push(
-            <CourseHotView key={1} tabLabel="最新" navigator={this.props.navigator}/>
+            <CourseHotView key={1} tabLabel="最新" navigator={this.props.navigator} rule_id={this.state.rule_id}/>
         );
         return allImage;
     }

@@ -32,6 +32,11 @@ var ToastUtils = require('../Uitls/ToastUtils');
 class CouresNewView extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            rule_id: '',
+        }
+        let map = new Map();
+        map.set('rule_id', this.props.rule_id);
     }
 
 
@@ -40,6 +45,7 @@ class CouresNewView extends Component {
             <View style={styles.container}>
                 <ComListRefreshView url={UrlConstant.COURSE_NEWES_LIST}
                                     callbackParentRow={this.listCellRow.bind(this)}
+                                    map={this.map}
                 />
                 <BusyIndicator />
             </View>
@@ -70,11 +76,11 @@ class CouresNewView extends Component {
     _details(rowData) {
         loaderHandler.showLoader('加载中...');
         let map = new Map();
-        map.set('course_id', rowData.id+'');
+        map.set('course_id', rowData.id + '');
         storage.load({
             key: 'user',
         }).then(ret => {
-            map.set('sid',ret.sid+'');
+            map.set('sid', ret.sid + '');
         }).catch(err => {
 
         });
@@ -90,8 +96,8 @@ class CouresNewView extends Component {
                 if (navigator) {
                     navigator.push({
                         component: CourseDetails,
-                        params:{
-                            parentData:set.data,
+                        params: {
+                            parentData: set.data,
                         }
                     });
                 }
