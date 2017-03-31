@@ -32,6 +32,7 @@ import {
 var {width, height} = Dimensions.get('window');
 var course_bg_play_default = require('../../img/course_bg_play_default.png');
 var nav_back = require('../../img/nav_back.png');
+var play = require('../../img/course_btn_play.png');
 
 var home_nor = require('../../img/tab_home_nor.png');
 var home_pre = require('../../img/tab_home_pre.png');
@@ -44,18 +45,19 @@ var ask_pre = require('../../img/tab_ask_pre.png');
 
 
 var btnHeight = 48;
+var palyHeight = 190;
 class CourseDetails extends Component {
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             rate: 1,
             volume: 1,
             muted: false,
-            resizeMode: 'contain',
+            resizeMode: 'stretch',
             duration: 0.0,
             currentTime: 0.0,
             controls: false,
-            paused: false,
+            paused: true,
             isBuffering: false,
         }
         this.onLoad = this.onLoad.bind(this);
@@ -68,38 +70,53 @@ class CourseDetails extends Component {
         return (
             <View style={styles.container}>
                 {this._video()}
-                <View style={{width:width, height: height-btnHeight-190, marginBottom: btnHeight}}>
+                <View style={{width:width, height: height-btnHeight-palyHeight, marginBottom: btnHeight}}>
                     <ComCourseTabPager initialPage={0} callbackTab={this.tabPagerItem()}/>
                 </View>
                 {this.renderNavBar()}
                 {this._opt()}
+                {this._videoPaused()}
             </View>
         );
     }
 
+    _videoPaused() {
+        if (this.state.paused) {
+            return (
+                <View style={styles._videoPaused}>
+                    <TouchableOpacity activeOpacity={0.8}
+                                      onPress={() => {this.setState({paused: !this.state.paused})}}>
+                        <View style={styles._videoViewPaused}>
+                            <Image source={play} style={styles._videoPausedBtn}/>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            )
+        }
+    }
+
     _video() {
         /*if ('1' == this.props.parentData.apply_status) {
-            return ( <Image source={course_bg_play_default} style={styles.video}/>);
-        } else {*/
-            return (
-                <TouchableOpacity style={styles.video}
-                                  onPress={() => {this.setState({paused: !this.state.paused})}}>
-                    <CourseVideo
-                        source={{uri:'http://cdn.zhixueyun.com/CqhVfFhHoUyEA_vZAAAAAOtgCjM405.mp4'}}
-                        style={styles.video}
-                        rate={this.state.rate}
-                        paused={this.state.paused}
-                        volume={this.state.volume}
-                        muted={this.state.muted}
-                        resizeMode={this.state.resizeMode}
-                        onLoad={this.onLoad}
-                        onBuffer={this.onBuffer}
-                        onProgress={this.onProgress}
-                        onEnd={() => { alert('Done!') }}
-                        repeat={true}
-                    />
-                </TouchableOpacity>
-            );
+         return ( <Image source={course_bg_play_default} style={styles.video}/>);
+         } else {*/
+        return (
+            <TouchableOpacity activeOpacity={0.8} onPress={() => {this.setState({paused: !this.state.paused})}}>
+                <CourseVideo
+                    source={{uri:'http://cdn.zhixueyun.com/CqhVfFhHoUyEA_vZAAAAAOtgCjM405.mp4'}}
+                    style={styles.video}
+                    rate={this.state.rate}
+                    paused={this.state.paused}
+                    volume={this.state.volume}
+                    muted={this.state.muted}
+                    resizeMode={this.state.resizeMode}
+                    onLoad={this.onLoad}
+                    onBuffer={this.onBuffer}
+                    onProgress={this.onProgress}
+                    onEnd={() => { alert('Done!') }}
+                    repeat={true}
+                />
+            </TouchableOpacity>
+        );
         //}
 
     }
@@ -227,7 +244,26 @@ const styles = StyleSheet.create({
             height: 30,
         },
         video: {
-            width: width, height: 190
+            width: width, height: palyHeight
+        },
+        _videoPaused: {
+            height: palyHeight,
+            width: width,
+            position: 'absolute',
+            top: 0,
+        },
+
+        _videoViewPaused: {
+            height: palyHeight,
+            width: width,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+
+        _videoPausedBtn: {
+            height: 65,
+            width: 65,
+            alignSelf: 'center',
         },
         optView: {
             height: btnHeight,
