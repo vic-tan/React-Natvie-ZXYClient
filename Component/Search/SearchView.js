@@ -26,7 +26,6 @@ var {width, height} = Dimensions.get('window');
 var nav_search = require('../../img/nav_search.png');
 var nav_add = require('../../img/nav_add.png');
 var nav_back = require('../../img/nav_back.png');
-var Popover = require('react-native-popover');
 
 
 class SearchView extends Component {
@@ -40,18 +39,6 @@ class SearchView extends Component {
     }
 
 
-    showPopover() {
-        this.refs.button.measure((ox, oy, width, height, px, py) => {
-            this.setState({
-                isVisible: true,
-                buttonRect: {x: px, y: py, width: width, height: height}
-            });
-        });
-    }
-
-    closePopover() {
-        this.setState({isVisible: false});
-    }
 
     render() {
         return (
@@ -82,12 +69,6 @@ class SearchView extends Component {
                     </View>
                     <Image source={nav_search} style={styles.navBarAdd}/>
                 </View>
-             {/*   <Popover
-                    isVisible={this.state.isVisible}
-                    fromRect={this.state.buttonRect}
-                    onClose={this.closePopover}>
-                    <Text>daa</Text>
-                </Popover>*/}
             </View>
         );
     }
