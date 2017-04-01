@@ -12,18 +12,19 @@ import {PullView} from 'react-native-pull';
 import BusyIndicator from 'react-native-busy-indicator';
 import loaderHandler from 'react-native-busy-indicator/LoaderHandler';
 import HttpUitls from '../Uitls/HttpUitls';
-import {TITLE_BAR_HEIGHT }  from '../Constant/GlobalConst';
+import {TITLE_BAR_HEIGHT}  from '../Constant/GlobalConst';
 import UrlConstant from '../Constant/UrlConstant';
-import HomeNavView from './HomeNavView.js';
-import HomeBannerView from './HomeBannerView.js';
+import HomeNavView from './HomeNavView';
+import HomeBannerView from './HomeBannerView';
 
-import HomeCourseLayoutView from './HomeCourseLayoutView.js';
-import HomeLiveLayoutView from './HomeLiveLayoutView.js';
-import HomeKnowledgeLayoutView from './HomeKnowledgeLayoutView.js';
-import HomeLecturersLayoutView from './HomeLecturersLayoutView.js';
-import HomeNewActivityLayoutView from './HomeNewActivityLayoutView.js';
-import HomeRecommendedActivityLayoutView from './HomeRecommendedActivityLayoutView.js';
-import HomeSubjectLayoutView from './HomeSubjectLayoutView.js';
+import HomeCourseLayoutView from './HomeCourseLayoutView';
+import HomeLiveLayoutView from './HomeLiveLayoutView';
+import HomeKnowledgeLayoutView from './HomeKnowledgeLayoutView';
+import HomeLecturersLayoutView from './HomeLecturersLayoutView';
+import HomeNewActivityLayoutView from './HomeNewActivityLayoutView';
+import HomeRecommendedActivityLayoutView from './HomeRecommendedActivityLayoutView';
+import HomeSubjectLayoutView from './HomeSubjectLayoutView';
+import SearchView from '../Search/SearchView';
 import MyMsgView from '../Mine/MyMsgView';
 
 import {
@@ -156,7 +157,7 @@ class HomeTab extends Component {
             offsetY = SCROLL_MAX_SIZE;
         }
         let opacity = offsetY / SCROLL_MAX_SIZE;
-        console.log('-----'+opacity);
+        console.log('-----' + opacity);
     }
 
     render() {
@@ -185,20 +186,27 @@ class HomeTab extends Component {
                     <TouchableOpacity activeOpacity={0.8} onPress={()=>alert('二维码')}>
                         <Image source={new_nav_scan} style={styles.navBarAdd}/>
                     </TouchableOpacity>
-                    <View>
-                        <TextInput style={styles.navBarTextInput} placeholder='搜一搜'
-                                   clearButtonMode='while-editing'
-                                   placeholderTextColor="rgba(256,256,256,0.56)"
-
-                        />
-                        <Image source={nav_search} style={styles.search}/>
-                    </View>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._search.bind(this)}>
+                        <View style={styles.navBarSearchView}>
+                            <Image source={nav_search} style={styles.search}/>
+                            <Text style={styles.navBarTextInput}
+                            >搜一搜</Text>
+                        </View>
+                    </TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.8} onPress={this._msg.bind(this)}>
                         <Image source={nav_msg} style={styles.navBarAdd}/>
                     </TouchableOpacity>
                 </View>
             </View>
         );
+    }
+
+
+    _search() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({component: SearchView});
+        }
     }
 
 
@@ -293,22 +301,27 @@ const styles = StyleSheet.create({
         fontSize: 17,
         color: 'white'
     },
-    navBarTextInput: {
-        alignSelf: 'center',
+    navBarSearchView: {
         width: width * 0.68,
         marginLeft: 10,
         height: 37,
-        fontSize: 13,
-        paddingLeft: 38,
-        backgroundColor: '#409d1a',
+        flexDirection: 'row',
+        backgroundColor: '#409D1A',
         borderRadius: 5,
     },
+    navBarTextInput: {
+        fontSize: 13,
+        marginTop: 10,
+        marginLeft: 5,
+        alignItems: 'center',
+        color: 'rgba(256,256,256,0.56)'
+    },
+
     search: {
         width: 30,
         height: 30,
-        position: 'absolute',
         marginTop: 3,
-        marginLeft: 15,
+        marginLeft: 10,
     },
     navBarAdd: {
         paddingLeft: 10,

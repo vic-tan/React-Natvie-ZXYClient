@@ -13,6 +13,7 @@ import AskQuestionView from '../Ask/AskQuestionView';
 import AskSpecialistView from '../Ask/AskSpecialistView';
 import AskTopicView from '../Ask/AskTopicView';
 import ComTabPager from '../Common/ComTabPager';
+import SearchView from '../Search/SearchView';
 import {
     AppRegistry,
     StyleSheet,
@@ -21,6 +22,7 @@ import {
     View,
     Text,
     TextInput,
+    TouchableOpacity,
     StatusBar,
     Platform
 } from 'react-native';
@@ -46,7 +48,7 @@ class AskTab extends Component {
         );
     }
 
-    tabPagerItem(){
+    tabPagerItem() {
         var allImage = [];
         allImage.push(
             <AskDynamicDirView key={0} tabLabel="动态"/>
@@ -69,18 +71,24 @@ class AskTab extends Component {
             <View style={styles.renderNavBar}>
                 <View style={styles.navBarView}>
                     <Text style={styles.navBartext}>问道</Text>
-                    <View>
-                        <TextInput style={styles.navBarTextInput} placeholder='搜一搜'
-                                   clearButtonMode='while-editing'
-                                   placeholderTextColor="rgba(256,256,256,0.56)"
-
-                        />
-                        <Image source={nav_search} style={styles.search}/>
-                    </View>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._search.bind(this)}>
+                        <View style={styles.navBarSearchView}>
+                            <Image source={nav_search} style={styles.search}/>
+                            <Text style={styles.navBarTextInput}
+                            >搜一搜</Text>
+                        </View>
+                    </TouchableOpacity>
                     <Image source={nav_add} style={styles.navBarAdd}/>
                 </View>
             </View>
         );
+    }
+
+    _search() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({component: SearchView});
+        }
     }
 }
 
@@ -106,22 +114,27 @@ const styles = StyleSheet.create({
             fontSize: 17,
             color: 'white'
         },
-        navBarTextInput: {
-            alignSelf: 'center',
-            width: width * 0.72,
+        navBarSearchView: {
+            width: width * 0.68,
             marginLeft: 10,
             height: 37,
-            fontSize: 13,
-            paddingLeft: 38,
+            flexDirection: 'row',
             backgroundColor: '#409D1A',
             borderRadius: 5,
         },
+        navBarTextInput: {
+            fontSize: 13,
+            marginTop: 10,
+            marginLeft: 5,
+            alignItems: 'center',
+            color: 'rgba(256,256,256,0.56)'
+        },
+
         search: {
             width: 30,
             height: 30,
-            position: 'absolute',
             marginTop: 3,
-            marginLeft: 15,
+            marginLeft: 10,
         },
         navBarAdd: {
             paddingLeft: 10,
@@ -134,4 +147,4 @@ const styles = StyleSheet.create({
     }
 );
 
-module.exports = AskTab;
+export default AskTab;

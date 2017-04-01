@@ -37,9 +37,7 @@ class ComNavBar extends Component {
             <View style={styles.renderNavBar}>
                 <View style={styles.navBarView}>
                     <TouchableOpacity activeOpacity={0.5} onPress={this._back.bind(this)}>
-                        <View style={{height: 48,width: 50}}>
-                            <Image source={nav_back} style={styles.navBarBack}/>
-                        </View>
+                        <Image source={nav_back} style={styles.navBarBack}/>
                     </TouchableOpacity>
                     <View style={styles.navBartextLoyout}>
                         <Text style={styles.navBartext}>{this.props.title}</Text>
@@ -74,11 +72,10 @@ const styles = StyleSheet.create({
             alignItems: 'center',
         },
         navBarBack: {
-            marginLeft: 10,
-            width: 35,
-            height: 35,
-            paddingLeft: 15,
-            paddingRight: 15,
+            width: 50,
+            height: 40,
+            paddingLeft: 25,
+            paddingRight: 25,
         },
         navBartextLoyout: {
             width: width,

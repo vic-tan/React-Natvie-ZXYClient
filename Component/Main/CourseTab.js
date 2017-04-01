@@ -12,6 +12,7 @@ import CourseDirView  from '../Course/CourseDirView';
 import CourseHotView  from '../Course/CourseHotView';
 import CourseNewView  from '../Course/CourseNewView';
 import ComTabPager from '../Common/ComTabPager';
+import SearchView from '../Search/SearchView';
 import {
     AppRegistry,
     StyleSheet,
@@ -20,18 +21,19 @@ import {
     View,
     TextInput,
     Dimensions,
+    TouchableOpacity,
     Text,
     Platform
 } from 'react-native';
 
 var {width, height} = Dimensions.get('window');
-var mine_pre = require('../../img/nav_search.png');
+var nav_search = require('../../img/nav_search.png');
 
 class CourseTab extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            rule_id:''
+        this.state = {
+            rule_id: ''
         }
     }
 
@@ -49,7 +51,7 @@ class CourseTab extends Component {
     tabPagerItem() {
         var allImage = [];
         allImage.push(
-            <CourseDirView key={0} tabLabel="目录" navigator={this.props.navigator} />
+            <CourseDirView key={0} tabLabel="目录" navigator={this.props.navigator}/>
         );
         allImage.push(
             <CourseNewView key={2} tabLabel="最热" navigator={this.props.navigator} rule_id={this.state.rule_id}/>
@@ -65,17 +67,23 @@ class CourseTab extends Component {
             <View style={styles.renderNavBar}>
                 <View style={styles.navBarView}>
                     <Text style={styles.navBartext}>课程</Text>
-                    <View>
-                        <TextInput style={styles.navBarTextInput} placeholder='搜一搜'
-                                   clearButtonMode='while-editing'
-                                   placeholderTextColor="rgba(256,256,256,0.56)"
-
-                        />
-                        <Image source={mine_pre} style={styles.search}/>
-                    </View>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._search.bind(this)}>
+                        <View style={styles.navBarSearchView}>
+                            <Image source={nav_search} style={styles.search}/>
+                            <Text style={styles.navBarTextInput}
+                            >搜一搜</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
+    }
+
+    _search() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({component: SearchView});
+        }
     }
 }
 
@@ -101,23 +109,28 @@ const styles = StyleSheet.create({
             fontSize: 17,
             color: 'white'
         },
-        navBarTextInput: {
-            alignSelf: 'center',
-            width: width * 0.82,
+        navBarSearchView: {
+            width: width * 0.8,
             marginLeft: 10,
             height: 37,
-            fontSize: 13,
-            paddingLeft: 38,
+            flexDirection: 'row',
             backgroundColor: '#409D1A',
             borderRadius: 5,
         },
+        navBarTextInput: {
+            fontSize: 13,
+            marginTop: 10,
+            marginLeft: 5,
+            alignItems: 'center',
+            color: 'rgba(256,256,256,0.56)'
+        },
+
         search: {
             width: 30,
             height: 30,
-            position: 'absolute',
             marginTop: 3,
-            marginLeft: 15,
-        }
+            marginLeft: 10,
+        },
 
 
     }
