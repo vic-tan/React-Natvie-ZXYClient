@@ -27,6 +27,13 @@ var {width, height} = Dimensions.get('window');
 var nav_search = require('../../img/nav_search.png');
 var nav_add = require('../../img/nav_add.png');
 var nav_back = require('../../img/nav_back.png');
+const
+    displayArea = {
+        x: 5,
+        y: 20,
+        width: width - 10,
+        height: height - 25,
+    };
 
 
 class SearchView extends Component {
@@ -36,7 +43,7 @@ class SearchView extends Component {
             title: '全部',
             isVisible: false,
             buttonRect: {},
-            textInputValue:'',
+            textInputValue: '',
         }
     }
 
@@ -63,6 +70,7 @@ class SearchView extends Component {
                     isVisible={this.state.isVisible}
                     fromRect={this.state.buttonRect}
                     placement="bottom"
+                    displayArea={displayArea}
                     onClose={this.closePopover.bind(this)}>
                     {this._selectType()}
                 </Popover>
@@ -176,9 +184,10 @@ class SearchView extends Component {
         );
     }
 
-    _search(){
-        alert("搜索"+this.state.textInputValue);
+    _search() {
+        alert("搜索" + this.state.textInputValue);
     }
+
     _back() {
         const {navigator} = this.props;
         if (navigator) {

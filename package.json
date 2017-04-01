@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "jest-haste-map": "^19.0.0",
-    "react": "~15.4.0",
-    "react-native": "0.41.2",
+    "react": "^15.4.2",
+    "react-native": "^0.42.3",
     "react-native-actionsheet": "^2.0.5",
     "react-native-busy-indicator": "^1.0.9",
     "react-native-cacheable-image": "^1.5.1",
