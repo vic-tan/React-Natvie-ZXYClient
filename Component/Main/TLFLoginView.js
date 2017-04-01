@@ -49,18 +49,22 @@ class TLFLoginView extends Component {
     _login() {
         loaderHandler.showLoader('登录中...');
         let map = new Map()
-        map.set('appSystem', 'Android 6.0.1');
-        map.set('password', 'OHwueBJ1TjaHhZIUHDMIwQ==');
-        map.set('language', 'Hzh_CN');
-        map.set('login_id', 'lanting');
-        map.set('client_type', 6);
-        map.set('company_name', '测试部');
-   /*     map.set('appSystem', 'Android 6.0.1');
-        map.set('password', 'hdAn1URhCSUEdBHszUUXrQ==');
-        map.set('language', 'Hzh_CN');
-        map.set('login_id', 'tanlifei');
-        map.set('client_type', 6);
-        map.set('company_name', '猛象谷');*/
+
+        if(UrlConstant.DOMAIN != UrlConstant.COMPARISON_DOMAIN){
+            map.set('appSystem', 'Android 6.0.1');
+            map.set('password', 'OHwueBJ1TjaHhZIUHDMIwQ==');
+            map.set('language', 'Hzh_CN');
+            map.set('login_id', 'lanting');
+            map.set('client_type', 6);
+            map.set('company_name', '测试部');
+        }else{
+            map.set('appSystem', 'Android 6.0.1');
+            map.set('password', 'hdAn1URhCSUEdBHszUUXrQ==');
+            map.set('language', 'Hzh_CN');
+            map.set('login_id', 'tanlifei');
+            map.set('client_type', 6);
+            map.set('company_name', '猛象谷');
+        }
         HttpUitls.postFrom(UrlConstant.USER_LOGIN, map, (set) => this._callback(set))
     }
 

@@ -9,6 +9,8 @@ import {} from 'react-native';
 
 const DOMAIN = 'http://tc.zhixueyun.com/zxy-mobile-new/';//---------------------------------------->域名
 //const DOMAIN = 'http://demo.zhixueyun.com/zxy-mobile-new/';//---------------------------------------->域名
+const COMPARISON_DOMAIN = 'http://demo.zhixueyun.com/zxy-mobile-new/';//---------------------------------------->域名
+
 const USER_LOGIN = 'user/login';//------------------------------------------------------------------->登录
 const USER_PERSONALINFO = 'user/personalInfo';//----------------------------------------------------->我的
 const USER_MY_COURSE_FAVORITE = 'user/myCourseFavorite';//------------------------------------------->我的收藏-->课程收藏
@@ -66,6 +68,7 @@ const EXAM_MY_UNSTAR_LIST = 'exam/myUnStartList';
 
 export default{
     DOMAIN,
+    COMPARISON_DOMAIN,
     //用户
     USER_LOGIN,
     USER_PERSONALINFO,

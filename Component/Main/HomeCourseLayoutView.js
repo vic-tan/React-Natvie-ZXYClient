@@ -5,6 +5,8 @@ import React, {Component} from 'react';
 import UrlConstant from '../Constant/UrlConstant';
 import ComImage from '../Common/ComImage';
 import HomeBaseOptionalLayoutView from './HomeBaseOptionalLayoutView.js';
+import CourseDetails from '../Course/CourseDetails';
+import HttpUitls  from '../Uitls/HttpUitls';
 import {
     AppRegistry,
     StyleSheet,
@@ -16,7 +18,7 @@ import {
     Text,
 } from 'react-native';
 var {width, height} = Dimensions.get('window');
-
+var ToastUtils = require('../Uitls/ToastUtils');
 
 class HomeCourseLayoutView extends Component {
     constructor(props) {
@@ -42,7 +44,7 @@ class HomeCourseLayoutView extends Component {
 
     callbackParentOptionalRow(rowData, rowID) {
         return (
-            <TouchableOpacity key={rowID} activeOpacity={0.8}>
+            <TouchableOpacity key={rowID} activeOpacity={0.8} onPress={this._details.bind(this,rowData)}>
                 <View style={styles.itemViewStyle}>
                     <ComImage  uri={rowData.cover} width={120} height={80}/>
                     <Text style={styles.shopNameStyle} numberOfLines={1}>{rowData.name}</Text>
@@ -57,6 +59,48 @@ class HomeCourseLayoutView extends Component {
 
     clickMore(bean) {
         alert(bean.region_name + "的查看更多");
+    }
+
+    _details(rowData) {
+        {this.childShowLoader('加载中...')}
+        let map = new Map();
+        map.set('course_id', rowData.id+'');
+        storage.load({
+            key: 'user',
+        }).then(ret => {
+            map.set('sid',ret.sid+'');
+        }).catch(err => {
+
+        });
+        HttpUitls.postFrom(UrlConstant.COURSE_SCORM_CATEGORY_LIST, map, (set) => this._callback(set))
+    }
+
+    _callback(set) {
+        {this.childHideLoader()}
+        if (set != null) {
+            if (set.code == '0000') {
+
+                const {navigator} = this.props;
+                if (navigator) {
+                    navigator.push({
+                        component: CourseDetails,
+                        params:{
+                            parentData:set.data,
+                        }
+                    });
+                }
+            } else {
+                ToastUtils.toastShort(set.msg);
+            }
+        }
+    }
+
+    childShowLoader(title) {
+        return this.props.showLoader(title);
+    }
+
+    childHideLoader() {
+        return this.props.hideLoader();
     }
 }
 

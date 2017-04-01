@@ -109,7 +109,7 @@ class HomeTab extends Component {
             this.setState({
                 sid: ret.sid,
             });
-            loaderHandler.showLoader('加载中...');
+            this.showLoader('加载中...');
             this.request(sid, () => {
             });
         }).catch(err => {
@@ -124,7 +124,7 @@ class HomeTab extends Component {
     }
 
     _bannerAndTypeCallback(set, callback) {
-        loaderHandler.hideLoader();
+        this.hideLoader();
         if (set != null) {
             if (set.code == '0000') {
                 this.banner_list = [];
@@ -177,6 +177,17 @@ class HomeTab extends Component {
         );
     }
 
+    showLoader(title) {
+        if (null === title) {
+            loaderHandler.showLoader('加载中...');
+        } else {
+            loaderHandler.showLoader(title);
+        }
+    }
+
+    hideLoader() {
+        loaderHandler.hideLoader();
+    }
 
     renderNavBar() {
         let titleBarBackgoundRgba = `rgba(71, 173, 29, ${this.state.opacity})`;
@@ -231,7 +242,10 @@ class HomeTab extends Component {
                 case 'recommended_courses'://推荐课程
                     allView.push(
                         <HomeCourseLayoutView key={i} bean={item} sid={this.state.sid}
-                                              navigator={this.props.navigator}/>
+                                              navigator={this.props.navigator}
+                                              showLoader={(title)=>this.showLoader(title)}
+                                              hideLoader={()=>this.hideLoader()}
+                        />
                     );
                     break;
                 case 'hot_subject' ://推荐专题
