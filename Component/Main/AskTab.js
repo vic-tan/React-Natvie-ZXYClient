@@ -14,6 +14,7 @@ import AskSpecialistView from '../Ask/AskSpecialistView';
 import AskTopicView from '../Ask/AskTopicView';
 import ComTabPager from '../Common/ComTabPager';
 import SearchView from '../Search/SearchView';
+import AskSendView from '../Ask/AskSendView';
 import {
     AppRegistry,
     StyleSheet,
@@ -78,7 +79,9 @@ class AskTab extends Component {
                             >搜一搜</Text>
                         </View>
                     </TouchableOpacity>
-                    <Image source={nav_add} style={styles.navBarAdd}/>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._send.bind(this)}>
+                        <Image source={nav_add} style={styles.navBarAdd}/>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -88,6 +91,12 @@ class AskTab extends Component {
         const {navigator} = this.props;
         if (navigator) {
             navigator.push({component: SearchView});
+        }
+    }
+    _send() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({component: AskSendView});
         }
     }
 }
