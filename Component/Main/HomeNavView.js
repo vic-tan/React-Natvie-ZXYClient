@@ -31,9 +31,10 @@ class HomeNavView extends Component {
     }
 
     render() {
+        let swiperHeight = this.props.navList.length>4 ? 200 : 100;
         return (
             <View style={styles.container}>
-                <Swiper style={styles.wrapper} height={100}
+                <Swiper style={styles.wrapper} height={swiperHeight}
                         loop={false} horizontal={true} autoplay={false}
                         activeDot={this._activieDot()}
                         dot={this._dot()}

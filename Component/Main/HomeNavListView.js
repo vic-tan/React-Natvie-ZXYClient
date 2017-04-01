@@ -31,7 +31,7 @@ var {width, height} = Dimensions.get('window');
 // 全局的变量
 var cols = 4;
 var cellW = 52;
-var cellH = 70;
+var cellH = 80;
 var vMargin = (width - cellW * cols) / (cols + 1);
 var new_menu_ask = require('../../img/new_menu_ask.png');
 var new_menu_course = require('../../img/new_menu_course.png');
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
         // 水平居中和垂直居中
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10,
+        marginBottom: 10,
         marginLeft: vMargin,
         alignSelf: 'center',
     },
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     titleStyle: {
         fontSize: Platform.OS == 'ios' ? 14 : 12,
         color: 'gray',
-        marginTop: 48
+        marginTop: 70
     }
 });
 export default HomeNavListView;

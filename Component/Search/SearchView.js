@@ -27,13 +27,7 @@ var {width, height} = Dimensions.get('window');
 var nav_search = require('../../img/nav_search.png');
 var nav_add = require('../../img/nav_add.png');
 var nav_back = require('../../img/nav_back.png');
-const
-    displayArea = {
-        x: 5,
-        y: 20,
-        width: width - 10,
-        height: height - 25,
-    };
+
 
 
 class SearchView extends Component {
@@ -70,7 +64,6 @@ class SearchView extends Component {
                     isVisible={this.state.isVisible}
                     fromRect={this.state.buttonRect}
                     placement="bottom"
-                    displayArea={displayArea}
                     onClose={this.closePopover.bind(this)}>
                     {this._selectType()}
                 </Popover>
@@ -255,6 +248,7 @@ const styles = StyleSheet.create({
             paddingLeft: 23,
             paddingRight: 23,
             paddingTop: 10,
+
             paddingBottom: 10,
         },
         selectTypeItemLine: {
@@ -266,7 +260,7 @@ const styles = StyleSheet.create({
             backgroundColor: '#ffffff',
             width: 30,
             position: 'absolute',
-            marginTop: 11,
+            marginTop: Platform.OS === 'ios' ? 11 : 7,
             marginLeft: 15,
             paddingBottom: 10,
         },
