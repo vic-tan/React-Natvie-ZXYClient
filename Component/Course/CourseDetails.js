@@ -136,7 +136,7 @@ class CourseDetails extends Component {
     }
 
     _opt() {
-        if ('1' == this.props.parentData.apply_status) {
+        /*if ('1' == this.props.parentData.apply_status) {
             return (
                 <View style={styles.optView}>
                     <TouchableOpacity activeOpacity={0.5}
@@ -147,7 +147,7 @@ class CourseDetails extends Component {
                     </TouchableOpacity>
                 </View>
             );
-        } else {
+        } else {*/
             return (
                 <View style={styles.optView}>
                     <TabNavigator >
@@ -162,7 +162,7 @@ class CourseDetails extends Component {
                     </TabNavigator>
                 </View>
             );
-        }
+       // }
     }
 
     // 每一个TabBarItem

@@ -31,7 +31,7 @@ class HomeNavView extends Component {
     }
 
     render() {
-        let swiperHeight = this.props.navList.length>4 ? 200 : 100;
+        let swiperHeight = this.props.navList.length > 4 ? 200 : 100;
         return (
             <View style={styles.container}>
                 <Swiper style={styles.wrapper} height={swiperHeight}
@@ -57,6 +57,10 @@ class HomeNavView extends Component {
             style={styles._activieDot}/>);
     }
 
+    childSetChangeTab(selectedTab) {
+        return this.props.childSetChangeTab(selectedTab);
+    }
+
     // 返回所有的图片
     renderScrollItem() {
         // 数组
@@ -72,7 +76,8 @@ class HomeNavView extends Component {
                 temp.push(this.props.navList[j]);
             }
             scrollItemArr.push(
-                <HomeNavListView key={i} dataArr={temp} navigator={this.props.navigator}/>
+                <HomeNavListView key={i} dataArr={temp} navigator={this.props.navigator}
+                                 childSetChangeTab={(selectedTab)=>this.childSetChangeTab(selectedTab)}/>
             );
             temp = [];
         }

@@ -228,6 +228,10 @@ class HomeTab extends Component {
         }
     }
 
+    childSetChangeTab(selectedTab) {
+        return this.props.setChangeTab(selectedTab);
+    }
+
     // 返回所有的图片
     renderAllView() {
         var allView = [];
@@ -236,7 +240,8 @@ class HomeTab extends Component {
             switch (item.content_code) {
                 case 'navigation_module'://tab导航
                     allView.push(
-                        <HomeNavView key={i} navList={this.region_list[i].nav_list} navigator={this.props.navigator}/>
+                        <HomeNavView key={i} navList={this.region_list[i].nav_list} navigator={this.props.navigator}
+                                     childSetChangeTab={(selectedTab)=>this.childSetChangeTab(selectedTab)}/>
                     );
                     break;
                 case 'recommended_courses'://推荐课程

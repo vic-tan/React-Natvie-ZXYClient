@@ -80,16 +80,20 @@ class TLFMainView extends Component {
 
     _changeTab(tag) {
         if (tag == 'home') {
-            return (<HomeTab {...this.props}/>);
+            return (<HomeTab {...this.props} setChangeTab={(selectedTab)=>this.setChangeTab(selectedTab)}/>);
         } else if (tag == 'course') {
-            return (<CourseTab {...this.props}/>);
+            return (<CourseTab {...this.props} />);
         } else if (tag == 'active') {
             return (<ActiveTab {...this.props}/>);
         } else if (tag == 'ask') {
-            return (<AskTab {...this.props}/>);
+            return (<AskTab {...this.props} />);
         } else if (tag == 'mine') {
             return (<MineTab {...this.props}/>);
         }
+    }
+
+    setChangeTab(selectedTab) {
+        this.setState({selectedTab: selectedTab})
     }
 
 }

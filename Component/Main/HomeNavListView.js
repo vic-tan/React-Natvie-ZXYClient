@@ -16,6 +16,9 @@ import SurveyView from '../Survey/SurveyView';
 import SubjectView from '../Subject/SubjectView';
 import KnowledgeView from '../Knowledge/KnowledgeView';
 import ExamNavigation from '../Exam/ExamTabView';
+import MineMallView from '../Mine/MineMallView';
+import CourseTab from './CourseTab';
+import AskTab from './AskTab';
 import {
     AppRegistry,
     StyleSheet,
@@ -73,6 +76,10 @@ class HomeNavListView extends Component {
         );
     }
 
+    childSetChangeTab(selectedTab) {
+        return this.props.childSetChangeTab(selectedTab);
+    }
+
     _navigator(navigatorTag) {
         const {navigator} = this.props;
         if (navigator) {
@@ -103,11 +110,14 @@ class HomeNavListView extends Component {
                     view = SurveyView;
                     break;
                 case 'mall':
+                    view =MineMallView;
                     break;
                 case 'course':
-                    break;
+                    this.childSetChangeTab('course');
+                    return;
                 case 'ask_bar':
-                    break;
+                    this.childSetChangeTab('ask');
+                    return;
             }
             navigator.push({component: view});
         }
