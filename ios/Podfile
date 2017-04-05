@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 
 target 'ZXYClient' do
-
+pod 'RSKImageCropper'
+pod 'QBImagePickerController'
 end
 

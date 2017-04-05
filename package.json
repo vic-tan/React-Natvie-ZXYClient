@@ -13,6 +13,8 @@
     "react-native-actionsheet": "^2.0.5",
     "react-native-busy-indicator": "^1.0.9",
     "react-native-cacheable-image": "^1.5.1",
+    "react-native-camera-roll-picker": "^1.1.9",
+    "react-native-image-crop-picker": "^0.12.9",
     "react-native-image-picker": "^0.26.2",
     "react-native-popover": "^0.2.0",
     "react-native-progress": "^3.2.0",

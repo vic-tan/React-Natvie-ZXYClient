@@ -13,7 +13,8 @@ import ComNavBar from '../Common/ComNavBar';
 import BusyIndicator from 'react-native-busy-indicator';
 import loaderHandler from 'react-native-busy-indicator/LoaderHandler';
 import HttpUitls  from '../Uitls/HttpUitls';
-import  ImagePicker from 'react-native-image-picker'; //第三方相机
+import ImagePicker from 'react-native-image-crop-picker';
+import ActionSheet from 'react-native-actionsheet';
 import {
     AppRegistry,
     StyleSheet,
@@ -30,21 +31,8 @@ var {width, height} = Dimensions.get('window');
 var ToastUtils = require('../Uitls/ToastUtils');
 var mine_icon_mall = require('../../img/mine_icon_mall.png');
 var mine_arrow_right = require('../../img/mine_arrow_right.png');
+const buttons = ['取消', '拍照','手机相册',];
 
-var photoOptions = {
-    //底部弹出框选项
-    title: '请选择',
-    cancelButtonTitle: '取消',
-    takePhotoButtonTitle: '拍照',
-    chooseFromLibraryButtonTitle: '选择相册',
-    quality: 0.75,
-    allowsEditing: true,
-    noData: false,
-    storageOptions: {
-        skipBackup: true,
-        path: 'images'
-    },
-}
 
 class PersonalView extends Component {
     constructor(props) {
@@ -94,27 +82,41 @@ class PersonalView extends Component {
                     </TouchableHighlight>
                 </View >
                 <BusyIndicator />
+                <ActionSheet
+                    ref={(o) => this.ActionSheet = o}
+                    title="请选择图片来源？"
+                    options={buttons}
+                    cancelButtonIndex={0}
+                    destructiveButtonIndex={1}
+                    onPress={this._select.bind(this)}
+                />
             </View>
         );
     }
 
-    _cameraAction() {
-        console.log('response');
-        ImagePicker.showImagePicker(photoOptions, (response) => {
-            console.log('response' + response);
-            if (response.didCancel) {
-                return;
-            }else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            }
-            else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
-            }
-            else {
-                this._update(response.uri);
+    _select(index) {
+        if(index===1){
+            ImagePicker.openCamera({
+                width: 300,
+                height: 400,
+                cropping: true
+            }).then(image => {
+                console.log(image);
+            });
+        }else if(index===2){
+            ImagePicker.openPicker({
+                width: 300,
+                height: 400,
+                cropping: true
+            }).then(image => {
+                console.log(image);
+                this._update(image.path);
+            });
+        }
+    }
 
-            }
-        })
+    _cameraAction() {
+        this.ActionSheet.show();
     }
 
     _update(file) {

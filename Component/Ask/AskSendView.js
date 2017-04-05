@@ -10,6 +10,7 @@
 import React, {Component} from 'react';
 import ActionSheet from 'react-native-actionsheet';
 import ComNavBar from '../Common/ComNavBar';
+import ImagePicker from 'react-native-image-crop-picker';
 import {
     AppRegistry,
     StyleSheet,
@@ -28,6 +29,9 @@ const buttons = ['取消', '拍照','手机相册',];
 class AskSendView extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+
+        };
     }
 
 
@@ -50,16 +54,35 @@ class AskSendView extends Component {
                     destructiveButtonIndex={1}
                     onPress={this._exit.bind(this)}
                 />
+
             </View>
         );
 
     }
+
+
     _actionSheet() {
         this.ActionSheet.show();
     }
 
     _exit(index) {
-        ToastUtils.toastShort(index);
+        if(index===1){
+            ImagePicker.openCamera({
+                width: 300,
+                height: 400,
+                cropping: true
+            }).then(image => {
+                console.log(image);
+            });
+        }else if(index===2){
+            ImagePicker.openPicker({
+                width: 300,
+                height: 400,
+                cropping: true
+            }).then(image => {
+                console.log(image);
+            });
+        }
     }
 
 }
