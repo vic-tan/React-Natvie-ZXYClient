@@ -192,7 +192,7 @@ class HomeTab extends Component {
     renderNavBar() {
         let titleBarBackgoundRgba = `rgba(71, 173, 29, ${this.state.opacity})`;
         return (
-            <View style={{backgroundColor: titleBarBackgoundRgba,position:'absolute', top:0}}>
+            <View style={{backgroundColor: '#47AD1D'}}>
                 <View style={styles.navBarView}>
                     <TouchableOpacity activeOpacity={0.8} onPress={()=>alert('二维码')}>
                         <Image source={new_nav_scan} style={styles.navBarAdd}/>
